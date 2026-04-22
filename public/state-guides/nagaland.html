@@ -1,0 +1,779 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --tribe: #3B2A1A;
+    --tribe-light: #6B4A2A;
+    --tribe-pale: #F2E8DC;
+    --valley: #1A3B2A;
+    --valley-light: #2E6B4A;
+    --valley-pale: #DFF0E6;
+    --war: #3A2A4A;
+    --war-light: #6A4A8A;
+    --war-pale: #EDE8F5;
+    --dawn: #7A4A10;
+    --dawn-light: #B87030;
+    --dawn-pale: #F7EDD8;
+    --stone: #4A4A4A;
+    --text-dark: var(--color-text-primary);
+    --text-muted: var(--color-text-secondary);
+    --bg: var(--color-background-primary);
+    --bg-2: var(--color-background-secondary);
+    --border: var(--color-border-tertiary);
+  }
+
+  body { font-family: 'Inter', sans-serif; }
+  .page { width: 100%; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 2rem 2.5rem;
+    background: var(--bg-2);
+    border-bottom: 0.5px solid var(--border);
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--tribe-light); background: var(--tribe-pale);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    font-weight: 600; color: var(--text-dark);
+    line-height: 1.15; margin-bottom: 0.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--valley-light); }
+  .hero-sub {
+    font-size: 14px; color: var(--text-muted);
+    font-weight: 300; max-width: 510px;
+    margin: 0 auto 1.8rem; line-height: 1.8;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .htag {
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 20px; border: 0.5px solid var(--border);
+    color: var(--text-muted); background: var(--bg);
+  }
+  .deco-line { width: 50px; height: 2px; background: var(--valley-light); margin: 1.8rem auto 0; border-radius: 2px; }
+
+  /* SECTION */
+  .section { padding: 2.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--valley-light); margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 600; color: var(--text-dark);
+    margin-bottom: 1rem; line-height: 1.3;
+  }
+  .section-body { font-size: 14px; line-height: 1.8; color: var(--text-muted); max-width: 720px; }
+
+  /* STAT PILLS */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 0; }
+  .stat-pill {
+    background: var(--tribe-pale); color: var(--tribe);
+    font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* TRUST CARDS — signature Nagaland concept */
+  .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .trust-card {
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.1rem;
+    background: var(--bg);
+    position: relative;
+  }
+  .trust-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 5px;
+    margin-bottom: 7px;
+    background: var(--valley-pale); color: var(--valley);
+  }
+  .trust-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .trust-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* GEO CARDS */
+  .geo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .geo-card {
+    background: var(--bg-2); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.1rem;
+  }
+  .geo-icon { font-size: 18px; margin-bottom: 6px; }
+  .geo-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .geo-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* CULTURE BLOCK */
+  .culture-block {
+    border-left: 3px solid var(--tribe-light);
+    padding: 1rem 1.2rem;
+    background: var(--tribe-pale);
+    border-radius: 0 10px 10px 0;
+    margin: 1rem 0;
+  }
+  .culture-block h4 { font-size: 13px; font-weight: 500; color: var(--tribe); margin-bottom: 4px; }
+  .culture-block p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .tab-btn {
+    font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    cursor: pointer; font-family: 'Inter', sans-serif;
+    transition: all 0.15s;
+  }
+  .tab-btn.active { background: var(--valley); color: #b8e0c8; border-color: transparent; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .attract-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 10px; }
+  .attract-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg);
+  }
+  .a-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--valley-light); margin-bottom: 4px; }
+  .attract-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .attract-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* FOOD — culture shock callout */
+  .food-shock {
+    background: var(--tribe-pale);
+    border: 0.5px solid var(--border);
+    border-left: 3px solid var(--tribe-light);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .food-shock h4 { font-size: 13px; font-weight: 500; color: var(--tribe); margin-bottom: 4px; }
+  .food-shock p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  .food-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 10px; }
+  .food-item {
+    border-left: 2px solid var(--dawn-light);
+    padding: 0.75rem 0.9rem;
+    background: var(--dawn-pale); border-radius: 0 8px 8px 0;
+  }
+  .food-item h4 { font-size: 13px; font-weight: 500; color: var(--dawn); margin-bottom: 3px; }
+  .food-item p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TRANSPORT */
+  .transport-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .transport-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 0.85rem 1rem; background: var(--bg); text-align: center;
+  }
+  .t-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .transport-card h4 { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .transport-card p { font-size: 11px; color: var(--text-muted); }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .tip-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2);
+  }
+  .tip-icon { font-size: 18px; margin-bottom: 6px; }
+  .tip-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .tip-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* BEST TIME */
+  .time-card {
+    border-radius: 10px; padding: 1rem;
+    border: 0.5px solid var(--border);
+    background: var(--bg); margin-top: 0.8rem;
+  }
+  .time-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .time-card p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* ITINERARY CTA */
+  .itin-hero {
+    background: var(--bg-2); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    border: 0.5px solid var(--border); text-align: center;
+  }
+  .itin-hero h2 {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: clamp(1.2rem, 3vw, 1.65rem);
+    font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem;
+  }
+  .itin-hero p { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 500px; margin: 0 auto 1.2rem; }
+
+  .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .cta-primary {
+    padding: 10px 22px; background: var(--valley);
+    color: #b8e0c8; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'Inter', sans-serif; transition: opacity 0.15s;
+  }
+  .cta-primary:hover { opacity: 0.85; }
+  .cta-secondary {
+    padding: 10px 22px; background: var(--bg);
+    color: var(--text-dark); border: 0.5px solid var(--border);
+    border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+  }
+  .cta-secondary:hover { background: var(--bg-2); }
+
+  /* INTEREST CARDS */
+  .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .interest-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2); text-align: center;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .interest-card:hover { border-color: var(--valley-light); }
+  .i-icon { font-size: 20px; margin-bottom: 6px; }
+  .interest-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .interest-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .day-block {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 0 1rem; position: relative;
+  }
+  .day-block:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 27px; top: 44px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .day-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .day-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .day-circle.active { background: var(--valley); color: #b8e0c8; border-color: transparent; }
+  .day-content { padding: 0 0 2rem 0; }
+  .day-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.7rem; padding-top: 8px; }
+  .day-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--valley-light); }
+  .day-title {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--text-dark);
+  }
+  .time-slots { display: flex; flex-direction: column; gap: 8px; }
+  .slot { display: flex; gap: 10px; align-items: flex-start; }
+  .slot-time {
+    font-size: 10px; font-weight: 500;
+    min-width: 64px; padding-top: 2px;
+    color: var(--tribe-light); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .slot-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .slot-text strong { font-weight: 500; color: var(--text-dark); }
+
+  .tip-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--valley-pale); color: var(--valley);
+  }
+  .warn-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--tribe-pale); color: var(--tribe);
+  }
+  .info-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--war-pale); color: var(--war);
+  }
+
+  .summary-box {
+    border-radius: 12px; border: 0.5px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    background: var(--valley-pale); margin-top: 1.5rem;
+  }
+  .summary-box h4 { font-size: 13px; font-weight: 500; color: var(--valley); margin-bottom: 6px; }
+  .summary-box p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Destination Guide</div>
+    <h1>Nagaland —<br><em>India's Tribal Frontier</em></h1>
+    <p class="hero-sub">Cloud-covered valleys at 8,000 feet, shops with no shopkeepers, libraries with no locks, and a culture of deep community trust. India's most surprising state.</p>
+    <div class="hero-tags">
+      <span class="htag">Dzukou Valley 8,000ft</span>
+      <span class="htag">Green Village Khonoma</span>
+      <span class="htag">WWII War Cemetery</span>
+      <span class="htag">Self-Payment Shops</span>
+      <span class="htag">Tribal Food Culture</span>
+      <span class="htag">Earliest Sunset in India</span>
+    </div>
+    <div class="deco-line"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <div class="section-title">Where trust is the local currency</div>
+    <p class="section-body">Nagaland is one of India's most surprising and undervisited states — sitting at the easternmost edge of the country, where the sun sets roughly 90 minutes earlier than in Delhi. It is a land of rolling tribal hills, pristine valleys, and villages that operate on a level of community honesty that feels almost unimaginable to outside visitors.</p>
+    <div class="stat-row">
+      <span class="stat-pill">Easternmost part of India</span>
+      <span class="stat-pill">Sunset ~90 min earlier than Delhi</span>
+      <span class="stat-pill">Predominantly Christian</span>
+      <span class="stat-pill">Kohima at 4,500ft altitude</span>
+      <span class="stat-pill">Dzukou Valley at 8,000ft</span>
+    </div>
+
+    <!-- Trust concept cards — Nagaland's signature -->
+    <p style="font-size:13px;font-weight:500;color:var(--text-dark);margin:1.4rem 0 0.6rem;">What makes Nagaland unlike anywhere else</p>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-badge">Dzuleke Village</div>
+        <h4>Shops with no shopkeepers</h4>
+        <p>Take what you need, leave the correct cash in the box. No staff, no cameras, no oversight. Pure community trust.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-badge">Khonoma Village</div>
+        <h4>Library with no lock</h4>
+        <p>An open community library where anyone can borrow a book or leave one. No registration, no returns policy — just shared knowledge.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-badge">Khonoma — India's First</div>
+        <h4>Zero-garbage green village</h4>
+        <p>Hunting and deforestation are completely banned. The village is immaculately clean — organic farming, preserved forests, no waste.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-badge">Viswema</div>
+        <h4>Organic rice fields</h4>
+        <p>Stunning paddy fields cultivated entirely by elderly women, growing unique varieties like red rice with no chemical inputs.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEOGRAPHY & VILLAGES -->
+  <div class="section">
+    <div class="section-label">Key Destinations</div>
+    <div class="section-title">Cities & villages to know</div>
+    <div class="geo-grid">
+      <div class="geo-card">
+        <div class="geo-icon">🏙️</div>
+        <h4>Dimapur</h4>
+        <p>Primary entry point — airport and railway. Known for vibrant handicrafts, lush forests, and lakes.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🏔️</div>
+        <h4>Kohima — 4,500ft</h4>
+        <p>The capital. WWII War Cemetery, diverse tribal heritage, and the extraordinary Kohima "Supermarket".</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🌾</div>
+        <h4>Viswema — 5,300ft</h4>
+        <p>Nagaland's second-largest village, divided into four colonies. Trek starting point for Dzukou Valley.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🌿</div>
+        <h4>Khonoma</h4>
+        <p>India's first Green Village — no garbage, no hunting, no deforestation. Home to the open community library.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🏡</div>
+        <h4>Dzuleke</h4>
+        <p>Only 35 houses, surrounded by peach trees. Zero mobile network. Unmanned self-payment shops.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">☁️</div>
+        <h4>Dzukou Valley — 8,000ft</h4>
+        <p>"Cold stream" valley — treeless, cloud-covered, with blooming flowers and cold mountain streams.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURE -->
+  <div class="section">
+    <div class="section-label">Culture & Traditions</div>
+    <div class="section-title">Tribal roots, Christian faith, forest wisdom</div>
+    <p class="section-body">Nagaland's culture is shaped by centuries of tribal living in dense jungles — survival instincts, forest knowledge, and a deep sense of community trust permeate every aspect of local life. The state is predominantly Christian, reflected in the beautiful churches found in even the most remote villages.</p>
+    <div class="culture-block">
+      <h4>Traditional homes as a social record</h4>
+      <p>Houses in Nagaland often feature specific symbols on their exterior that historically communicated the family's wealth and social standing. These architectural codes are a living record of tribal hierarchy and heritage.</p>
+    </div>
+    <div class="culture-block" style="border-left-color:var(--war-light);background:var(--war-pale);">
+      <h4>WWII — the war that came to Kohima</h4>
+      <p>The 1944 Battle of Kohima was one of the turning points of World War II in Asia. The Kohima War Cemetery stands as a moving memorial to the soldiers who gave their lives here — a reminder that this remote tribal capital was once at the centre of global history.</p>
+    </div>
+  </div>
+
+  <!-- ATTRACTIONS TABS -->
+  <div class="section">
+    <div class="section-label">Attractions</div>
+    <div class="section-title">What to see & experience</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab5('nature')">Nature & Valleys</button>
+      <button class="tab-btn" onclick="showTab5('culture')">Village Culture</button>
+      <button class="tab-btn" onclick="showTab5('heritage')">Heritage & History</button>
+    </div>
+
+    <div id="tab5-nature" class="tab-content active">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">8,000ft — Trek Required</div>
+          <h4>Dzukou Valley</h4>
+          <p>A magical, cloud-wrapped treeless valley of cold streams, blooming wildflowers, and dramatic mountain curves. One of Northeast India's finest trekking destinations.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Viswema</div>
+          <h4>Paddy Fields</h4>
+          <p>Organically cultivated red rice fields tended by elderly women — a living, working landscape of extraordinary beauty.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Dzuleke</div>
+          <h4>Peach Tree Village</h4>
+          <p>A tiny settlement of 35 houses surrounded entirely by peach trees and wildflowers — serene and completely off-grid.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Dimapur</div>
+          <h4>Forests & Lakes</h4>
+          <p>Lush forests and tranquil lakes surround Nagaland's main entry point — a gentle introduction to the state's natural beauty.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab5-culture" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">Kohima</div>
+          <h4>The Tribal Supermarket</h4>
+          <p>A market unlike anywhere in India — live insects, silkworms, massive frogs, rats, and snails sucked straight from the shell. A genuine culture shock and unforgettable experience.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Dzuleke</div>
+          <h4>Self-Payment Shops</h4>
+          <p>No staff. Take what you need and leave exact cash in the box. Bring small change — there is no one to give you change back. No mobile network.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Khonoma</div>
+          <h4>Open Community Library</h4>
+          <p>No locks, no librarian, no registration. Take a book. Leave a book. A simple but profound expression of Naga community life.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Khonoma</div>
+          <h4>India's First Green Village</h4>
+          <p>Walk through a village that banned hunting and deforestation entirely — clean streets, organic farms, and strictly preserved forests.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Dimapur & Kohima</div>
+          <h4>Handicrafts & Textiles</h4>
+          <p>Shop for traditional Naga textiles, hand-woven shawls, and tribal crafts made by local artisans across the state.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Viswema</div>
+          <h4>Traditional Homestay</h4>
+          <p>Stay in a local tribal home in Viswema — the gateway village to Dzukou. Remote areas may have no hotels; a local family's house is your room.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab5-heritage" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">Kohima — WWII Memorial</div>
+          <h4>Kohima War Cemetery</h4>
+          <p>A deeply moving memorial to soldiers who fell in the 1944 Battle of Kohima — one of WWII's decisive turning points in Southeast Asia.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Viswema</div>
+          <h4>Tribal Architecture</h4>
+          <p>Traditional tin-roofed homes with ancient carved symbols on the exterior — a readable language of tribal wealth and lineage.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Viswema</div>
+          <h4>Nagaland's Largest Church</h4>
+          <p>A beautiful church accompanied by a convent school — a landmark that reflects how deeply Christian faith is woven into Naga village identity.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Dimapur & Kohima</div>
+          <h4>Tribal Heritage Sites</h4>
+          <p>Dimapur and Kohima host artifacts, monuments, and marketplaces that together tell the story of Nagaland's layered tribal past.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD -->
+  <div class="section">
+    <div class="section-label">Cuisine</div>
+    <div class="section-title">Food that challenges everything you know</div>
+    <div class="food-shock">
+      <h4>A genuine culture shock — be open-minded</h4>
+      <p>Nagaland's food reflects its deep tribal heritage. The Kohima market sells live and edible insects, silkworms, massive frogs, rats, and snails — eaten fresh. This is not a curiosity; it is a living food tradition shaped by centuries of forest survival. Approach it with curiosity, not judgment.</p>
+    </div>
+    <div class="food-row">
+      <div class="food-item">
+        <h4>Organic Red Rice</h4>
+        <p>A unique local variety grown in the paddy fields of Viswema — nutty, earthy, and unlike anything from the plains.</p>
+      </div>
+      <div class="food-item">
+        <h4>Simple Dals & Boiled Greens</h4>
+        <p>Everyday Naga meals are built around simple, nourishing ingredients — forest-foraged greens and clean, organic dals.</p>
+      </div>
+      <div class="food-item">
+        <h4>Tribal Market Foods</h4>
+        <p>Silkworms, insects, frogs, snails — ingredients sourced directly from the forest, prepared and eaten fresh at the Kohima Supermarket.</p>
+      </div>
+      <div class="food-item">
+        <h4>Village Homestay Cooking</h4>
+        <p>Meals eaten in a traditional Naga home use local, organic ingredients — understated but deeply satisfying after a day of trekking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEST TIME + TRANSPORT -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-label">When to Visit</div>
+        <div class="section-title" style="font-size:1.15rem;">Best time of year</div>
+        <div class="time-card">
+          <h4>Flower season for Dzukou Valley</h4>
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.65;margin-top:3px;">The most spectacular time to visit Dzukou Valley is during the flower blooming season — the entire treeless landscape erupts in colour. Avoid the wettest monsoon months for the trek as trails become dangerously slippery.</p>
+        </div>
+        <div class="time-card" style="margin-top:10px;">
+          <h4>Early sunset — plan your days short</h4>
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.65;margin-top:3px;">Because Nagaland is India's easternmost state, daylight ends around 90 minutes earlier than in cities like Delhi. Factor this into your trekking and travel schedules — especially on the Dzukou Valley day.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Getting There & Around</div>
+        <div class="section-title" style="font-size:1.15rem;">Transport options</div>
+        <div class="transport-cards">
+          <div class="transport-card">
+            <span class="t-icon">✈️</span>
+            <h4>By Air</h4>
+            <p>Fly into Dimapur airport — the main gateway to Nagaland.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚂</span>
+            <h4>By Train</h4>
+            <p>Dimapur railway station is the only major rail hub in the state.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚙</span>
+            <h4>Taxi to Kohima</h4>
+            <p>Shared jeep or private taxi — 2 hrs from Dimapur to the capital.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🥾</span>
+            <h4>Trek to Dzukou</h4>
+            <p>10 km steep trek from Viswema — slippery, narrow, 3–4 hrs each way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS -->
+  <div class="section">
+    <div class="section-label">Practical Tips</div>
+    <div class="section-title">Know before you go</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🐍</div>
+        <h4>Watch for snakes</h4>
+        <p>Snakes are frequently spotted on roads and jungle paths, particularly during the Dzukou Valley trek. Stay alert, especially on narrow forest trails.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">💵</div>
+        <h4>Carry exact change</h4>
+        <p>The self-payment shops in Dzuleke have no staff to give change. Bring small denomination notes before heading into the village.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📵</div>
+        <h4>Zero network in remote villages</h4>
+        <p>Dzuleke and remote Viswema areas have no mobile coverage. Download offline maps, let someone know your plans, and carry a physical list of contacts.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🏡</div>
+        <h4>Homestay may be your only option</h4>
+        <p>Remote villages like Viswema may have no operational hotels. Staying in a local family's traditional home is not a backup — it's the experience.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="padding: 0 1.5rem;"><div style="height:1px;background:var(--border);"></div></div>
+
+  <!-- ITINERARY CTA -->
+  <div class="section">
+    <div class="itin-hero">
+      <div class="section-label" style="margin-bottom:0.5rem;">Plan Your Trip</div>
+      <h2>Let us build your Nagaland adventure</h2>
+      <p>From the WWII Cemetery in Kohima to the unmanned shops of Dzuleke and the cloud-covered silence of Dzukou — we'll design every day of this raw, extraordinary journey.</p>
+      <div class="cta-btns">
+        <button class="cta-primary" onclick="sendPrompt('I want to plan a custom Nagaland trip. Help me build an itinerary based on my interests.')">Build my itinerary ↗</button>
+        <button class="cta-secondary" onclick="document.getElementById('four-day-nag').scrollIntoView({behavior:'smooth'})">See 4-day example ↓</button>
+      </div>
+    </div>
+
+    <div class="interest-grid">
+      <div class="interest-card" onclick="sendPrompt('Plan a Nagaland trekking trip focused on Dzukou Valley — including the base at Viswema and the full 10km trek')">
+        <div class="i-icon">🏔️</div>
+        <h4>Dzukou Valley Trek</h4>
+        <p>Full trek from Viswema, base camp, valley exploration.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Nagaland village culture trip visiting Khonoma Green Village and Dzuleke self-payment shops')">
+        <div class="i-icon">🌿</div>
+        <h4>Village Immersion</h4>
+        <p>Khonoma, Dzuleke, community trust experiences.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Nagaland food and tribal culture trip exploring the Kohima Supermarket and local tribal diet')">
+        <div class="i-icon">🍽️</div>
+        <h4>Tribal Food Culture</h4>
+        <p>Kohima market, insect foods, red rice, forest diet.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Nagaland history trip visiting the Kohima War Cemetery and WWII Battle of Kohima sites')">
+        <div class="i-icon">🎖️</div>
+        <h4>WWII Heritage</h4>
+        <p>Kohima War Cemetery, 1944 battle sites, history tour.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-DAY ITINERARY -->
+  <div class="section" id="four-day-nag">
+    <div class="section-label">Sample Itinerary</div>
+    <div class="section-title">4 days in Nagaland — a first-timer's journey</div>
+    <p class="section-body" style="margin-bottom:2rem;">From the WWII memorial in Kohima to the cloud-wrapped silence of Dzukou Valley — four days into India's most surprising and trust-filled frontier.</p>
+
+    <div class="timeline">
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 1</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 1</span>
+            <span class="day-title">Dimapur → Kohima</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Arrive at <strong>Dimapur</strong> by flight or train. Hire a shared jeep or private taxi for the scenic 2-hour climb up into the hills towards the capital. <span class="info-pill">~2 hrs Dimapur → Kohima</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Visit the solemn and beautifully maintained <strong>Kohima War Cemetery</strong> — a memorial to the soldiers of the 1944 Battle of Kohima, one of WWII's most significant turning points in Asia.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Head to the <strong>Kohima Supermarket</strong> — brace yourself. Live insects, silkworms, frogs, snails, and rats. An extraordinary window into tribal food culture. <span class="warn-pill">Genuine culture shock — go in curious</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 2</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 2</span>
+            <span class="day-title">Khonoma & Dzuleke</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Drive to <strong>Khonoma</strong> — India's first Green Village. Walk the immaculate streets, admire the organic farms, and visit the extraordinary <strong>open-air community library</strong> with no locks and no librarian. <span class="tip-pill">Don't take even a leaf from the forests</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Travel 10 km to the tiny village of <strong>Dzuleke</strong>. Put your phone away — there is <strong>zero mobile network</strong>. Experience buying a snack from an <strong>unmanned self-payment shop</strong>, leaving exact cash in the box. <span class="warn-pill">Carry exact change — no staff to give change</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Travel to <strong>Viswema village</strong> at 5,300ft. Check into a local homestay. Eat a traditional meal of <strong>organic red rice, dal, and boiled greens</strong>. Rest early — tomorrow is a long trek.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 3</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 3</span>
+            <span class="day-title">Dzukou Valley Trek</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Early AM</div>
+              <div class="slot-text">Start the <strong>10 km trek to Dzukou Valley</strong> from Viswema at first light. The initial forest section is steep, narrow, and slippery. Watch your footing — and watch for snakes. <span class="warn-pill">Snakes on trail — stay alert</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Reach the <strong>base camp at 8,000ft</strong>. Eat a packed lunch with a panoramic view, then descend into the magical treeless valley to explore its cold streams, unique mountain curves, and (in season) blooming wildflowers. <span class="tip-pill">Flower season gives the best views</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Hike back to base camp to spend the night under the stars, or return to the Viswema homestay before the early mountain sunset. <span class="info-pill">Sunset ~90 min earlier than Delhi — plan accordingly</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 4</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 4</span>
+            <span class="day-title">Viswema & Departure</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Take a gentle walk through <strong>Viswema's organic paddy fields</strong>. Watch elderly women at work, observe the unique red rice cultivation, and read the ancient <strong>wealth symbols carved into traditional homes</strong>.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Pack up and take a taxi back down from the hills to <strong>Dimapur</strong> for your departing flight or train.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Depart Nagaland — carrying a changed perspective on what community, trust, and connection to the land can look like. <span class="tip-pill">Most visitors leave wanting more time</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="summary-box">
+      <h4>Trip summary</h4>
+      <p>This 4-day route takes you from the WWII history of <strong style="font-weight:500;color:var(--valley)">Kohima</strong> → the extraordinary community trust of <strong style="font-weight:500;color:var(--valley)">Khonoma and Dzuleke</strong> → the high-altitude base village of <strong style="font-weight:500;color:var(--valley)">Viswema</strong> → the breathtaking treeless expanse of <strong style="font-weight:500;color:var(--valley)">Dzukou Valley at 8,000ft</strong>. Remember: carry exact change, expect early sunsets, watch for snakes on the trail, and embrace the fact that your phone will not work in some of the most beautiful places you'll ever visit.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="cta-primary" onclick="sendPrompt('I love the 4-day Nagaland itinerary. Can you help me book this trip and customize it for my travel dates and group size?')">Book this itinerary ↗</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab5(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab5-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

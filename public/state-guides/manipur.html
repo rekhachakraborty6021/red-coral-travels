@@ -1,0 +1,759 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --valley: #3D5A3E;
+    --valley-light: #527A54;
+    --valley-pale: #E4EFE4;
+    --peak: #4A3728;
+    --peak-light: #7A5C45;
+    --peak-pale: #F5EDE4;
+    --lake: #1B5E7A;
+    --lake-light: #2980B9;
+    --lake-pale: #D6EEF8;
+    --gold: #8A6A1A;
+    --gold-pale: #F7EDD5;
+    --text-dark: var(--color-text-primary);
+    --text-muted: var(--color-text-secondary);
+    --bg: var(--color-background-primary);
+    --bg-2: var(--color-background-secondary);
+    --border: var(--color-border-tertiary);
+  }
+
+  body { font-family: 'Outfit', sans-serif; }
+  .page { width: 100%; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 2rem 2.5rem;
+    background: var(--bg-2);
+    border-bottom: 0.5px solid var(--border);
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--valley-light);
+    background: var(--valley-pale);
+    padding: 4px 14px; border-radius: 20px;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.15; margin-bottom: 0.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--valley-light); font-weight: 400; }
+  .hero-sub {
+    font-size: 14px; color: var(--text-muted);
+    font-weight: 300; max-width: 520px;
+    margin: 0 auto 1.8rem; line-height: 1.8;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .htag {
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 20px; border: 0.5px solid var(--border);
+    color: var(--text-muted); background: var(--bg);
+  }
+  .deco-line { width: 50px; height: 2px; background: var(--valley-light); margin: 1.8rem auto 0; border-radius: 2px; }
+
+  /* SECTION */
+  .section { padding: 2.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--valley-light); margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 700; color: var(--text-dark);
+    margin-bottom: 1rem; line-height: 1.3;
+  }
+  .section-body { font-size: 14px; line-height: 1.8; color: var(--text-muted); max-width: 720px; }
+
+  /* STAT PILLS */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 0; }
+  .stat-pill {
+    background: var(--valley-pale); color: var(--valley);
+    font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* GEO CARDS */
+  .geo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .geo-card {
+    background: var(--bg-2); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.1rem;
+  }
+  .geo-icon { font-size: 18px; margin-bottom: 6px; }
+  .geo-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .geo-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* CULTURE HIGHLIGHT */
+  .culture-block {
+    border-left: 3px solid var(--valley-light);
+    padding: 1rem 1.2rem;
+    background: var(--valley-pale);
+    border-radius: 0 10px 10px 0;
+    margin: 1rem 0;
+  }
+  .culture-block h4 { font-size: 13px; font-weight: 500; color: var(--valley); margin-bottom: 4px; }
+  .culture-block p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* RELIGION BAR */
+  .religion-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1rem; }
+  .rel-chip {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 8px;
+    border: 0.5px solid var(--border);
+    background: var(--bg); font-size: 12px;
+  }
+  .rel-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .rel-chip span { color: var(--text-dark); font-weight: 500; }
+  .rel-chip small { color: var(--text-muted); font-size: 11px; }
+
+  /* CITIES */
+  .cities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .city-card {
+    background: var(--bg); border: 0.5px solid var(--border);
+    border-radius: 10px; padding: 1rem;
+  }
+  .city-name { font-size: 13px; font-weight: 500; color: var(--text-dark); display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+  .city-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .city-desc { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .tab-btn {
+    font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    cursor: pointer; font-family: 'Outfit', sans-serif;
+    transition: all 0.15s;
+  }
+  .tab-btn.active { background: var(--valley); color: #c8e6c9; border-color: transparent; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .attract-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+  .attract-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg);
+  }
+  .a-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--valley-light); margin-bottom: 4px; }
+  .attract-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .attract-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* FOOD */
+  .food-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .food-item {
+    border-left: 2px solid var(--gold);
+    padding: 0.75rem 0.9rem;
+    background: var(--gold-pale); border-radius: 0 8px 8px 0;
+  }
+  .food-item h4 { font-size: 13px; font-weight: 500; color: var(--gold); margin-bottom: 3px; }
+  .food-item p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TRANSPORT */
+  .transport-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .transport-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 0.85rem 1rem; background: var(--bg); text-align: center;
+  }
+  .t-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .transport-card h4 { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .transport-card p { font-size: 11px; color: var(--text-muted); }
+
+  /* MONTHS */
+  .months-bar { display: flex; gap: 3px; flex-wrap: wrap; margin: 0.8rem 0; }
+  .month-chip { font-size: 10px; font-weight: 500; padding: 4px 8px; border-radius: 6px; }
+  .month-chip.good { background: var(--valley-pale); color: var(--valley); }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .tip-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2);
+  }
+  .tip-icon { font-size: 18px; margin-bottom: 6px; }
+  .tip-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .tip-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* ITINERARY CTA */
+  .itin-hero {
+    background: var(--bg-2); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    border: 0.5px solid var(--border); text-align: center;
+  }
+  .itin-hero h2 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(1.2rem, 3vw, 1.65rem);
+    font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem;
+  }
+  .itin-hero p { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 500px; margin: 0 auto 1.2rem; }
+
+  .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .cta-primary {
+    padding: 10px 22px; background: var(--valley);
+    color: #c8e6c9; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'Outfit', sans-serif; transition: opacity 0.15s;
+  }
+  .cta-primary:hover { opacity: 0.85; }
+  .cta-secondary {
+    padding: 10px 22px; background: var(--bg);
+    color: var(--text-dark); border: 0.5px solid var(--border);
+    border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'Outfit', sans-serif;
+  }
+  .cta-secondary:hover { background: var(--bg-2); }
+
+  /* INTEREST CARDS */
+  .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .interest-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2); text-align: center;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .interest-card:hover { border-color: var(--valley-light); }
+  .i-icon { font-size: 20px; margin-bottom: 6px; }
+  .interest-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .interest-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .day-block {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 0 1rem; position: relative;
+  }
+  .day-block:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 27px; top: 44px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .day-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .day-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .day-circle.active { background: var(--valley); color: #c8e6c9; border-color: transparent; }
+  .day-content { padding: 0 0 2rem 0; }
+  .day-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.7rem; padding-top: 8px; }
+  .day-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--valley-light); }
+  .day-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
+  }
+  .time-slots { display: flex; flex-direction: column; gap: 8px; }
+  .slot { display: flex; gap: 10px; align-items: flex-start; }
+  .slot-time {
+    font-size: 10px; font-weight: 500;
+    min-width: 64px; padding-top: 2px;
+    color: var(--lake); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .slot-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .slot-text strong { font-weight: 500; color: var(--text-dark); }
+  .tip-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--valley-pale); color: var(--valley);
+  }
+  .info-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--lake-pale); color: var(--lake);
+  }
+
+  .summary-box {
+    border-radius: 12px; border: 0.5px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    background: var(--valley-pale); margin-top: 1.5rem;
+  }
+  .summary-box h4 { font-size: 13px; font-weight: 500; color: var(--valley); margin-bottom: 6px; }
+  .summary-box p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Destination Guide</div>
+    <h1>Manipur —<br><em>A Jewel of the East</em></h1>
+    <p class="hero-sub">Floating lakes, ancient forts, the world's largest women-only market, rare wildlife, and valleys of untouched village life. India's most underrated paradise.</p>
+    <div class="hero-tags">
+      <span class="htag">Floating National Park</span>
+      <span class="htag">Ima Women's Market</span>
+      <span class="htag">Loktak Lake</span>
+      <span class="htag">Kangla Fort</span>
+      <span class="htag">King Peak 3,114m</span>
+      <span class="htag">Borders Myanmar</span>
+    </div>
+    <div class="deco-line"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <div class="section-title">An unexplored paradise of valleys & peaks</div>
+    <p class="section-body">Manipur sits at the eastern edge of India, sharing a border with Myanmar. Though it attracts fewer tourists than other states, it is a true paradise for those who seek nature, culture, and solitude. Its capital, Imphal, rests in a lush valley at 786 meters above sea level — giving the entire state a pleasant, mountain-like climate year-round.</p>
+    <div class="stat-row">
+      <span class="stat-pill">~90% literacy rate</span>
+      <span class="stat-pill">1052 women per 1000 men</span>
+      <span class="stat-pill">786m altitude (Imphal)</span>
+      <span class="stat-pill">2nd largest city in NE India</span>
+      <span class="stat-pill">Borders Myanmar</span>
+    </div>
+    <div class="geo-grid">
+      <div class="geo-card">
+        <div class="geo-icon">🏔️</div>
+        <h4>Imphal Valley</h4>
+        <p>The capital sits in a valley between two hills at 786m — bordered by Senapati to the north and Thoubal to the south.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🌿</div>
+        <h4>Senapati Hills</h4>
+        <p>In the Naga Hills, ~160 km north — dense forests, rivers, waterfalls, and melodious bird song.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">💧</div>
+        <h4>Bishnupur Wetlands</h4>
+        <p>47 km south of Imphal — home to Loktak Lake and Keibul Lamjao National Park.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🗻</div>
+        <h4>King Peak</h4>
+        <p>Manipur's highest mountain at 3,114m — panoramic views over flower-filled green hills.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURE -->
+  <div class="section">
+    <div class="section-label">Culture & Society</div>
+    <div class="section-title">Diverse, proud, and untouched</div>
+    <p class="section-body">Manipur's culture is remarkably distinct from the rest of India. The primary community in the capital is the Meitei people. Rural villages preserve a way of life completely untouched by outside influence — people rely on agriculture, forestry, and crafting items from wood and bamboo.</p>
+
+    <div class="religion-row">
+      <div class="rel-chip">
+        <div class="rel-dot" style="background:var(--gold)"></div>
+        <span>Hinduism</span>
+        <small>~70%</small>
+      </div>
+      <div class="rel-chip">
+        <div class="rel-dot" style="background:var(--valley-light)"></div>
+        <span>Meitei (indigenous)</span>
+        <small>~14%</small>
+      </div>
+      <div class="rel-chip">
+        <div class="rel-dot" style="background:var(--lake-light)"></div>
+        <span>Christianity</span>
+        <small>~10.5%</small>
+      </div>
+      <div class="rel-chip">
+        <div class="rel-dot" style="background:var(--peak-light)"></div>
+        <span>Kuki & others</span>
+        <small>~5.5%</small>
+      </div>
+    </div>
+
+    <div class="culture-block" style="margin-top:1.2rem;">
+      <h4>Village Life — the state's greatest attraction</h4>
+      <p>Manipur's rural villages are considered one of its biggest draws. Away from urban influence, the locals live in deep connection with the forest — foraging herbs for food and medicine, crafting items from bamboo, and preserving traditions passed down for generations.</p>
+    </div>
+    <div class="culture-block" style="border-left-color:var(--lake-light);background:var(--lake-pale);">
+      <h4>Ima Market — Asia's largest all-women market</h4>
+      <p>Located in Imphal, the Ima Market ("Mother's Market") is run by 5,000 to 6,000 women vendors and is the only market of its kind in Asia. It sells everything from fresh vegetables and fish to handlooms, handicrafts, and traditional Manipuri textiles.</p>
+    </div>
+  </div>
+
+  <!-- CITIES -->
+  <div class="section">
+    <div class="section-label">Key Destinations</div>
+    <div class="section-title">Cities & districts to know</div>
+    <div class="cities-grid">
+      <div class="city-card">
+        <div class="city-name"><span class="city-dot" style="background:var(--valley-light)"></span>Imphal</div>
+        <p class="city-desc">The capital and second-largest city in Northeast India. Base for Kangla Fort, Ima Market, temples, and the State Museum.</p>
+      </div>
+      <div class="city-card">
+        <div class="city-name"><span class="city-dot" style="background:var(--lake)"></span>Bishnupur District</div>
+        <p class="city-desc">47 km from Imphal — home to Loktak Lake, Keibul Lamjao National Park, and floating homestays.</p>
+      </div>
+      <div class="city-card">
+        <div class="city-name"><span class="city-dot" style="background:var(--peak-light)"></span>Senapati</div>
+        <p class="city-desc">One of Manipur's most beautiful cities in the Naga Hills, 160 km north — forests, rivers, and tribal villages.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTRACTIONS TABS -->
+  <div class="section">
+    <div class="section-label">Attractions</div>
+    <div class="section-title">What to see & explore</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab3('nature')">Nature & Wildlife</button>
+      <button class="tab-btn" onclick="showTab3('heritage')">Heritage & History</button>
+      <button class="tab-btn" onclick="showTab3('culture')">Culture & Markets</button>
+    </div>
+
+    <div id="tab3-nature" class="tab-content active">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">Bishnupur — 47km</div>
+          <h4>Keibul Lamjao National Park</h4>
+          <p>The world's only floating national park — home to rare Sangai deer and diverse birdlife, built on the phumdis of Loktak Lake.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Bishnupur</div>
+          <h4>Loktak Lake</h4>
+          <p>Famous for its unique circular floating plant and grass islands (phumdis). Offers memorable floating homestay experiences.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">High Altitude</div>
+          <h4>King Peak — 3,114m</h4>
+          <p>Manipur's highest mountain — panoramic views of endless green, flower-filled valleys stretching to the horizon.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Senapati District</div>
+          <h4>Forests & Waterfalls</h4>
+          <p>Dense forests, mountain rivers, and cascading waterfalls — all accompanied by the melodious songs of local birds.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab3-heritage" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">Imphal</div>
+          <h4>Kangla Fort & Palace</h4>
+          <p>The historic seat of the Manipur Kingdom, dating to 1632. Built along the Imphal River — one of the most significant historical sites in Northeast India.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Imphal</div>
+          <h4>State Museum</h4>
+          <p>A rich collection of Manipuri history, culture, and artifacts — essential for understanding the state's layered past.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Imphal</div>
+          <h4>Shri Govindaji Temple</h4>
+          <p>One of Imphal's most important religious landmarks, reflecting the deep Vaishnavite tradition of the Meitei people.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Bishnupur & Imphal</div>
+          <h4>Bishnupur & Hiyangthang Temples</h4>
+          <p>Beautifully constructed temples across the valley, including the Hiyangthang Lairembi Temple and Bishnupur's sacred sites.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab3-culture" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">Imphal</div>
+          <h4>Ima Market</h4>
+          <p>Asia's largest all-women market — 5,000–6,000 female vendors selling produce, handlooms, handicrafts, and traditional goods.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Imphal</div>
+          <h4>Pakhangba Area</h4>
+          <p>A notable religious and cultural zone in Imphal hosting temples and sites tied to the indigenous Meitei faith.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Senapati & State-wide</div>
+          <h4>Rural Village Tours</h4>
+          <p>The pristine villages of Manipur are among the state's most powerful experiences — pure tribal life, untouched by outside influence.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Statewide</div>
+          <h4>Handloom & Handicrafts</h4>
+          <p>Manipur is renowned for its fine handwoven textiles and bamboo crafts. The Ima Market and local artisans are the best places to shop.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD -->
+  <div class="section">
+    <div class="section-label">Cuisine</div>
+    <div class="section-title">Food & local flavours</div>
+    <p class="section-body">Manipuri food is deeply unique — flavored by ingredients foraged directly from the forests, many of which also serve as traditional medicines. It is unlike anything found elsewhere in India.</p>
+    <div class="food-row">
+      <div class="food-item">
+        <h4>Forest Herb Cuisine</h4>
+        <p>Local dishes incorporate herbs and greens sourced directly from surrounding forests, blending food and traditional medicine.</p>
+      </div>
+      <div class="food-item">
+        <h4>Rice-Based Staples</h4>
+        <p>Rice is the foundation of every Manipuri meal, paired with organic vegetables, fish, and forest ingredients.</p>
+      </div>
+      <div class="food-item">
+        <h4>Bamboo & Wood Crafts</h4>
+        <p>Not food — but bamboo items like baskets and utensils are woven into daily life and make for beautiful souvenirs.</p>
+      </div>
+      <div class="food-item">
+        <h4>Ima Market Produce</h4>
+        <p>The freshest local vegetables, fish, and meats sold daily by women vendors — the heart of Imphal's food culture.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEST TIME + TRANSPORT -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-label">When to Visit</div>
+        <div class="section-title" style="font-size:1.15rem;">Best time of year</div>
+        <div class="months-bar">
+          <span class="month-chip good">Jan</span>
+          <span class="month-chip good">Feb</span>
+          <span class="month-chip good">Mar</span>
+          <span class="month-chip good">Apr</span>
+          <span class="month-chip good">May</span>
+          <span class="month-chip good">Jun</span>
+          <span class="month-chip good">Jul</span>
+          <span class="month-chip good">Aug</span>
+          <span class="month-chip good">Sep</span>
+          <span class="month-chip good">Oct</span>
+          <span class="month-chip good">Nov</span>
+          <span class="month-chip good">Dec</span>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.65;margin-top:8px;">Because Manipur sits at a higher altitude, it enjoys <span style="font-weight:500;color:var(--valley)">pleasant weather all year round</span>. There is no bad season to visit — every month offers comfortable temperatures and beautiful green landscapes.</p>
+      </div>
+      <div>
+        <div class="section-label">Getting There & Around</div>
+        <div class="section-title" style="font-size:1.15rem;">Transport options</div>
+        <div class="transport-cards">
+          <div class="transport-card">
+            <span class="t-icon">✈️</span>
+            <h4>By Air</h4>
+            <p>Tulihal International Airport, 8 km from Imphal. Direct flights from major cities.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚌</span>
+            <h4>By Road</h4>
+            <p>NH-150 connects Imphal to Guwahati, Shillong, Kohima, and Aizawl.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚂</span>
+            <h4>Nearest Rail</h4>
+            <p>Dimapur station — 4 hrs away. New railway station under construction in Imphal.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚕</span>
+            <h4>Local Taxis</h4>
+            <p>Easily available from Imphal to all major sites. Look for MN-01 plates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS -->
+  <div class="section">
+    <div class="section-label">Practical Tips</div>
+    <div class="section-title">Know before you go</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">✈️</div>
+        <h4>Fly into Imphal</h4>
+        <p>Avoid the 8–10 hour road journey from other Northeast cities — fly directly into Tulihal Airport and save a full day.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🚕</div>
+        <h4>Use local taxis</h4>
+        <p>Local taxis are readily available from Imphal to all major sites including Keibul Lamjao and Loktak Lake.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🏡</div>
+        <h4>Book floating homestay early</h4>
+        <p>The floating homestays on Loktak Lake are a unique experience — book in advance as they are limited and popular.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🌿</div>
+        <h4>Respect village culture</h4>
+        <p>Rural Manipuri villages are untouched by tourism — approach with humility and ask before photographing locals.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="padding: 0 1.5rem;"><div style="height:1px;background:var(--border);"></div></div>
+
+  <!-- ITINERARY CTA -->
+  <div class="section">
+    <div class="itin-hero">
+      <div class="section-label" style="margin-bottom:0.5rem;">Plan Your Trip</div>
+      <h2>Let us craft your perfect Manipur itinerary</h2>
+      <p>From floating on Loktak Lake to standing atop King Peak — our travel experts will design every day around your curiosity, comfort, and sense of discovery.</p>
+      <div class="cta-btns">
+        <button class="cta-primary" onclick="sendPrompt('I want to plan a custom Manipur trip. Help me build an itinerary based on my interests.')">Build my itinerary ↗</button>
+        <button class="cta-secondary" onclick="document.getElementById('four-day-man').scrollIntoView({behavior:'smooth'})">See 4-day example ↓</button>
+      </div>
+    </div>
+
+    <div class="interest-grid">
+      <div class="interest-card" onclick="sendPrompt('Plan a Manipur trip focused on wildlife — Keibul Lamjao National Park and Loktak Lake floating homestay')">
+        <div class="i-icon">🦌</div>
+        <h4>Wildlife & Lakes</h4>
+        <p>Keibul Lamjao rare deer, Loktak floating homestay.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Manipur heritage trip visiting Kangla Fort, State Museum, and Imphal temples')">
+        <div class="i-icon">🏛️</div>
+        <h4>Heritage & History</h4>
+        <p>Kangla Fort, State Museum, Govindaji Temple.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Manipur culture trip to explore Ima Market, handloom shopping, and village tours')">
+        <div class="i-icon">🧵</div>
+        <h4>Culture & Markets</h4>
+        <p>Ima Market, handlooms, Meitei village life.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Manipur mountain and nature trip to King Peak and Senapati district')">
+        <div class="i-icon">🗻</div>
+        <h4>Mountains & Trails</h4>
+        <p>King Peak 3,114m, Senapati forests, waterfalls.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-DAY ITINERARY -->
+  <div class="section" id="four-day-man">
+    <div class="section-label">Sample Itinerary</div>
+    <div class="section-title">4 days in Manipur — a first-timer's journey</div>
+    <p class="section-body" style="margin-bottom:2rem;">From the ancient walls of Kangla Fort to the floating grasslands of Loktak Lake — a complete introduction to Manipur's culture, wildlife, and landscapes.</p>
+
+    <div class="timeline">
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 1</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 1</span>
+            <span class="day-title">Imphal — Heritage & Culture</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Begin at the historic <strong>Kangla Fort & Palace</strong>, the ancient seat of the Manipur Kingdom dating to 1632, set along the Imphal River. Continue to the <strong>State Museum</strong> for a deep dive into Manipuri history. <span class="info-pill">Fly in — skip the 8–10 hr road trip</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Visit the <strong>Shri Govindaji Temple</strong> and explore the religious sites in the <strong>Pakhangba</strong> area. Enjoy a traditional Manipuri lunch made with forest herbs and organic ingredients.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Explore the bustling <strong>Ima Market</strong> — Asia's largest women-only market with over 5,000 female vendors. Browse handlooms, handicrafts, and traditional Manipuri textiles. <span class="tip-pill">Best in the late afternoon when fully active</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 2</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 2</span>
+            <span class="day-title">Bishnupur — Wildlife & Loktak Lake</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Take a taxi ~47 km south to <strong>Keibul Lamjao National Park</strong> in the Bishnupur district — the world's only floating national park — to spot the rare <strong>Sangai deer</strong> and diverse birdlife. <span class="info-pill">~1 hour from Imphal</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Explore the adjacent <strong>Loktak Lake</strong> and its unique circular floating grass and plant islands (phumdis). Visit the nearby <strong>Bishnupur Temple</strong>.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Check into a <strong>floating homestay on Loktak Lake</strong> for a truly one-of-a-kind overnight experience — floating on water, surrounded by phumdis and birdcalls. <span class="tip-pill">Book well in advance</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 3</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 3</span>
+            <span class="day-title">Senapati — Forests & Tribal Villages</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Depart early for the <strong>Senapati District</strong> in the Naga Hills — a ~3.5 to 4 hour drive (~160 km) north of Imphal through scenic mountain roads. <span class="info-pill">Depart by 7 AM for a full day</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Spend the afternoon exploring <strong>dense forests, waterfalls, and mountain rivers</strong> in one of Manipur's most beautiful districts, surrounded by the songs of local birds.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Visit <strong>rural tribal villages</strong> in the Senapati area — experience a way of life completely untouched by outside influence. Stay overnight locally or return to Imphal.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 4</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 4</span>
+            <span class="day-title">King Peak & Departure</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Head towards <strong>King Peak</strong> — Manipur's highest mountain at <strong>3,114 meters above sea level</strong>. The journey through green hills and flower-filled meadows is itself a highlight.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Enjoy a relaxing hike or picnic at the summit, taking in <strong>360° panoramic views</strong> of Manipur's endless green valleys. A perfect ending to the journey.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Travel back to <strong>Imphal city</strong> to rest before your departure from <strong>Tulihal International Airport</strong>. <span class="tip-pill">Airport is only 8 km from the city centre</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="summary-box">
+      <h4>Trip summary</h4>
+      <p>This 4-day route covers the full range of Manipur — from the ancient heritage of <strong style="font-weight:500;color:var(--valley)">Imphal's Kangla Fort and Ima Market</strong> → the floating wilderness of <strong style="font-weight:500;color:var(--valley)">Loktak Lake and Keibul Lamjao</strong> → the pristine tribal forests of <strong style="font-weight:500;color:var(--valley)">Senapati</strong> → the summit views of <strong style="font-weight:500;color:var(--valley)">King Peak</strong>. Because of its high altitude, Manipur is pleasant year-round — making it one of the few Northeast states with no bad season to visit.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="cta-primary" onclick="sendPrompt('I love the 4-day Manipur itinerary. Can you help me book this trip and customize it for my travel dates and group size?')">Book this itinerary ↗</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab3(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab3-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

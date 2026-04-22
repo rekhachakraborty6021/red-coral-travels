@@ -1,0 +1,685 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cloud: #3E5060;
+    --cloud-light: #5A7A8A;
+    --cloud-pale: #E4EDF2;
+    --faith: #4A3260;
+    --faith-light: #7A5A9A;
+    --faith-pale: #EDE8F5;
+    --dawn: #8A4A1A;
+    --dawn-light: #C07840;
+    --dawn-pale: #F7EDD8;
+    --green: #2E5A2E;
+    --green-light: #4A8A4A;
+    --green-pale: #E0EFE0;
+    --text-dark: var(--color-text-primary);
+    --text-muted: var(--color-text-secondary);
+    --bg: var(--color-background-primary);
+    --bg-2: var(--color-background-secondary);
+    --border: var(--color-border-tertiary);
+  }
+
+  body { font-family: 'DM Sans', sans-serif; }
+  .page { width: 100%; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 2rem 2.5rem;
+    background: var(--bg-2);
+    border-bottom: 0.5px solid var(--border);
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--cloud-light); background: var(--cloud-pale);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    font-weight: 600; color: var(--text-dark);
+    line-height: 1.15; margin-bottom: 0.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--cloud-light); }
+  .hero-sub {
+    font-size: 14px; color: var(--text-muted);
+    font-weight: 300; max-width: 500px;
+    margin: 0 auto 1.8rem; line-height: 1.8;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .htag {
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 20px; border: 0.5px solid var(--border);
+    color: var(--text-muted); background: var(--bg);
+  }
+  .deco-line { width: 50px; height: 2px; background: var(--cloud-light); margin: 1.8rem auto 0; border-radius: 2px; }
+
+  /* SECTION */
+  .section { padding: 2.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--cloud-light); margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 600; color: var(--text-dark);
+    margin-bottom: 1rem; line-height: 1.3;
+  }
+  .section-body { font-size: 14px; line-height: 1.8; color: var(--text-muted); max-width: 720px; }
+
+  /* STAT PILLS */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 0; }
+  .stat-pill {
+    background: var(--cloud-pale); color: var(--cloud);
+    font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* NAME BREAKDOWN */
+  .name-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px; margin-top: 1.2rem;
+  }
+  .name-part {
+    background: var(--bg-2);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    text-align: center;
+  }
+  .name-letter {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 2rem; font-weight: 600;
+    color: var(--cloud-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .name-word { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .name-meaning { font-size: 11px; color: var(--text-muted); font-style: italic; }
+
+  /* GEO CARDS */
+  .geo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .geo-card {
+    background: var(--bg-2); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.1rem;
+  }
+  .geo-icon { font-size: 18px; margin-bottom: 6px; }
+  .geo-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .geo-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* CULTURE BLOCK */
+  .culture-block {
+    border-left: 3px solid var(--faith-light);
+    padding: 1rem 1.2rem;
+    background: var(--faith-pale);
+    border-radius: 0 10px 10px 0;
+    margin: 1rem 0;
+  }
+  .culture-block h4 { font-size: 13px; font-weight: 500; color: var(--faith); margin-bottom: 4px; }
+  .culture-block p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* SUNDAY WARNING */
+  .sunday-notice {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--dawn-pale);
+    border: 0.5px solid var(--border);
+    border-left: 3px solid var(--dawn-light);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .sunday-notice .s-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .sunday-notice h4 { font-size: 13px; font-weight: 500; color: var(--dawn); margin-bottom: 3px; }
+  .sunday-notice p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ATTRACTIONS */
+  .attract-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .attract-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg);
+  }
+  .a-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cloud-light); margin-bottom: 4px; }
+  .attract-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .attract-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* FOOD */
+  .food-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .food-item {
+    border-left: 2px solid var(--dawn-light);
+    padding: 0.75rem 0.9rem;
+    background: var(--dawn-pale); border-radius: 0 8px 8px 0;
+  }
+  .food-item h4 { font-size: 13px; font-weight: 500; color: var(--dawn); margin-bottom: 3px; }
+  .food-item p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* FESTIVALS */
+  .fest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .fest-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2);
+  }
+  .fest-icon { font-size: 20px; margin-bottom: 6px; }
+  .fest-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .fest-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* TRANSPORT */
+  .transport-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .transport-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 0.85rem 1rem; background: var(--bg); text-align: center;
+  }
+  .t-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .transport-card h4 { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .transport-card p { font-size: 11px; color: var(--text-muted); }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .tip-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2);
+  }
+  .tip-icon { font-size: 18px; margin-bottom: 6px; }
+  .tip-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .tip-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* ITINERARY CTA */
+  .itin-hero {
+    background: var(--bg-2); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    border: 0.5px solid var(--border); text-align: center;
+  }
+  .itin-hero h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.2rem, 3vw, 1.65rem);
+    font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem;
+  }
+  .itin-hero p { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 500px; margin: 0 auto 1.2rem; }
+
+  .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .cta-primary {
+    padding: 10px 22px; background: var(--cloud);
+    color: #c8dde8; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: opacity 0.15s;
+  }
+  .cta-primary:hover { opacity: 0.85; }
+  .cta-secondary {
+    padding: 10px 22px; background: var(--bg);
+    color: var(--text-dark); border: 0.5px solid var(--border);
+    border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+  }
+  .cta-secondary:hover { background: var(--bg-2); }
+
+  /* INTEREST CARDS */
+  .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .interest-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2); text-align: center;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .interest-card:hover { border-color: var(--cloud-light); }
+  .i-icon { font-size: 20px; margin-bottom: 6px; }
+  .interest-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .interest-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .day-block {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 0 1rem; position: relative;
+  }
+  .day-block:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 27px; top: 44px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .day-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .day-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .day-circle.active { background: var(--cloud); color: #c8dde8; border-color: transparent; }
+  .day-content { padding: 0 0 2rem 0; }
+  .day-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.7rem; padding-top: 8px; }
+  .day-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--cloud-light); }
+  .day-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--text-dark);
+  }
+  .time-slots { display: flex; flex-direction: column; gap: 8px; }
+  .slot { display: flex; gap: 10px; align-items: flex-start; }
+  .slot-time {
+    font-size: 10px; font-weight: 500;
+    min-width: 64px; padding-top: 2px;
+    color: var(--dawn-light); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .slot-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .slot-text strong { font-weight: 500; color: var(--text-dark); }
+  .tip-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--cloud-pale); color: var(--cloud);
+  }
+  .warn-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--dawn-pale); color: var(--dawn);
+  }
+  .faith-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px;
+    background: var(--faith-pale); color: var(--faith);
+  }
+
+  .summary-box {
+    border-radius: 12px; border: 0.5px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    background: var(--cloud-pale); margin-top: 1.5rem;
+  }
+  .summary-box h4 { font-size: 13px; font-weight: 500; color: var(--cloud); margin-bottom: 6px; }
+  .summary-box p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Destination Guide</div>
+    <h1>Mizoram —<br><em>Land of the Hill People</em></h1>
+    <p class="hero-sub">India's most literate state. Cloud-wrapped mountains, sunrises above the sky, unmatched hospitality, and a people who will make you feel like family before the day is out.</p>
+    <div class="hero-tags">
+      <span class="htag">98.2% Literacy Rate</span>
+      <span class="htag">Sunrise Above the Clouds</span>
+      <span class="htag">Deutland Hills</span>
+      <span class="htag">Sky Walk Aizawl</span>
+      <span class="htag">Christmas Capital</span>
+      <span class="htag">Mizo Hospitality</span>
+    </div>
+    <div class="deco-line"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <div class="section-title">Where clouds are your neighbours</div>
+    <p class="section-body">Mizoram is one of India's most distinctive states — remote, high-altitude, deeply spiritual, and strikingly clean. It holds the highest literacy rate in the country at 98.2%, and its people are known for an extraordinary civic pride, a love of fashion, and a warmth that turns strangers into family within hours.</p>
+    <div class="stat-row">
+      <span class="stat-pill">98.2% literacy — highest in India</span>
+      <span class="stat-pill">Predominantly Christian</span>
+      <span class="stat-pill">High-altitude capital: Aizawl</span>
+      <span class="stat-pill">Markets closed every Sunday</span>
+    </div>
+
+    <div class="name-breakdown">
+      <div class="name-part">
+        <div class="name-letter">Mi</div>
+        <div class="name-word">Human / People</div>
+        <div class="name-meaning">the people of the land</div>
+      </div>
+      <div class="name-part">
+        <div class="name-letter">Zo</div>
+        <div class="name-word">Highland / Cool Air</div>
+        <div class="name-meaning">fresh, elevated, breezy</div>
+      </div>
+      <div class="name-part">
+        <div class="name-letter">Ram</div>
+        <div class="name-word">Land / Forest</div>
+        <div class="name-meaning">the forested homeland</div>
+      </div>
+    </div>
+
+    <div class="geo-grid" style="margin-top:1.2rem;">
+      <div class="geo-card">
+        <div class="geo-icon">🏙️</div>
+        <h4>Aizawl</h4>
+        <p>The capital and only major city — scenic, beautifully decorated, and perched high in the mountains.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🌄</div>
+        <h4>Deutland (Durtlang) Hills</h4>
+        <p>Elevated hilltops above Aizawl for hiking, rock climbing, and breathtaking panoramic city views.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">☁️</div>
+        <h4>Sky Walk Peak</h4>
+        <p>A high-altitude summit where you can literally stand above the clouds and watch the sun rise below you.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🏔️</div>
+        <h4>Remote Mountains</h4>
+        <p>Tall, cloud-covered peaks, fresh air, and walking trails of varying difficulty spread across the hills.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURE -->
+  <div class="section">
+    <div class="section-label">Culture & Society</div>
+    <div class="section-title">Faith, warmth, and a proud identity</div>
+    <p class="section-body">Mizoram has a predominantly Christian population and a culture defined by deep faith, community, and a quiet civic pride. The people are remarkably fashionable, the streets are clean, and guests are treated with a generosity that feels genuinely familial.</p>
+
+    <div class="culture-block">
+      <h4>Sunday is sacred — plan around it</h4>
+      <p>Every Sunday, the entire market in Aizawl shuts down. Everyone goes to church. No exceptions. This is not a minor inconvenience — it is a total closure. Plan your shopping, travel logistics, and meals around this before you arrive.</p>
+    </div>
+
+    <div class="culture-block" style="border-left-color:var(--green-light);background:var(--green-pale);">
+      <h4>Hospitality unlike anywhere else in India</h4>
+      <p>Mizo people are known for quickly making visitors feel like family. Staying in a local homestay means sharing meals, sitting around bonfires, singing together, and being welcomed into someone's home in the most genuine sense of the word.</p>
+    </div>
+
+    <div class="sunday-notice">
+      <div class="s-icon">💧</div>
+      <div>
+        <h4>Water is scarce — use it sparingly</h4>
+        <p>Water is purchased in Aizawl — locals pay around ₹1,200 for 2,000 litres. Tourists are strongly requested not to waste water. This is a community resource, not an unlimited amenity.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTRACTIONS -->
+  <div class="section">
+    <div class="section-label">Attractions</div>
+    <div class="section-title">What to see & experience</div>
+    <div class="attract-grid">
+      <div class="attract-card">
+        <div class="a-cat">Aizawl — Must Do</div>
+        <h4>Sky Walk Sunrise</h4>
+        <p>Wake at 4 AM and climb to the Sky Walk peak to witness a golden sunrise from above snowy clouds — one of the most breathtaking experiences in all of India.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Aizawl</div>
+        <h4>Deutland Hills</h4>
+        <p>Walking trails, hiking, and rock climbing with sweeping panoramic views of the city nestled below in the mountains.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Aizawl</div>
+        <h4>Temples & Mosques</h4>
+        <p>Aizawl's historical and religious sites reflect the region's layered spiritual history, from churches to temples and mosques.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Aizawl Streets</div>
+        <h4>Local Market Life</h4>
+        <p>The city's markets are a window into Mizo culture — locals dressed with impressive style, buying and selling with a deep civic pride.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Off-Road</div>
+        <h4>4x4 Night Rides</h4>
+        <p>Experience the terrain in heavily modified Boleros with 31-inch tires — a thrilling way to navigate Mizoram's steep, dramatic landscape after dark.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Cultural</div>
+        <h4>Bonfire Evenings</h4>
+        <p>Sitting around a bonfire with local families — singing, sharing stories, and drinking special local tea — is one of Mizoram's most memorable experiences.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD & FESTIVALS -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-label">Cuisine</div>
+        <div class="section-title" style="font-size:1.15rem;">Food & local flavours</div>
+        <div class="food-row" style="grid-template-columns:1fr;">
+          <div class="food-item">
+            <h4>Homemade Chicken Curry</h4>
+            <p>Cooked with tomatoes, onions, garlic, ginger, and local masalas — eaten communally at the homestay table.</p>
+          </div>
+          <div class="food-item">
+            <h4>Special Local Tea</h4>
+            <p>Paired with every meal and shared around the bonfire — a warm, comforting ritual of Mizo daily life.</p>
+          </div>
+          <div class="food-item">
+            <h4>Forest-Sourced Ingredients</h4>
+            <p>Many ingredients are foraged from surrounding hills, giving Mizo food a fresh, organic character unique to the highlands.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Festivals</div>
+        <div class="section-title" style="font-size:1.15rem;">Cultural experiences</div>
+        <div class="fest-grid" style="grid-template-columns:1fr;">
+          <div class="fest-card">
+            <div class="fest-icon">🎄</div>
+            <h4>Christmas in Aizawl</h4>
+            <p>The city transforms into a magical landscape of lights and decorations. The most atmospheric time to visit Mizoram by far.</p>
+          </div>
+          <div class="fest-card">
+            <div class="fest-icon">🕊️</div>
+            <h4>Sunday Church Service</h4>
+            <p>If you're there on a Sunday, dress up and attend a local church service with your hosts — a deeply moving community experience.</p>
+          </div>
+          <div class="fest-card">
+            <div class="fest-icon">🔥</div>
+            <h4>Bonfire Nights</h4>
+            <p>A universal Mizo ritual — gathering around fire, singing folk songs, and sharing stories with local families under the mountain sky.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEST TIME + TRANSPORT -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-label">When to Visit</div>
+        <div class="section-title" style="font-size:1.15rem;">Best time of year</div>
+        <div style="background:var(--faith-pale);border-radius:10px;padding:1rem;margin-top:0.8rem;border:0.5px solid var(--border);">
+          <p style="font-size:13px;font-weight:500;color:var(--faith);margin-bottom:4px;">Christmas season is magical</p>
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.65;">Aizawl is beautifully lit and decorated in December — the single most recommended time to visit. The high altitude keeps the climate pleasant year-round, so any month works, but Christmas is special.</p>
+        </div>
+        <div style="background:var(--dawn-pale);border-radius:10px;padding:1rem;margin-top:10px;border:0.5px solid var(--border);">
+          <p style="font-size:13px;font-weight:500;color:var(--dawn);margin-bottom:4px;">Sunday planning is essential</p>
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.65;">Check the day of the week before planning activities. Markets, shops, and services shut down completely every Sunday. Build your itinerary around this — don't let it catch you off guard.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Getting There & Around</div>
+        <div class="section-title" style="font-size:1.15rem;">Transport options</div>
+        <div class="transport-cards">
+          <div class="transport-card">
+            <span class="t-icon">✈️</span>
+            <h4>By Air</h4>
+            <p>Aizawl airport — the fastest way in from major Indian cities.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚗</span>
+            <h4>Road Trip</h4>
+            <p>10–12 hrs from Guwahati via Assam and Meghalaya — a scenic route.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🛵</span>
+            <h4>Scooter Rental</h4>
+            <p>Best way to explore locally — can be hard to find, book ahead.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚙</span>
+            <h4>Local 4x4</h4>
+            <p>Modified Boleros with 31" tires — the local way to tackle steep terrain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS -->
+  <div class="section">
+    <div class="section-label">Practical Tips</div>
+    <div class="section-title">Know before you go</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">💧</div>
+        <h4>Save water — always</h4>
+        <p>Water is purchased and scarce. Locals pay ₹1,200 for 2,000 litres. Shorter showers, taps off — be a thoughtful guest.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🗓️</div>
+        <h4>Never plan shopping on Sunday</h4>
+        <p>The entire market closes. Every shop, stall, and service shuts down for church. Plan all your shopping and logistics on other days.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⏰</div>
+        <h4>4 AM for Sky Walk</h4>
+        <p>The sunrise at Sky Walk requires an early start. Set your alarm for 4 AM — the reward of standing above the clouds is worth every second.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🏡</div>
+        <h4>Stay in a local homestay</h4>
+        <p>The Mizo homestay experience — shared meals, bonfires, family warmth — is the heart of any Mizoram visit. Don't opt for a hotel if you can avoid it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="padding: 0 1.5rem;"><div style="height:1px;background:var(--border);"></div></div>
+
+  <!-- ITINERARY CTA -->
+  <div class="section">
+    <div class="itin-hero">
+      <div class="section-label" style="margin-bottom:0.5rem;">Plan Your Trip</div>
+      <h2>Let us craft your perfect Mizoram escape</h2>
+      <p>From a 4 AM sunrise above the clouds to a bonfire with your Mizo host family — we'll build an itinerary that puts you at the heart of this extraordinary place.</p>
+      <div class="cta-btns">
+        <button class="cta-primary" onclick="sendPrompt('I want to plan a custom Mizoram trip. Help me build an itinerary based on my interests.')">Build my itinerary ↗</button>
+        <button class="cta-secondary" onclick="document.getElementById('three-day-miz').scrollIntoView({behavior:'smooth'})">See 3-day example ↓</button>
+      </div>
+    </div>
+
+    <div class="interest-grid">
+      <div class="interest-card" onclick="sendPrompt('Plan a Mizoram trip focused on nature — hiking Deutland Hills, the Sky Walk sunrise, and mountain trails')">
+        <div class="i-icon">🌄</div>
+        <h4>Nature & Hiking</h4>
+        <p>Deutland Hills, Sky Walk, mountain trails.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Mizoram cultural immersion trip with local homestay, bonfire nights, and church visit')">
+        <div class="i-icon">🔥</div>
+        <h4>Culture & Homestay</h4>
+        <p>Bonfire nights, family meals, Sunday church.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Mizoram Christmas trip to Aizawl to see the decorations and festive celebrations')">
+        <div class="i-icon">🎄</div>
+        <h4>Christmas in Aizawl</h4>
+        <p>Festive lights, decorations, community celebrations.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Mizoram road trip from Guwahati through Assam and Meghalaya into Aizawl')">
+        <div class="i-icon">🚗</div>
+        <h4>Scenic Road Trip</h4>
+        <p>Guwahati → Meghalaya → Aizawl route.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-DAY ITINERARY -->
+  <div class="section" id="three-day-miz">
+    <div class="section-label">Sample Itinerary</div>
+    <div class="section-title">3 days in Mizoram — a first-timer's journey</div>
+    <p class="section-body" style="margin-bottom:2rem;">From hiking the misty Deutland Hills to standing above the clouds at dawn — three days that capture the soul of the Land of the Hill People.</p>
+
+    <div class="timeline">
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 1</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 1</span>
+            <span class="day-title">Arrival & City Culture</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Arrive in Aizawl by flight or after the scenic 10–12 hour road trip from Guwahati through Assam and Meghalaya. Check into a <strong>local homestay</strong> for the authentic Mizo welcome. <span class="tip-pill">Homestay over hotel — always</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Head up to the <strong>Deutland Hills</strong> for an afternoon of hiking on trails of varying difficulty, rock climbing, and drinking in panoramic views of Aizawl spread across the mountain valleys below.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Stroll through <strong>Aizawl's local markets</strong> — take in the locals' remarkable fashion sense and the city's clean, proud streets. Return to your homestay for a shared dinner of <strong>homemade chicken curry and local tea</strong>. <span class="warn-pill">Check if tomorrow is Sunday — plan accordingly</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 2</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 2</span>
+            <span class="day-title">Sunrise Above the Clouds</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">4 AM</div>
+              <div class="slot-text">Wake before dawn and take a scooter to the <strong>Sky Walk</strong>. Stand above snowy clouds and watch the golden sunrise break below you — one of the most extraordinary natural experiences in all of Northeast India. <span class="tip-pill">Set two alarms — don't miss this</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">After returning, explore Aizawl's <strong>temples, mosques, and historical sites</strong> to understand the layered religious and cultural history of the state.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Take a <strong>thrilling night ride in a local modified 4x4</strong> through the mountain terrain. End the night at a <strong>bonfire with your host family</strong> — singing, storytelling, and tea under the stars. <span class="faith-pill">The real Mizoram experience</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 3</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 3</span>
+            <span class="day-title">Local Life & Departure</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">If it's a Sunday, <strong>dress up and attend church</strong> with your hosts — a deeply moving, community-wide experience. Note: all markets will be closed today. <span class="warn-pill">Markets fully closed on Sundays</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Take a final walk through <strong>Aizawl's beautifully decorated streets</strong> — especially magical if visiting around Christmas. Enjoy one last <strong>homemade meal</strong> with your hosts.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Pack your bags and depart Aizawl — carrying the warmth of the Mizo people with you. <span class="tip-pill">The hardest part is leaving</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="summary-box">
+      <h4>Trip summary</h4>
+      <p>Mizoram is a 3-day experience that leaves a lifetime impression. Base yourself entirely in <strong style="font-weight:500;color:var(--cloud)">Aizawl</strong> — hike the <strong style="font-weight:500;color:var(--cloud)">Deutland Hills</strong>, wake at 4 AM for the <strong style="font-weight:500;color:var(--cloud)">Sky Walk sunrise above the clouds</strong>, and spend your evenings around a bonfire with a local family. Visit during <strong style="font-weight:500;color:var(--cloud)">Christmas</strong> for the most magical atmosphere. Remember: save water, plan around Sundays, and stay in a homestay — these three things will define the quality of your experience.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="cta-primary" onclick="sendPrompt('I love the 3-day Mizoram itinerary. Can you help me book this trip and customize it for my travel dates and group size?')">Book this itinerary ↗</button>
+    </div>
+  </div>
+
+</div>

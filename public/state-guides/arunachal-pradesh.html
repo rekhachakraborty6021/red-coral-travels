@@ -1,0 +1,844 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --himalaya: #1A2E4A;
+    --himalaya-light: #2E5280;
+    --himalaya-pale: #E0EAF5;
+    --monastery: #5A1A3A;
+    --monastery-light: #9A3A6A;
+    --monastery-pale: #F5E0EC;
+    --pine: #1A3A1A;
+    --pine-light: #2E6A2E;
+    --pine-pale: #DFF0DF;
+    --sun: #7A4A00;
+    --sun-light: #C07A10;
+    --sun-pale: #FFF0D0;
+    --border-warn: #C07A10;
+    --text-dark: var(--color-text-primary);
+    --text-muted: var(--color-text-secondary);
+    --bg: var(--color-background-primary);
+    --bg-2: var(--color-background-secondary);
+    --border: var(--color-border-tertiary);
+  }
+
+  body { font-family: 'Nunito', sans-serif; }
+  .page { width: 100%; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 2rem 2.5rem;
+    background: var(--bg-2);
+    border-bottom: 0.5px solid var(--border);
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--himalaya-light); background: var(--himalaya-pale);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    font-weight: 600; color: var(--text-dark);
+    line-height: 1.15; margin-bottom: 0.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--sun-light); }
+  .hero-sub {
+    font-size: 14px; color: var(--text-muted);
+    font-weight: 300; max-width: 540px;
+    margin: 0 auto 1.8rem; line-height: 1.8;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .htag {
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 20px; border: 0.5px solid var(--border);
+    color: var(--text-muted); background: var(--bg);
+  }
+  .deco-line { width: 50px; height: 2px; background: var(--sun-light); margin: 1.8rem auto 0; border-radius: 2px; }
+
+  /* SECTION */
+  .section { padding: 2.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--himalaya-light); margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(1.3rem, 3vw, 1.85rem);
+    font-weight: 600; color: var(--text-dark);
+    margin-bottom: 1rem; line-height: 1.3;
+  }
+  .section-body { font-size: 14px; line-height: 1.8; color: var(--text-muted); max-width: 720px; }
+
+  /* STAT PILLS */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 0; }
+  .stat-pill {
+    background: var(--himalaya-pale); color: var(--himalaya);
+    font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* ILP ALERT — mandatory and prominent */
+  .ilp-alert {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--sun-pale);
+    border: 1px solid var(--border-warn);
+    border-radius: 10px; padding: 1.1rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .ilp-alert .alert-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .ilp-alert h4 { font-size: 13px; font-weight: 500; color: var(--sun); margin-bottom: 4px; }
+  .ilp-alert p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* GEO GRID */
+  .geo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .geo-card {
+    background: var(--bg-2); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.1rem;
+  }
+  .geo-icon { font-size: 18px; margin-bottom: 6px; }
+  .geo-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .geo-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+  .geo-alt { font-size: 10px; font-weight: 500; color: var(--himalaya-light); margin-bottom: 3px; }
+
+  /* TRIBE CARDS */
+  .tribe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .tribe-card {
+    border: 0.5px solid var(--border); border-radius: 12px;
+    padding: 1.1rem; background: var(--bg);
+    border-top: 2px solid var(--monastery-light);
+  }
+  .tribe-name {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--monastery-light);
+    margin-bottom: 5px;
+  }
+  .tribe-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .tribe-card p { font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ALTITUDE LADDER */
+  .alt-ladder { display: flex; flex-direction: column; gap: 6px; margin-top: 1.2rem; }
+  .alt-rung {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: 8px;
+    border: 0.5px solid var(--border); background: var(--bg);
+  }
+  .alt-bar-wrap { flex: 1; height: 5px; background: var(--bg-2); border-radius: 3px; overflow: hidden; }
+  .alt-bar { height: 100%; border-radius: 3px; background: var(--himalaya-light); }
+  .alt-label { font-size: 12px; font-weight: 500; color: var(--text-dark); min-width: 130px; }
+  .alt-num { font-size: 11px; color: var(--text-muted); min-width: 62px; text-align: right; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .tab-btn {
+    font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    cursor: pointer; font-family: 'Nunito', sans-serif;
+    transition: all 0.15s;
+  }
+  .tab-btn.active { background: var(--himalaya); color: #b8d0f0; border-color: transparent; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .attract-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 10px; }
+  .attract-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg);
+  }
+  .a-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--himalaya-light); margin-bottom: 4px; }
+  .attract-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .attract-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* FOOD */
+  .food-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .food-item {
+    border-left: 2px solid var(--sun-light);
+    padding: 0.75rem 0.9rem;
+    background: var(--sun-pale); border-radius: 0 8px 8px 0;
+  }
+  .food-item h4 { font-size: 13px; font-weight: 500; color: var(--sun); margin-bottom: 3px; }
+  .food-item p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TRANSPORT */
+  .transport-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .transport-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 0.85rem 1rem; background: var(--bg); text-align: center;
+  }
+  .t-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .transport-card h4 { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .transport-card p { font-size: 11px; color: var(--text-muted); }
+
+  /* BEST TIME */
+  .season-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem; }
+  .season-card {
+    border-radius: 10px; padding: 1rem;
+    border: 0.5px solid var(--border); background: var(--bg);
+  }
+  .season-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .season-card p { font-size: 11px; color: var(--text-muted); line-height: 1.65; }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .tip-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2);
+  }
+  .tip-icon { font-size: 18px; margin-bottom: 6px; }
+  .tip-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .tip-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* ITINERARY CTA */
+  .itin-hero {
+    background: var(--bg-2); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    border: 0.5px solid var(--border); text-align: center;
+  }
+  .itin-hero h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem;
+  }
+  .itin-hero p { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 520px; margin: 0 auto 1.2rem; }
+
+  .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .cta-primary {
+    padding: 10px 22px; background: var(--himalaya);
+    color: #b8d0f0; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'Nunito', sans-serif; transition: opacity 0.15s;
+  }
+  .cta-primary:hover { opacity: 0.85; }
+  .cta-secondary {
+    padding: 10px 22px; background: var(--bg);
+    color: var(--text-dark); border: 0.5px solid var(--border);
+    border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'Nunito', sans-serif;
+  }
+  .cta-secondary:hover { background: var(--bg-2); }
+
+  /* INTEREST CARDS */
+  .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .interest-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2); text-align: center;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .interest-card:hover { border-color: var(--himalaya-light); }
+  .i-icon { font-size: 20px; margin-bottom: 6px; }
+  .interest-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .interest-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .day-block {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 0 1rem; position: relative;
+  }
+  .day-block:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 27px; top: 44px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .day-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .day-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .day-circle.active { background: var(--himalaya); color: #b8d0f0; border-color: transparent; }
+  .day-content { padding: 0 0 2rem 0; }
+  .day-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.7rem; padding-top: 8px; }
+  .day-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--himalaya-light); }
+  .day-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.15rem; font-weight: 600; color: var(--text-dark);
+  }
+  .time-slots { display: flex; flex-direction: column; gap: 8px; }
+  .slot { display: flex; gap: 10px; align-items: flex-start; }
+  .slot-time {
+    font-size: 10px; font-weight: 500;
+    min-width: 64px; padding-top: 2px;
+    color: var(--sun-light); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .slot-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .slot-text strong { font-weight: 500; color: var(--text-dark); }
+
+  .tip-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--pine-pale); color: var(--pine); }
+  .warn-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--sun-pale); color: var(--sun); }
+  .monastery-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--monastery-pale); color: var(--monastery); }
+  .info-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--himalaya-pale); color: var(--himalaya); }
+
+  .summary-box {
+    border-radius: 12px; border: 0.5px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    background: var(--himalaya-pale); margin-top: 1.5rem;
+  }
+  .summary-box h4 { font-size: 13px; font-weight: 500; color: var(--himalaya); margin-bottom: 6px; }
+  .summary-box p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } .season-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Destination Guide</div>
+    <h1>Arunachal Pradesh —<br><em>Land of the Rising Sun</em></h1>
+    <p class="hero-sub">India's wildest frontier. 26 tribes, 80% forest cover, a 3 AM sunrise, ancient Buddhist monasteries at 15,000 feet, and the China border at your doorstep.</p>
+    <div class="hero-tags">
+      <span class="htag">First Sunrise in India</span>
+      <span class="htag">Tawang Monastery</span>
+      <span class="htag">Sela Pass 13,700ft</span>
+      <span class="htag">Bumla — China Border</span>
+      <span class="htag">26 Tribes</span>
+      <span class="htag">ILP Required</span>
+    </div>
+    <div class="deco-line"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <div class="section-title">India's largest and least-explored state</div>
+    <p class="section-body">Arunachal Pradesh is Northeast India's biggest state — heavily forested, sparsely visited, and home to 26 distinct indigenous tribes with entirely different languages and cultures. Because it sits at India's easternmost edge, the sun rises here as early as 3 AM — earning it the name "Land of the Rising Sun." It shares an international border with China, and much of its terrain remains untouched.</p>
+    <div class="stat-row">
+      <span class="stat-pill">Largest state in NE India</span>
+      <span class="stat-pill">80%+ forest cover</span>
+      <span class="stat-pill">26 indigenous tribes</span>
+      <span class="stat-pill">Sunrise from 3 AM</span>
+      <span class="stat-pill">Borders China & Myanmar</span>
+      <span class="stat-pill">ILP mandatory for all visitors</span>
+    </div>
+
+    <!-- ILP ALERT — must be prominent -->
+    <div class="ilp-alert">
+      <div class="alert-icon">📋</div>
+      <div>
+        <h4>Inner Line Permit (ILP) — required before you enter</h4>
+        <p>Every visitor to Arunachal Pradesh must obtain an ILP before entering the state. Apply online for ₹350–₹500. An additional separate permit is required to visit Bumla Pass, which must be arranged locally through a Tawang taxi driver. Do not skip this step — entry will be refused without it.</p>
+      </div>
+    </div>
+
+    <!-- ALTITUDE LADDER -->
+    <p style="font-size:13px;font-weight:500;color:var(--text-dark);margin:1.2rem 0 0.7rem;">Altitude guide — key destinations</p>
+    <div class="alt-ladder">
+      <div class="alt-rung">
+        <div class="alt-label">Bumla Pass</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:100%"></div></div>
+        <div class="alt-num">15,200 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Tawang</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:98%"></div></div>
+        <div class="alt-num">~15,000 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Sela Pass</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:90%"></div></div>
+        <div class="alt-num">13,700 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Dzukou Valley (Nagaland)</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:52%"></div></div>
+        <div class="alt-num">8,000 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Ziro Valley</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:36%"></div></div>
+        <div class="alt-num">5,600 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Dirang</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:22%"></div></div>
+        <div class="alt-num">~4,500 ft</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIONS -->
+  <div class="section">
+    <div class="section-label">Key Destinations</div>
+    <div class="section-title">Regions & towns to know</div>
+    <p class="section-body" style="margin-bottom:1rem;">Arunachal Pradesh is massive — Ziro, Mechuka, and Namsai are hundreds of kilometres apart. The most popular first-time route covers the West Kameng and Tawang districts.</p>
+    <div class="geo-grid">
+      <div class="geo-card">
+        <div class="geo-icon">🏔️</div>
+        <div class="geo-alt">~15,000 ft</div>
+        <h4>Tawang</h4>
+        <p>Border town with India's largest monastery, high-altitude lakes, and the China border at Bumla Pass.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🏡</div>
+        <div class="geo-alt">~4,500 ft</div>
+        <h4>Dirang</h4>
+        <p>Hidden gem with 150-year-old Monpa stone houses, deep river valleys, and the gateway to Sangti Valley.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🌾</div>
+        <div class="geo-alt">5,600 ft</div>
+        <h4>Ziro Valley</h4>
+        <p>Heart of Apatani culture — vast flat paddy fields, bamboo villages, and a UNESCO-recognised farming tradition.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🌿</div>
+        <div class="geo-alt">Near China border</div>
+        <h4>Mechuka</h4>
+        <p>Remote and well-developed valley town 30 km from China — healing mountain waters, Buddhist traditions.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">⛩️</div>
+        <div class="geo-alt">Lohit River</div>
+        <h4>Namsai</h4>
+        <p>Golden Pagoda, Parshuram Kund pilgrimage site, and a center of Buddhist and Hindu heritage.</p>
+      </div>
+      <div class="geo-card">
+        <div class="geo-icon">🍃</div>
+        <div class="geo-alt">Lower Dibang Valley</div>
+        <h4>Roing</h4>
+        <p>Tea gardens, tranquil lakes, hill stations, and the ancient Bhismaknagar Fort nearby.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIBES -->
+  <div class="section">
+    <div class="section-label">Tribal Culture</div>
+    <div class="section-title">26 tribes — 26 entirely different worlds</div>
+    <p class="section-body">No other state in India concentrates this much tribal diversity. Each of Arunachal's 26 tribes has its own language, belief system, food, architecture, and relationship with the land. Three define the main travel circuit.</p>
+    <div class="tribe-grid">
+      <div class="tribe-card">
+        <div class="tribe-name">Apatani Tribe — Ziro</div>
+        <h4>UNESCO-recognised farmers</h4>
+        <p>Grow rice and raise fish in the same water — no chemicals, no machines. Older women traditionally wore large wooden nose plugs and facial tattoos to deter kidnappers (banned since 1970). They follow Donyi-Polo — worship of the Sun and Moon.</p>
+      </div>
+      <div class="tribe-card">
+        <div class="tribe-name">Monpa Tribe — Dirang & Tawang</div>
+        <h4>Stone house builders & Buddhists</h4>
+        <p>Build homes that last 150 years using only local stone and wood — designed to survive brutal Himalayan winters. Deeply Buddhist, with terrace farming carved into the mountain slopes.</p>
+      </div>
+      <div class="tribe-card">
+        <div class="tribe-name">Tawang Communities</div>
+        <h4>Matriarchal business leaders</h4>
+        <p>Women in Tawang are highly independent — leading household finances, running homestays, and making key business decisions. A quiet but powerful matriarchal influence.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTRACTIONS TABS -->
+  <div class="section">
+    <div class="section-label">Attractions</div>
+    <div class="section-title">What to see & experience</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab6('monastery')">Monasteries & Spiritual</button>
+      <button class="tab-btn" onclick="showTab6('nature')">Nature & Passes</button>
+      <button class="tab-btn" onclick="showTab6('border')">Border & History</button>
+    </div>
+
+    <div id="tab6-monastery" class="tab-content active">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">Tawang — 342 years old</div>
+          <h4>Tawang Monastery</h4>
+          <p>India's largest and Asia's second-largest Buddhist monastery. The dark "Butter Lamp Room" where monks craft offerings is a hauntingly beautiful highlight.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Dirang</div>
+          <h4>Dirang Monastery (Khopa)</h4>
+          <p>A beautifully painted, deeply peaceful monastery set in Dirang's river valley — Tibetan Buddhist architecture in a pristine mountain setting.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Namsai — Burmese Style</div>
+          <h4>Golden Pagoda (Kong Mu Kham)</h4>
+          <p>A spectacular gold-plated Burmese-style temple built in 2010 — one of the most visually striking religious structures in Northeast India.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Namsai — Hindu Pilgrimage</div>
+          <h4>Parshuram Kund</h4>
+          <p>A major Hindu pilgrimage site on the Lohit River — the "Kumbh of the Northeast." At Makar Sankranti, thousands of sadhus gather here for a sacred dip.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Tawang</div>
+          <h4>Giant Buddha Statue</h4>
+          <p>A massive Buddha that overlooks the entire town of Tawang — offering panoramic views of the valley below and the mountains beyond.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Tawang</div>
+          <h4>Chumi Gyatse Waterfall</h4>
+          <p>A secluded, off-road waterfall near Tawang carrying deep religious significance — the "Holy Water Waterfall" revered by locals.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab6-nature" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">13,700 ft</div>
+          <h4>Sela Pass & Sela Lake</h4>
+          <p>A breathtaking high-altitude mountain pass with a serene lake and an Army cafe. Expect snow, freezing temperatures, and otherworldly silence.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Tawang region</div>
+          <h4>High-Altitude Lakes</h4>
+          <p>Madhuri Lake, PTSO Lake, and Nagula Lake — three high-altitude water bodies scattered across the Tawang landscape, each uniquely beautiful.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Ziro Valley</div>
+          <h4>Apatani Paddy Fields</h4>
+          <p>Endless stretches of water-filled rice paddies perfectly reflecting the sky and mountains — a landscape that feels unreal.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">14 km from Dirang</div>
+          <h4>Sangti Valley</h4>
+          <p>Pine-forested valley with the pristine Sangti River — peaceful, scenic, and blissfully remote.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Ancient Engineering</div>
+          <h4>Chagzam Bridge</h4>
+          <p>A mysterious ancient iron-link bridge built over a fast-flowing river — with no visible joints. Its origin and construction method remain unknown.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Dirang</div>
+          <h4>Monpa Stone Village</h4>
+          <p>Walk through 150-year-old houses built of local stone and wood, carved into the hillside of Dirang — one of the most authentic tribal architectural experiences in India.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab6-border" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">15,200 ft — China Border</div>
+          <h4>Bumla Pass</h4>
+          <p>The heavily guarded Indo-China border. Tourists can safely view the border lines and meet Indian Army soldiers. Requires a local Tawang 4x4 — outside vehicles barred.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Tawang — WWII Memorial</div>
+          <h4>Jaswant Garh War Memorial</h4>
+          <p>A memorial to the soldiers who defended Tawang — an emotional and important reminder of the military history of this border region.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Roing</div>
+          <h4>Bhismaknagar Fort</h4>
+          <p>An ancient historical fort near Roing, offering a glimpse into the deep pre-colonial history of the Dibang Valley.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Active Army Presence</div>
+          <h4>Tawang's Military Heritage</h4>
+          <p>Tawang has a visible, heavy Indian Army presence — a constant reminder of the strategic importance of this remote border town.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD -->
+  <div class="section">
+    <div class="section-label">Cuisine</div>
+    <div class="section-title">Tribal flavours from the mountains</div>
+    <p class="section-body">Arunachal's food is shaped by altitude, forest, and tribal tradition — ingredients foraged from the land, fermented for warmth, and prepared with centuries of mountain wisdom.</p>
+    <div class="food-row">
+      <div class="food-item">
+        <h4>Ara</h4>
+        <p>Traditional fermented corn/maize alcohol drunk by locals in the evening to stay warm in the freezing mountain nights.</p>
+      </div>
+      <div class="food-item">
+        <h4>Red Tea</h4>
+        <p>A local black tea consumed daily by tribes in the fields — earthy, strong, and warming at altitude.</p>
+      </div>
+      <div class="food-item">
+        <h4>Khapse & Torma</h4>
+        <p>Prepared during Buddhist pujas — Khapse is deep-fried flour and milk; Torma are ritual dough-and-ghee figures shaped by monks.</p>
+      </div>
+      <div class="food-item">
+        <h4>Apatani Fish-Rice</h4>
+        <p>Rice and fish cultivated simultaneously in the same paddy field — a UNESCO-recognised tradition unique to the Apatani tribe of Ziro Valley.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEST TIME + TRANSPORT -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-label">When to Visit</div>
+        <div class="section-title" style="font-size:1.15rem;">Best time of year</div>
+        <div class="season-grid">
+          <div class="season-card" style="border-top:2px solid var(--himalaya-light);">
+            <h4>October – March</h4>
+            <p style="font-size:11px;color:var(--text-muted);line-height:1.65;margin-top:3px;">Clear skies, crisp air, best views. Heavy snow at Sela Pass and Tawang. Carry warm layers and altitude medicine.</p>
+          </div>
+          <div class="season-card" style="border-top:2px solid var(--sun-light);">
+            <h4>Monsoon — Caution</h4>
+            <p style="font-size:11px;color:var(--text-muted);line-height:1.65;margin-top:3px;">Roads to Mechuka become dangerous with mud and unpredictable 4–5 hour landslides. Greenery is stunning but travel risks are high.</p>
+          </div>
+        </div>
+        <div style="background:var(--sun-pale);border-radius:10px;padding:0.9rem;margin-top:10px;border:0.5px solid var(--border);">
+          <p style="font-size:12px;color:var(--sun);font-weight:500;margin-bottom:3px;">Sun sets by 4:00 PM — every day</p>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.6;">Heavy fog rolls in by 5–6 PM. Always start driving by 6:00 AM. Never plan a long road segment for the afternoon.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Getting There & Around</div>
+        <div class="section-title" style="font-size:1.15rem;">Transport options</div>
+        <div class="transport-cards">
+          <div class="transport-card">
+            <span class="t-icon">🚁</span>
+            <h4>Helicopter</h4>
+            <p>Guwahati → Tawang. Expensive but saves days of road travel.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚐</span>
+            <h4>Shared Sumo</h4>
+            <p>₹1,700/head from Guwahati. Budget option for the long scenic drive.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚗</span>
+            <h4>Private Cab</h4>
+            <p>₹5,000–₹7,000/day. Best for comfort and flexibility.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚙</span>
+            <h4>Local 4x4 (Tawang)</h4>
+            <p>~₹5,500 for Bumla Pass. Mandatory — outside vehicles are barred.</p>
+          </div>
+        </div>
+        <div style="background:var(--monastery-pale);border-radius:10px;padding:0.9rem;margin-top:10px;border:0.5px solid var(--border);">
+          <p style="font-size:12px;color:var(--monastery);font-weight:500;margin-bottom:3px;">Do not self-drive</p>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.6;">Self-drive rental cars are strongly discouraged due to local scams. Hire through known agencies or hotels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS -->
+  <div class="section">
+    <div class="section-label">Practical Tips</div>
+    <div class="section-title">Know before you go</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">📋</div>
+        <h4>ILP first — everything else second</h4>
+        <p>Apply for the Inner Line Permit online before your trip. ₹350–₹500. No permit = no entry. For Bumla Pass, arrange a second local permit through your Tawang driver.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⏰</div>
+        <h4>6 AM start — every day</h4>
+        <p>The sun sets at 4 PM and fog rolls in by 5–6 PM. Mountain roads in the dark are dangerous. Begin every day's drive at dawn.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🫁</div>
+        <h4>Altitude sickness is real</h4>
+        <p>At Tawang and Bumla (15,000+ ft), breathlessness is common. Carry camphor or altitude sickness medication. Acclimatise for a night before the Bumla drive.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🧥</div>
+        <h4>Pack heavy woolens</h4>
+        <p>Even in summer, Sela Pass and Tawang can be freezing. Pack proper winter layers — thermals, gloves, windproof jacket.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="padding: 0 1.5rem;"><div style="height:1px;background:var(--border);"></div></div>
+
+  <!-- ITINERARY CTA -->
+  <div class="section">
+    <div class="itin-hero">
+      <div class="section-label" style="margin-bottom:0.5rem;">Plan Your Trip</div>
+      <h2>Let us plan your Arunachal Pradesh expedition</h2>
+      <p>ILP paperwork, Bumla permits, Sela Pass timing, altitude medicine, local 4x4 bookings — we handle the logistics so you arrive prepared for India's most extraordinary frontier.</p>
+      <div class="cta-btns">
+        <button class="cta-primary" onclick="sendPrompt('I want to plan a custom Arunachal Pradesh trip. Help me build an itinerary and handle the ILP and Bumla Pass permits.')">Plan my expedition ↗</button>
+        <button class="cta-secondary" onclick="document.getElementById('five-day-ap').scrollIntoView({behavior:'smooth'})">See 5-day example ↓</button>
+      </div>
+    </div>
+
+    <div class="interest-grid">
+      <div class="interest-card" onclick="sendPrompt('Plan the Dirang and Tawang monastery circuit in Arunachal Pradesh — Buddhist culture, Sela Pass, and Tawang Monastery')">
+        <div class="i-icon">🛕</div>
+        <h4>Monastery Circuit</h4>
+        <p>Dirang, Sela Pass, Tawang Monastery.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Bumla Pass border trip in Arunachal Pradesh including the Indo-China border and high altitude lakes')">
+        <div class="i-icon">🏔️</div>
+        <h4>Border & High Altitude</h4>
+        <p>Bumla Pass, Sela Lake, Madhuri Lake.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Ziro Valley tribal culture trip in Arunachal Pradesh to experience the Apatani tribe and paddy fields')">
+        <div class="i-icon">🌾</div>
+        <h4>Tribal Culture & Ziro</h4>
+        <p>Apatani tribe, paddy fields, bamboo villages.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Namsai and Mechuka offbeat trip in Arunachal Pradesh visiting the Golden Pagoda and remote China border valley')">
+        <div class="i-icon">⛩️</div>
+        <h4>Namsai & Mechuka</h4>
+        <p>Golden Pagoda, Parshuram Kund, remote valley.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-DAY ITINERARY -->
+  <div class="section" id="five-day-ap">
+    <div class="section-label">Sample Itinerary — Dirang & Tawang Circuit</div>
+    <div class="section-title">5 days in Arunachal Pradesh</div>
+    <p class="section-body" style="margin-bottom:2rem;">The most practical and famous first-time route — from the valley warmth of Dirang through the frozen heights of Sela Pass to the monastery town of Tawang and the China border at Bumla.</p>
+
+    <div class="timeline">
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 1</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 1</span>
+            <span class="day-title">Dirang & Sangti Valley</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Arrive in <strong>Dirang</strong> after the long drive from Guwahati or Tezpur. Visit the ancient <strong>Dirang Village</strong> — walk through 150-year-old stone and wood Monpa houses built to survive brutal winters. <span class="info-pill">ILP checked at state entry — have it ready</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Visit the painted <strong>Dirang Monastery (Khopa)</strong> for silence and Tibetan Buddhist architecture. Take a 14 km drive to the pine-forested <strong>Sangti Valley</strong> to sit by the pristine Sangti River.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Interact with locals over a warm glass of <strong>Ara</strong> — the traditional fermented corn liquor that keeps the hills warm. Rest early. Tomorrow starts at 6 AM. <span class="warn-pill">Depart by 6 AM tomorrow — 4 PM sunset</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 2</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 2</span>
+            <span class="day-title">Sela Pass → Jaswant Garh → Tawang</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">6 AM</div>
+              <div class="slot-text">Begin the drive before sunrise. Stop at <strong>Sela Pass (13,700 ft)</strong> — fog-wrapped lake, freezing air, and a hot tea at the Army Cafe perched above the clouds. <span class="warn-pill">Carry woolens and altitude medicine</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Descend towards Tawang. Stop at the <strong>Jaswant Garh War Memorial</strong> to pay respects. Detour to the <strong>Chagzam Bridge</strong> — an ancient iron-link bridge with no visible joints and no known builder.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Arrive in <strong>Tawang</strong>. Check into a <strong>women-run local homestay</strong>. Hand over your ILP details to your driver to arrange the <strong>Bumla Pass permit</strong> for Day 4. Rest and acclimatise. <span class="monastery-pill">Altitude ~15,000 ft — rest is important</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 3</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 3</span>
+            <span class="day-title">Tawang Local Sightseeing</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Visit the 342-year-old <strong>Tawang Monastery</strong> — India's largest. Explore the main prayer halls and enter the dark <strong>Butter Lamp Room</strong> where monks craft religious offerings by hand. <span class="monastery-pill">Asia's 2nd largest monastery</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Head to the giant <strong>Buddha Statue</strong> overlooking the entire town for panoramic views. Drive 25 minutes to the <strong>Rice Bowl</strong> settlement to see stunning step-terraced paddy fields.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Walk through <strong>Tawang's Old Market</strong>. Eat early at your homestay — the town shuts down as the 4 PM sunset fades and temperatures plummet. <span class="tip-pill">Early dinner — town closes with the sun</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 4</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 4</span>
+            <span class="day-title">Bumla Pass & High-Altitude Lakes</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Early AM</div>
+              <div class="slot-text">Board a <strong>local Tawang 4x4 taxi</strong> (mandatory — outside vehicles barred, ~₹5,500). Drive the rugged mountain road to <strong>Bumla Pass at 15,200 ft</strong> — meet Indian Army soldiers and view the Indo-China border. <span class="warn-pill">Outside vehicles strictly not allowed</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">On the descent, stop at the breathtaking high-altitude <strong>Madhuri Lake, PTSO Lake, and Nagula Lake</strong> — three distinct mountain lakes each with their own character and reflection.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Return to Tawang. The altitude and rough roads will be tiring. Rest fully — fatigue and mild breathlessness are normal. <span class="monastery-pill">Camphor helps with altitude breathlessness</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 5</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 5</span>
+            <span class="day-title">Holy Waterfall & Departure</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Take the bumpy off-road drive to the sacred <strong>Chumi Gyatse Waterfall</strong> — the "Holy Water Waterfall" revered by locals for its religious significance and sheer natural beauty.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Begin the long descent back toward the Assam plains (Guwahati / Tezpur), or head to the helipad for a <strong>scenic helicopter ride</strong> back to Guwahati — saving a full day's road journey. <span class="tip-pill">Helicopter = worth every rupee on the return</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Transit out of the state. Arunachal Pradesh is the kind of place that changes how you think about India's scale, diversity, and wildness.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="summary-box">
+      <h4>Trip summary</h4>
+      <p>This 5-day Dirang–Tawang circuit takes you from the lush stone-house valleys of <strong style="font-weight:500;color:var(--himalaya)">Dirang</strong> → the frozen heights of <strong style="font-weight:500;color:var(--himalaya)">Sela Pass (13,700 ft)</strong> → India's largest monastery in <strong style="font-weight:500;color:var(--himalaya)">Tawang</strong> → the China border at <strong style="font-weight:500;color:var(--himalaya)">Bumla Pass (15,200 ft)</strong> → sacred waters at <strong style="font-weight:500;color:var(--himalaya)">Chumi Gyatse</strong>. Apply for the ILP before you leave home. Pack woolens for every day. Start driving at 6 AM. Carry altitude medicine. Best visited October to March for clear skies and snowy passes.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="cta-primary" onclick="sendPrompt('I love the 5-day Arunachal Pradesh itinerary. Can you help me book this trip, arrange the ILP and Bumla Pass permits, and customize it for my travel dates?')">Book this expedition ↗</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab6(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab6-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

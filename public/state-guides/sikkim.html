@@ -1,0 +1,902 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --snow: #2A3F5A;
+    --snow-light: #4A6A8A;
+    --snow-pale: #E0EAF5;
+    --monk: #5A2A1A;
+    --monk-light: #9A4A2A;
+    --monk-pale: #F5E8E0;
+    --organic: #1A4A1A;
+    --organic-light: #2E7A2E;
+    --organic-pale: #DFF0DF;
+    --kanchenjunga: #3A2A5A;
+    --kanchenjunga-light: #6A4A9A;
+    --kanchenjunga-pale: #EDE8F5;
+    --gold: #6A4A00;
+    --gold-light: #AA7A10;
+    --gold-pale: #FFF0D0;
+    --text-dark: var(--color-text-primary);
+    --text-muted: var(--color-text-secondary);
+    --bg: var(--color-background-primary);
+    --bg-2: var(--color-background-secondary);
+    --border: var(--color-border-tertiary);
+  }
+
+  body { font-family: 'Source Sans 3', sans-serif; }
+  .page { width: 100%; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 2rem 2.5rem;
+    background: var(--bg-2);
+    border-bottom: 0.5px solid var(--border);
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--snow-light); background: var(--snow-pale);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(2rem, 5.5vw, 3.5rem);
+    font-weight: 600; color: var(--text-dark);
+    line-height: 1.2; margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 em { font-style: italic; color: var(--snow-light); font-family: 'Source Sans 3', sans-serif; font-size: 0.65em; display: block; font-weight: 300; letter-spacing: 0.05em; margin-top: 0.3rem; }
+  .hero-sub {
+    font-size: 14px; color: var(--text-muted);
+    font-weight: 300; max-width: 520px;
+    margin: 0 auto 1.8rem; line-height: 1.8;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .htag {
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 20px; border: 0.5px solid var(--border);
+    color: var(--text-muted); background: var(--bg);
+  }
+  .deco-line { width: 50px; height: 2px; background: var(--snow-light); margin: 1.8rem auto 0; border-radius: 2px; }
+
+  /* SECTION */
+  .section { padding: 2.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--snow-light); margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(1.2rem, 2.8vw, 1.65rem);
+    font-weight: 600; color: var(--text-dark);
+    margin-bottom: 1rem; line-height: 1.35;
+    letter-spacing: 0.02em;
+  }
+  .section-body { font-size: 14px; line-height: 1.8; color: var(--text-muted); max-width: 720px; }
+
+  /* STAT PILLS */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 0; }
+  .stat-pill {
+    background: var(--snow-pale); color: var(--snow);
+    font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* ORGANIC HIGHLIGHT */
+  .organic-bar {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--organic-pale);
+    border-left: 3px solid var(--organic-light);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.2rem; margin: 1.2rem 0;
+  }
+  .organic-bar .ob-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .organic-bar h4 { font-size: 13px; font-weight: 500; color: var(--organic); margin-bottom: 3px; }
+  .organic-bar p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* ALTITUDE DISTRICTS */
+  .districts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .district-card {
+    border: 0.5px solid var(--border); border-radius: 12px;
+    padding: 1rem; background: var(--bg);
+  }
+  .district-dir {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--snow-light); margin-bottom: 3px;
+  }
+  .district-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .district-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* ALTITUDE LADDER */
+  .alt-ladder { display: flex; flex-direction: column; gap: 6px; margin-top: 1.2rem; }
+  .alt-rung {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: 8px;
+    border: 0.5px solid var(--border); background: var(--bg);
+  }
+  .alt-bar-wrap { flex: 1; height: 5px; background: var(--bg-2); border-radius: 3px; overflow: hidden; }
+  .alt-bar { height: 100%; border-radius: 3px; background: var(--snow-light); }
+  .alt-label { font-size: 12px; font-weight: 500; color: var(--text-dark); min-width: 155px; }
+  .alt-num { font-size: 11px; color: var(--text-muted); min-width: 60px; text-align: right; }
+
+  /* PERMIT ALERT */
+  .permit-alert {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-light);
+    border-radius: 10px; padding: 1.1rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .permit-alert .alert-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .permit-alert h4 { font-size: 13px; font-weight: 500; color: var(--gold); margin-bottom: 4px; }
+  .permit-alert p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .tab-btn {
+    font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    cursor: pointer; font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.15s;
+  }
+  .tab-btn.active { background: var(--snow); color: #b8d0f0; border-color: transparent; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .attract-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 10px; }
+  .attract-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg);
+  }
+  .a-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--snow-light); margin-bottom: 4px; }
+  .attract-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .attract-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* FOOD GRID */
+  .food-ingredients { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin: 1rem 0; }
+  .ing-chip {
+    border: 0.5px solid var(--border); border-radius: 8px;
+    padding: 0.7rem 0.9rem; background: var(--bg-2);
+  }
+  .ing-chip h4 { font-size: 12px; font-weight: 500; color: var(--monk); margin-bottom: 2px; }
+  .ing-chip p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  .food-dishes { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 10px; margin-top: 0.8rem; }
+  .dish-card {
+    border-left: 2px solid var(--monk-light);
+    padding: 0.75rem 0.9rem;
+    background: var(--monk-pale); border-radius: 0 8px 8px 0;
+  }
+  .dish-card h4 { font-size: 13px; font-weight: 500; color: var(--monk); margin-bottom: 3px; }
+  .dish-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* SEASON GRID */
+  .season-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 8px; margin-top: 0.8rem; }
+  .season-card {
+    border-radius: 10px; padding: 0.9rem;
+    border: 0.5px solid var(--border); background: var(--bg);
+  }
+  .season-card h4 { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .season-card p { font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+
+  /* TRANSPORT */
+  .transport-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .transport-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 0.85rem 1rem; background: var(--bg); text-align: center;
+  }
+  .t-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .transport-card h4 { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .transport-card p { font-size: 11px; color: var(--text-muted); }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .tip-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2);
+  }
+  .tip-icon { font-size: 18px; margin-bottom: 6px; }
+  .tip-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .tip-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* ITINERARY CTA */
+  .itin-hero {
+    background: var(--bg-2); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    border: 0.5px solid var(--border); text-align: center;
+  }
+  .itin-hero h2 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+    font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .itin-hero p { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 520px; margin: 0 auto 1.2rem; }
+
+  .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .cta-primary {
+    padding: 10px 22px; background: var(--snow);
+    color: #b8d0f0; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif; transition: opacity 0.15s;
+  }
+  .cta-primary:hover { opacity: 0.85; }
+  .cta-secondary {
+    padding: 10px 22px; background: var(--bg);
+    color: var(--text-dark); border: 0.5px solid var(--border);
+    border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'Source Sans 3', sans-serif;
+  }
+  .cta-secondary:hover { background: var(--bg-2); }
+
+  /* INTEREST CARDS */
+  .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .interest-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2); text-align: center;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .interest-card:hover { border-color: var(--snow-light); }
+  .i-icon { font-size: 20px; margin-bottom: 6px; }
+  .interest-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .interest-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .day-block {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 0 1rem; position: relative;
+  }
+  .day-block:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 27px; top: 44px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .day-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .day-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .day-circle.active { background: var(--snow); color: #b8d0f0; border-color: transparent; }
+  .day-content { padding: 0 0 2rem 0; }
+  .day-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.7rem; padding-top: 8px; }
+  .day-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--snow-light); }
+  .day-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1rem; font-weight: 600; color: var(--text-dark); letter-spacing: 0.02em;
+  }
+  .time-slots { display: flex; flex-direction: column; gap: 8px; }
+  .slot { display: flex; gap: 10px; align-items: flex-start; }
+  .slot-time {
+    font-size: 10px; font-weight: 500;
+    min-width: 64px; padding-top: 2px;
+    color: var(--gold-light); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .slot-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .slot-text strong { font-weight: 500; color: var(--text-dark); }
+
+  .tip-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--organic-pale); color: var(--organic); }
+  .warn-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--gold-pale); color: var(--gold); }
+  .monk-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--monk-pale); color: var(--monk); }
+  .info-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--snow-pale); color: var(--snow); }
+
+  .summary-box {
+    border-radius: 12px; border: 0.5px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    background: var(--snow-pale); margin-top: 1.5rem;
+  }
+  .summary-box h4 { font-size: 13px; font-weight: 500; color: var(--snow); margin-bottom: 6px; }
+  .summary-box p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Destination Guide</div>
+    <h1>Sikkim
+      <em>Heaven in the Himalayas</em>
+    </h1>
+    <p class="hero-sub">India's most serene state — 100% organic farming, holy lakes at 17,800 feet, an Indo-China border crossing, and Buddhist prayer wheels turning in every valley.</p>
+    <div class="hero-tags">
+      <span class="htag">100% Organic State</span>
+      <span class="htag">Gurudongmar Lake 17,800ft</span>
+      <span class="htag">Nathu La — China Border</span>
+      <span class="htag">Kanchenjunga Views</span>
+      <span class="htag">Buddhist Monasteries</span>
+      <span class="htag">Zero Point Snow</span>
+    </div>
+    <div class="deco-line"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <div class="section-title">India's Second Smallest — and Most Serene</div>
+    <p class="section-body">Sikkim borders Tibet, Bhutan, Nepal, and West Bengal — a tiny Himalayan state widely described as "heaven" for its crystal rivers, snow-capped peaks, and deep Buddhist culture. It is one of India's most environmentally progressive states, with a total ban on chemical farming and a deep collective commitment to organic living.</p>
+    <div class="stat-row">
+      <span class="stat-pill">2nd smallest state in India</span>
+      <span class="stat-pill">100% organic farming</span>
+      <span class="stat-pill">Borders Tibet, Bhutan & Nepal</span>
+      <span class="stat-pill">Gurudongmar at 17,800ft</span>
+      <span class="stat-pill">Sun sets at 4:30 PM</span>
+    </div>
+
+    <div class="organic-bar">
+      <div class="ob-icon">🌿</div>
+      <div>
+        <h4>India's only 100% organic state</h4>
+        <p>Sikkim's farmers use zero chemical fertilizers or pesticides — every fruit, vegetable, and grain is grown organically. Meals here aren't just fresh; they're genuinely different in taste and quality from anything found in the rest of India.</p>
+      </div>
+    </div>
+
+    <!-- ALTITUDE LADDER -->
+    <p style="font-size:13px;font-weight:500;color:var(--text-dark);margin:1.2rem 0 0.6rem;">Altitude guide — key destinations</p>
+    <div class="alt-ladder">
+      <div class="alt-rung">
+        <div class="alt-label">Gurudongmar Lake</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:100%"></div></div>
+        <div class="alt-num">17,800 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Zero Point (Yumesamdong)</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:86%"></div></div>
+        <div class="alt-num">15,300 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Nathu La Pass</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:81%"></div></div>
+        <div class="alt-num">14,400 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Lachung</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:50%"></div></div>
+        <div class="alt-num">9,000 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Lachen</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:49%"></div></div>
+        <div class="alt-num">8,800 ft</div>
+      </div>
+      <div class="alt-rung">
+        <div class="alt-label">Gangtok</div>
+        <div class="alt-bar-wrap"><div class="alt-bar" style="width:32%"></div></div>
+        <div class="alt-num">~5,500 ft</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISTRICTS -->
+  <div class="section">
+    <div class="section-label">Geography & Regions</div>
+    <div class="section-title">Four Districts — Four Different Worlds</div>
+    <p class="section-body" style="margin-bottom:1rem;">Sikkim is split into four districts, each with a completely different character — from the buzzing capital of Gangtok to the extreme high-altitude wilderness of North Sikkim.</p>
+    <div class="districts-grid">
+      <div class="district-card">
+        <div class="district-dir">East Sikkim</div>
+        <h4>Gangtok & Nathu La</h4>
+        <p>The capital, M.G. Marg, Tsomgo Lake, the Indo-China border, and the Baba Temple.</p>
+      </div>
+      <div class="district-card">
+        <div class="district-dir">North Sikkim — largest</div>
+        <h4>Lachen & Lachung</h4>
+        <p>Extreme altitudes, Gurudongmar Lake (17,800ft), Zero Point, Yumthang Valley of Flowers.</p>
+      </div>
+      <div class="district-card">
+        <div class="district-dir">West Sikkim</div>
+        <h4>Pelling & Monasteries</h4>
+        <p>Closest Kanchenjunga views, Pelling Skywalk, Pemayangtse Monastery, Rabdentse Ruins.</p>
+      </div>
+      <div class="district-card">
+        <div class="district-dir">South Sikkim</div>
+        <h4>Ravangla & Namchi</h4>
+        <p>Buddha Park, Namchi Chardham replicas, tea estates, and panoramic mountain views.</p>
+      </div>
+    </div>
+
+    <div class="permit-alert" style="margin-top:1.2rem;">
+      <div class="alert-icon">📋</div>
+      <div>
+        <h4>Permits required for North Sikkim & Nathu La</h4>
+        <p>Traveling to Nathu La Pass, Lachen, or Lachung requires Inner Line Permits — arranged through your local taxi driver or agent in Gangtok. Self-driving is strongly discouraged on these restricted, high-altitude routes. Children under 5 are not permitted at Nathu La. Photography is strictly banned at the Indo-China border.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURE -->
+  <div class="section">
+    <div class="section-label">Culture & Traditions</div>
+    <div class="section-title">Buddhism, Butter Lamps & Organic Living</div>
+    <p class="section-body">Sikkim's culture is defined by its deep Buddhist identity — monasteries, spinning prayer wheels, Thanka paintings, and butter lamps are present in every corner of the state. The people live in quiet harmony with the land, reflected in both their farming practices and their cuisine.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:1rem;">
+      <div class="organic-bar" style="margin:0;border-radius:0 10px 10px 0;">
+        <div class="ob-icon" style="font-size:16px;">🛕</div>
+        <div>
+          <h4>Buddhist immersion</h4>
+          <p style="font-size:11px;">Spin the prayer wheels at Do-drul Chorten, meditate at Ravangla Buddha Park, or sit in silence at the 1614-built Pemayangtse Monastery.</p>
+        </div>
+      </div>
+      <div class="organic-bar" style="margin:0;border-left-color:var(--kanchenjunga-light);background:var(--kanchenjunga-pale);border-radius:0 10px 10px 0;">
+        <div class="ob-icon" style="font-size:16px;">🏔️</div>
+        <div>
+          <h4>Sacred mountain reverence</h4>
+          <p style="font-size:11px;color:var(--text-muted);">Kanchenjunga is worshipped as a guardian deity. It's visible from Tashi View Point, Pelling, and South Sikkim at sunrise.</p>
+        </div>
+      </div>
+      <div class="organic-bar" style="margin:0;border-left-color:var(--monk-light);background:var(--monk-pale);border-radius:0 10px 10px 0;">
+        <div class="ob-icon" style="font-size:16px;">🏡</div>
+        <div>
+          <h4>Bhutia homestay life</h4>
+          <p style="font-size:11px;color:var(--text-muted);">Staying with a local Bhutia or Nepali family — sitting by the chulha (hearth), eating homemade organic food — is the heart of the Sikkim experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTRACTIONS TABS -->
+  <div class="section">
+    <div class="section-label">Attractions</div>
+    <div class="section-title">What to See & Experience</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab7('north')">North Sikkim</button>
+      <button class="tab-btn" onclick="showTab7('east')">East Sikkim</button>
+      <button class="tab-btn" onclick="showTab7('westSouth')">West & South</button>
+    </div>
+
+    <div id="tab7-north" class="tab-content active">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">17,800 ft — Holy Lake</div>
+          <h4>Gurudongmar Lake</h4>
+          <p>A sacred high-altitude lake that miraculously never fully freezes, even in peak winter. Depart Lachen by 4 AM. Leave before 11 AM as extreme winds arrive.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">15,300 ft — Snow</div>
+          <h4>Zero Point (Yumesamdong)</h4>
+          <p>The last accessible civilian point near the Tibet border — a snow-covered plateau where the road simply ends and the mountains begin.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Valley of Flowers</div>
+          <h4>Yumthang Valley</h4>
+          <p>The Teesta River flowing through a mountain valley that blooms with wildflowers in summer — one of North Sikkim's most beautiful landscapes.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">En route — North Sikkim</div>
+          <h4>Seven Sisters & Naga Waterfalls</h4>
+          <p>Spectacular waterfalls visible from the road on the drive into North Sikkim — dramatic cascades through dense mountain forest.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Bhutia Homestay</div>
+          <h4>Lachen & Lachung Villages</h4>
+          <p>Base camp towns at 8,800–9,000 ft — stay in traditional Bhutia homestays, eat organic meals, and experience authentic high-altitude village life.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">North Sikkim Road</div>
+          <h4>Bheem Nala Waterfall</h4>
+          <p>Also called the "Amitabh Bachchan Falls" for a Bollywood scene filmed here — a towering waterfall visible on the drive between Lachen and Lachung.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab7-east" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">14,400 ft — China Border</div>
+          <h4>Nathu La Pass</h4>
+          <p>The heavily guarded Indo-China border — piercing cold winds, Indian Army presence, and the extraordinary reality of standing at an international frontier. No photography permitted.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">High Altitude Lake</div>
+          <h4>Tsomgo (Changu) Lake</h4>
+          <p>A crystal-clear lake that freezes solid in winter — serene in summer, magical under snow. Located en route to Nathu La Pass.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Army Shrine</div>
+          <h4>Baba Harbhajan Singh Temple</h4>
+          <p>A revered shrine to an Indian Army soldier whose spirit is believed to still protect the border. Soldiers and tourists alike pay their respects here.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Gangtok</div>
+          <h4>Tashi View Point</h4>
+          <p>The best place in Gangtok for a clear morning view of Mount Kanchenjunga — arrive before sunrise for golden light on the peak.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Gangtok — City Life</div>
+          <h4>M.G. Marg</h4>
+          <p>Gangtok's pedestrian-only central street — cafes, shops, street food, and the pulse of daily city life in Sikkim's capital.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">Gangtok</div>
+          <h4>Namgyal Institute of Tibetology</h4>
+          <p>Established 1958 — houses the world's third-largest collection of Buddhist texts. Essential for understanding Sikkim's Tibetan cultural heritage.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab7-westSouth" class="tab-content">
+      <div class="attract-grid">
+        <div class="attract-card">
+          <div class="a-cat">West Sikkim — Pelling</div>
+          <h4>Pelling Skywalk & Chenrezig</h4>
+          <p>A thrilling glass walkway leading to a 130-ft Chenrezig statue — with the Kanchenjunga range as a backdrop, this is one of Sikkim's most dramatic viewpoints.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">West Sikkim — 1614 AD</div>
+          <h4>Pemayangtse Monastery</h4>
+          <p>One of Sikkim's oldest monasteries at 400+ years. Quiet, remote, and architecturally extraordinary.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">West Sikkim — Ruins</div>
+          <h4>Rabdentse Ruins</h4>
+          <p>The ruins of Sikkim's second capital, destroyed in a Nepali invasion in 1840. Now a scenic garden with panoramic views.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">South Sikkim — Ravangla</div>
+          <h4>Buddha Park</h4>
+          <p>A massive 130-ft Buddha statue set in a peaceful meditation park — the spiritual centrepiece of South Sikkim.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">South Sikkim — Namchi</div>
+          <h4>Namchi Chardham</h4>
+          <p>Replicas of India's four Char Dham pilgrimage sites and all 12 Jyotirlingas — a complete Hindu spiritual complex in the mountains.</p>
+        </div>
+        <div class="attract-card">
+          <div class="a-cat">South Sikkim</div>
+          <h4>Tea Estates</h4>
+          <p>Roing-style tea gardens across South Sikkim — the organic equivalent of Assam's famous estates, set against mountain backdrops.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD -->
+  <div class="section">
+    <div class="section-label">Cuisine</div>
+    <div class="section-title">Organic, Unique & Deeply Himalayan</div>
+    <p class="section-body">Sikkimese food is built from ingredients unavailable anywhere else in India — fermented mountain greens, yak milk cheese, buckwheat rolls, and noodle soups eaten at altitude after long days in the snow.</p>
+
+    <p style="font-size:12px;font-weight:500;color:var(--text-dark);margin:1rem 0 0.5rem;">Unique local ingredients</p>
+    <div class="food-ingredients">
+      <div class="ing-chip">
+        <h4>Chhurpi</h4>
+        <p>Hardened yak milk cheese — chewed slowly, earthy and protein-rich.</p>
+      </div>
+      <div class="ing-chip">
+        <h4>Gundruk</h4>
+        <p>Fermented mustard greens — tangy, sour, and deeply local.</p>
+      </div>
+      <div class="ing-chip">
+        <h4>Kinema</h4>
+        <p>Fermented soybeans — nutty and strong, used in curries.</p>
+      </div>
+      <div class="ing-chip">
+        <h4>Iskus ko Munta</h4>
+        <p>Tender squash leaves — stir-fried simply with local spices.</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px;font-weight:500;color:var(--text-dark);margin:1rem 0 0.5rem;">Must-try dishes</p>
+    <div class="food-dishes">
+      <div class="dish-card">
+        <h4>Nepali Thali</h4>
+        <p>The traditional Sikkimese meal — rice, lentils, greens, pickle, and seasonal vegetables from the farm.</p>
+      </div>
+      <div class="dish-card">
+        <h4>Thukpa</h4>
+        <p>Hearty Tibetan noodle soup — perfect after a cold day at altitude.</p>
+      </div>
+      <div class="dish-card">
+        <h4>Sel Roti & Aloo Dum</h4>
+        <p>A deep-fried sweet rice-flour ring served with spiced potato curry — a beloved street snack.</p>
+      </div>
+      <div class="dish-card">
+        <h4>Typhoo (Giant Momo)</h4>
+        <p>An oversized stuffed dumpling — a Sikkim original, larger and more filled than a standard momo.</p>
+      </div>
+      <div class="dish-card">
+        <h4>Khuri</h4>
+        <p>Buckwheat rolls stuffed with chhurpi and potatoes — a Bhutia homestay speciality.</p>
+      </div>
+      <div class="dish-card">
+        <h4>Butter Tea</h4>
+        <p>Churned mountain herbs, milk, and ghee — warming, unusual, and completely essential at high altitude.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEST TIME + TRANSPORT -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-label">When to Visit</div>
+        <div class="section-title" style="font-size:1.1rem;">Best time of year</div>
+        <div class="season-grid">
+          <div class="season-card" style="border-top:2px solid var(--organic-light);">
+            <h4>March – May</h4>
+            <p style="font-size:11px;color:var(--text-muted);">Peak season. Flowers bloom, skies clear, passes open. Best all-round window.</p>
+          </div>
+          <div class="season-card" style="border-top:2px solid var(--snow-light);">
+            <h4>Oct – Dec</h4>
+            <p style="font-size:11px;color:var(--text-muted);">Second peak. Clear mountain views, crisp air, festive Sikkimese culture.</p>
+          </div>
+          <div class="season-card" style="border-top:2px solid var(--kanchenjunga-light);">
+            <h4>Dec – Feb (Snow)</h4>
+            <p style="font-size:11px;color:var(--text-muted);">Heavy snow at altitude. Gurudongmar roads may close. Best for snow lovers.</p>
+          </div>
+          <div class="season-card" style="border-top:2px solid #c04040;">
+            <h4>June – Aug (Avoid)</h4>
+            <p style="font-size:11px;color:var(--text-muted);">Severe monsoon landslides, muddy roads, and low visibility. High risk.</p>
+          </div>
+        </div>
+        <div style="background:var(--gold-pale);border-radius:10px;padding:0.9rem;margin-top:10px;border:0.5px solid var(--border);">
+          <p style="font-size:12px;color:var(--gold);font-weight:500;margin-bottom:3px;">Sun sets at 4:30 PM — plan accordingly</p>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.6;">Start every day by 7–8 AM to make full use of daylight. High-altitude drives take longer than expected.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Getting There & Around</div>
+        <div class="section-title" style="font-size:1.1rem;">Transport options</div>
+        <div class="transport-cards">
+          <div class="transport-card">
+            <span class="t-icon">✈️</span>
+            <h4>By Air</h4>
+            <p>Fly into Bagdogra (West Bengal) — 4 hrs to Gangtok by cab.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚂</span>
+            <h4>By Train</h4>
+            <p>New Jalpaiguri (NJP) — closest major railway station, then 4 hrs to Gangtok.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚗</span>
+            <h4>Private SUV</h4>
+            <p>₹3,000–₹4,500/day. Best for touring North Sikkim and passes.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚐</span>
+            <h4>Shared Taxi</h4>
+            <p>Budget option between towns. Less flexible but well-connected.</p>
+          </div>
+        </div>
+        <div style="background:var(--monk-pale);border-radius:10px;padding:0.9rem;margin-top:10px;border:0.5px solid var(--border);">
+          <p style="font-size:12px;color:var(--monk);font-weight:500;margin-bottom:3px;">Do not self-drive to restricted areas</p>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.6;">North Sikkim and Nathu La require permits arranged by local drivers. Self-drive is strongly discouraged on these routes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICAL TIPS -->
+  <div class="section">
+    <div class="section-label">Practical Tips</div>
+    <div class="section-title">Know Before You Go</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🫁</div>
+        <h4>Altitude sickness is real</h4>
+        <p>At Nathu La and Gurudongmar, breathlessness is common. Carry camphor to smell, drink water continuously, and spend no more than 30–60 minutes at extreme peaks.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⏰</div>
+        <h4>4:30 PM sunset — start at 7 AM</h4>
+        <p>Days are short at altitude. Start driving by 7–8 AM every day. The Gurudongmar trip departs Lachen at 4 AM and must leave the lake by 11 AM.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">👶</div>
+        <h4>Children under 5 cannot visit Nathu La</h4>
+        <p>Extreme altitude conditions at the Indo-China border make it unsafe for very young children. Plan your family itinerary around this restriction.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📵</div>
+        <h4>No photos at Nathu La</h4>
+        <p>Mobile recording and photography are strictly banned at the Indo-China border at Nathu La Pass. No exceptions — it is an active military zone.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="padding: 0 1.5rem;"><div style="height:1px;background:var(--border);"></div></div>
+
+  <!-- ITINERARY CTA -->
+  <div class="section">
+    <div class="itin-hero">
+      <div class="section-label" style="margin-bottom:0.5rem;">Plan Your Trip</div>
+      <h2>Let Us Design Your Sikkim Journey</h2>
+      <p>Permits for Nathu La and North Sikkim, Bhutia homestay bookings, 4 AM Gurudongmar drives, organic thali stops, Kanchenjunga sunrise points — we handle every detail of your Himalayan escape.</p>
+      <div class="cta-btns">
+        <button class="cta-primary" onclick="sendPrompt('I want to plan a custom Sikkim trip. Help me build an itinerary and arrange all permits for Nathu La and North Sikkim.')">Plan my journey ↗</button>
+        <button class="cta-secondary" onclick="document.getElementById('five-day-sk').scrollIntoView({behavior:'smooth'})">See 5-day example ↓</button>
+      </div>
+    </div>
+
+    <div class="interest-grid">
+      <div class="interest-card" onclick="sendPrompt('Plan a Sikkim trip to North Sikkim visiting Gurudongmar Lake and Zero Point with Bhutia homestays in Lachen and Lachung')">
+        <div class="i-icon">🏔️</div>
+        <h4>North Sikkim Expedition</h4>
+        <p>Gurudongmar, Zero Point, Bhutia homestays.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Sikkim trip to Nathu La Pass and Tsomgo Lake with Baba Temple visit')">
+        <div class="i-icon">🛂</div>
+        <h4>China Border & Lakes</h4>
+        <p>Nathu La, Tsomgo Lake, Baba Temple.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a West Sikkim trip visiting Pelling Skywalk, Pemayangtse Monastery and Kanchenjunga views')">
+        <div class="i-icon">🛕</div>
+        <h4>West Sikkim & Pelling</h4>
+        <p>Kanchenjunga views, Skywalk, monasteries.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a South Sikkim trip visiting Buddha Park Ravangla and Namchi Chardham and tea estates')">
+        <div class="i-icon">☸️</div>
+        <h4>South Sikkim Spiritual</h4>
+        <p>Buddha Park, Namchi Chardham, tea estates.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-DAY ITINERARY -->
+  <div class="section" id="five-day-sk">
+    <div class="section-label">Sample Itinerary — Gangtok & North Sikkim Circuit</div>
+    <div class="section-title">5 Days in Sikkim</div>
+    <p class="section-body" style="margin-bottom:2rem;">From Gangtok's vibrant streets to the holy waters of Gurudongmar at 17,800 feet — the classic first-timer's circuit through East and North Sikkim.</p>
+
+    <div class="timeline">
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 1</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 1</span>
+            <span class="day-title">Gangtok — Arrival & City Culture</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Arrive at Bagdogra airport or NJP station. Take the scenic 4-hour taxi ride up into the hills to <strong>Gangtok</strong>. Check in near M.G. Marg. <span class="info-pill">~4 hrs from Bagdogra / NJP</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Visit <strong>Banjhakri Waterfalls</strong> theme park, then take the <strong>Gangtok Ropeway</strong> for a bird's-eye view of the capital city spread across the hillside.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Walk the pedestrian-only <strong>M.G. Marg</strong> — cafes, shops, and the pulse of Gangtok. Try a traditional <strong>Nepali Thali</strong> or street snacks like <strong>Sel Roti and Aloo Dum</strong>. <span class="tip-pill">Arrange Nathu La permits tonight</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 2</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 2</span>
+            <span class="day-title">East Sikkim — Border, Temple & Lake</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Early AM</div>
+              <div class="slot-text">Head to <strong>Tashi View Point</strong> before sunrise for a clear, golden view of <strong>Mount Kanchenjunga</strong>. Then begin the steep permitted drive to <strong>Nathu La Pass at 14,400 ft</strong> — bundle up for piercing winds. <span class="warn-pill">No photography at the border — strictly enforced</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Descend to pay respects at the <strong>Baba Harbhajan Singh Temple</strong>, then spend time marvelling at the crystal-clear (or frozen) <strong>Tsomgo (Changu) Lake</strong>.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Return to Gangtok. Warm up at a local cafe with <strong>Chicken Thenthuk</strong> or <strong>Shyaphale</strong>. Rest — tomorrow is a long drive north. <span class="monk-pill">Under-5s cannot visit Nathu La</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 3</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 3</span>
+            <span class="day-title">Journey into North Sikkim — Lachen</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Check out early and begin the scenic 6–7 hour drive towards North Sikkim. Stop to photograph the spectacular <strong>Seven Sisters Waterfall</strong> and <strong>Naga Waterfall</strong> from the road. <span class="info-pill">~125 km, 6–7 hrs — start by 7 AM</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Stop in <strong>Mangan</strong> for a simple organic lunch at a roadside dhaba. Cross the <strong>Chungthang dam</strong> and continue into the high-altitude town of <strong>Lachen at 8,800 ft</strong>.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Check into a <strong>Bhutia homestay</strong>. Sit by the chulha and share a deeply traditional dinner of <strong>Khuri, Gundruk soup, and Butter Tea</strong>. Sleep early — tomorrow departs at 4 AM. <span class="warn-pill">4 AM departure tomorrow — no exceptions</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 4</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 4</span>
+            <span class="day-title">Gurudongmar Lake & Lachung</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">4 AM</div>
+              <div class="slot-text">Depart Lachen in darkness. Drive through the <strong>Thangu Valley checkpost</strong> to reach <strong>Gurudongmar Lake at 17,800 ft</strong> — walk gently, smell camphor if breathless, and stand before the holy partially-unfrozen waters. <span class="warn-pill">Leave before 11 AM — extreme winds arrive</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Return to Lachen for a quick lunch. Drive toward <strong>Lachung (9,000 ft)</strong>, stopping to view the towering <strong>Bheem Nala (Amitabh Bachchan) Waterfall</strong>.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Arrive in Lachung. Check into your hotel, enjoy a mild-spiced organic Sikkimese dinner, and rest fully. The altitude and long drive will be exhausting. <span class="tip-pill">Drink water — altitude dehydration is common</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 5</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 5</span>
+            <span class="day-title">Zero Point, Valley of Flowers & Departure</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Early AM</div>
+              <div class="slot-text">Drive through the <strong>Yumthang Valley (Valley of Flowers)</strong> with the Teesta River winding through the mountains. Continue up to <strong>Zero Point at 15,300 ft</strong> — the last point on the civilian road, blanketed in snow.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Descend back through Lachung for a quick meal, then begin the long <strong>8-hour scenic drive back to Gangtok</strong>. <span class="info-pill">~8 hrs — start the descent by noon</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Arrive in Gangtok. Collect belongings and proceed to <strong>NJP or Bagdogra</strong> for your journey home — concluding one of India's most extraordinary Himalayan adventures.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="summary-box">
+      <h4>Trip summary</h4>
+      <p>This 5-day Gangtok–North Sikkim circuit takes you from the vibrant streets of <strong style="font-weight:500;color:var(--snow)">Gangtok</strong> → the Indo-China border at <strong style="font-weight:500;color:var(--snow)">Nathu La (14,400 ft)</strong> → the traditional Bhutia homestays of <strong style="font-weight:500;color:var(--snow)">Lachen (8,800 ft)</strong> → the holy waters of <strong style="font-weight:500;color:var(--snow)">Gurudongmar Lake (17,800 ft)</strong> → the snow plains of <strong style="font-weight:500;color:var(--snow)">Zero Point (15,300 ft)</strong>. Always arrange permits in advance, carry camphor for altitude, and start every day by 7 AM. Best visited March–May or October–December.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="cta-primary" onclick="sendPrompt('I love the 5-day Sikkim itinerary. Can you help me book this trip, arrange North Sikkim and Nathu La permits, and customize it for my travel dates?')">Book this journey ↗</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab7(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab7-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

@@ -1,0 +1,695 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --palace: #4A2A6A;
+    --palace-light: #7A4A9A;
+    --palace-pale: #EEE8F8;
+    --river: #1A4A5A;
+    --river-light: #2A7A8A;
+    --river-pale: #E0F0F5;
+    --manikya: #7A3A10;
+    --manikya-light: #C06020;
+    --manikya-pale: #FDF0E4;
+    --night: #1A1A3A;
+    --night-light: #4A4A7A;
+    --night-pale: #EEEEF8;
+    --craft: #1A4A2A;
+    --craft-light: #2A7A4A;
+    --craft-pale: #E0F5E8;
+    --text-dark: var(--color-text-primary);
+    --text-muted: var(--color-text-secondary);
+    --bg: var(--color-background-primary);
+    --bg-2: var(--color-background-secondary);
+    --border: var(--color-border-tertiary);
+  }
+
+  body { font-family: 'Mulish', sans-serif; }
+  .page { width: 100%; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 2rem 2.5rem;
+    background: var(--bg-2);
+    border-bottom: 0.5px solid var(--border);
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--palace-light); background: var(--palace-pale);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    font-weight: 700; color: var(--text-dark);
+    line-height: 1.15; margin-bottom: 0.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--palace-light); font-weight: 400; }
+  .hero-sub {
+    font-size: 14px; color: var(--text-muted);
+    font-weight: 300; max-width: 520px;
+    margin: 0 auto 1.8rem; line-height: 1.8;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .htag {
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 20px; border: 0.5px solid var(--border);
+    color: var(--text-muted); background: var(--bg);
+  }
+  .deco-line { width: 50px; height: 2px; background: var(--palace-light); margin: 1.8rem auto 0; border-radius: 2px; }
+
+  /* SECTION */
+  .section { padding: 2.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--palace-light); margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.3rem, 3vw, 1.85rem);
+    font-weight: 700; color: var(--text-dark);
+    margin-bottom: 1rem; line-height: 1.3;
+  }
+  .section-body { font-size: 14px; line-height: 1.8; color: var(--text-muted); max-width: 720px; }
+
+  /* STAT PILLS */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 0; }
+  .stat-pill {
+    background: var(--palace-pale); color: var(--palace);
+    font-size: 11px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* PROXIMITY CARD */
+  .proximity-card {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--night-pale);
+    border-left: 3px solid var(--night-light);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.2rem; margin: 1.2rem 0;
+  }
+  .proximity-card .pc-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .proximity-card h4 { font-size: 13px; font-weight: 500; color: var(--night); margin-bottom: 4px; }
+  .proximity-card p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  /* LANGUAGE CHIPS */
+  .lang-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+  .lang-chip {
+    display: flex; align-items: center; gap: 7px;
+    padding: 6px 12px; border-radius: 8px;
+    border: 0.5px solid var(--border);
+    background: var(--bg); font-size: 12px;
+  }
+  .lang-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .lang-chip span { color: var(--text-dark); font-weight: 500; }
+  .lang-chip small { color: var(--text-muted); font-size: 11px; }
+
+  /* GEO GRID */
+  .geo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .geo-card {
+    background: var(--bg-2); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.1rem;
+  }
+  .geo-icon { font-size: 18px; margin-bottom: 6px; }
+  .geo-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .geo-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* DYNASTY TIMELINE */
+  .dynasty-list { display: flex; flex-direction: column; gap: 8px; margin-top: 1.1rem; }
+  .dynasty-item { display: flex; gap: 12px; align-items: flex-start; }
+  .dynasty-year {
+    font-size: 11px; font-weight: 500;
+    min-width: 50px; padding-top: 2px;
+    color: var(--manikya-light);
+  }
+  .dynasty-content h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .dynasty-content p { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+  /* PALACE CARD */
+  .palace-feature {
+    border: 0.5px solid var(--border);
+    border-top: 3px solid var(--palace-light);
+    border-radius: 0 0 12px 12px;
+    padding: 1.2rem;
+    background: var(--bg);
+    margin-top: 1.2rem;
+  }
+  .palace-feature h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--text-dark); margin-bottom: 4px;
+  }
+  .palace-feature .year-badge {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--palace-light); background: var(--palace-pale);
+    padding: 2px 9px; border-radius: 5px; margin-bottom: 8px;
+  }
+  .palace-feature p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+  .style-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .style-tag {
+    font-size: 11px; padding: 3px 10px;
+    border-radius: 5px; border: 0.5px solid var(--border);
+    color: var(--text-muted); background: var(--bg-2);
+  }
+
+  /* ATTRACT GRID */
+  .attract-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 10px; margin-top: 1.2rem; }
+  .attract-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg);
+  }
+  .a-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--palace-light); margin-bottom: 4px; }
+  .attract-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+  .attract-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* FOOD */
+  .food-feature {
+    background: var(--manikya-pale);
+    border-left: 3px solid var(--manikya-light);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.2rem; margin-bottom: 1rem;
+  }
+  .food-feature h4 { font-size: 13px; font-weight: 500; color: var(--manikya); margin-bottom: 4px; }
+  .food-feature p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+  .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 10px; }
+  .food-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 0.9rem; background: var(--bg);
+  }
+  .food-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .food-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* NIGHT MARKET CALLOUT */
+  .night-callout {
+    background: var(--night);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    margin-top: 1rem;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .night-callout .nc-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .night-callout h4 { font-size: 13px; font-weight: 500; color: #d8d8f8; margin-bottom: 4px; }
+  .night-callout p { font-size: 12px; color: #9090b8; line-height: 1.65; }
+
+  /* TRANSPORT */
+  .transport-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .transport-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 0.85rem 1rem; background: var(--bg); text-align: center;
+  }
+  .t-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+  .transport-card h4 { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; }
+  .transport-card p { font-size: 11px; color: var(--text-muted); }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1rem; }
+  .tip-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2);
+  }
+  .tip-icon { font-size: 18px; margin-bottom: 6px; }
+  .tip-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .tip-card p { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+
+  /* ITINERARY CTA */
+  .itin-hero {
+    background: var(--bg-2); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    border: 0.5px solid var(--border); text-align: center;
+  }
+  .itin-hero h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.2rem, 3vw, 1.65rem);
+    font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem;
+  }
+  .itin-hero p { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 500px; margin: 0 auto 1.2rem; }
+
+  .cta-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .cta-primary {
+    padding: 10px 22px; background: var(--palace);
+    color: #d8c8f8; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'Mulish', sans-serif; transition: opacity 0.15s;
+  }
+  .cta-primary:hover { opacity: 0.85; }
+  .cta-secondary {
+    padding: 10px 22px; background: var(--bg);
+    color: var(--text-dark); border: 0.5px solid var(--border);
+    border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'Mulish', sans-serif;
+  }
+  .cta-secondary:hover { background: var(--bg-2); }
+
+  /* INTEREST CARDS */
+  .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+  .interest-card {
+    border: 0.5px solid var(--border); border-radius: 10px;
+    padding: 1rem; background: var(--bg-2); text-align: center;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .interest-card:hover { border-color: var(--palace-light); }
+  .i-icon { font-size: 20px; margin-bottom: 6px; }
+  .interest-card h4 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+  .interest-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .day-block {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 0 1rem; position: relative;
+  }
+  .day-block:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 27px; top: 44px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .day-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .day-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+    border: 0.5px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .day-circle.active { background: var(--palace); color: #d8c8f8; border-color: transparent; }
+  .day-content { padding: 0 0 2rem 0; }
+  .day-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 0.7rem; padding-top: 8px; }
+  .day-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--palace-light); }
+  .day-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
+  }
+  .time-slots { display: flex; flex-direction: column; gap: 8px; }
+  .slot { display: flex; gap: 10px; align-items: flex-start; }
+  .slot-time {
+    font-size: 10px; font-weight: 500;
+    min-width: 64px; padding-top: 2px;
+    color: var(--manikya-light); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .slot-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .slot-text strong { font-weight: 500; color: var(--text-dark); }
+
+  .tip-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--craft-pale); color: var(--craft); }
+  .info-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--river-pale); color: var(--river); }
+  .palace-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--palace-pale); color: var(--palace); }
+  .night-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin-top: 4px; background: var(--night-pale); color: var(--night-light); }
+
+  .summary-box {
+    border-radius: 12px; border: 0.5px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    background: var(--palace-pale); margin-top: 1.5rem;
+  }
+  .summary-box h4 { font-size: 13px; font-weight: 500; color: var(--palace); margin-bottom: 6px; }
+  .summary-box p { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 540px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Destination Guide</div>
+    <h1>Tripura —<br><em>The Royal Heart of the Northeast</em></h1>
+    <p class="hero-sub">Ancient palaces of the Manikya dynasty, a capital just 2 km from Bangladesh, vibrant night markets, traditional fish cuisine, and year-round handicraft fairs.</p>
+    <div class="hero-tags">
+      <span class="htag">Ujjayanta Palace 1901</span>
+      <span class="htag">2km from Bangladesh</span>
+      <span class="htag">Manikya Dynasty</span>
+      <span class="htag">Mui Borok Fish Dish</span>
+      <span class="htag">Howrah River</span>
+      <span class="htag">Handicraft Fairs</span>
+    </div>
+    <div class="deco-line"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <div class="section-title">Where royalty meets the Bangladesh border</div>
+    <p class="section-body">Tripura is one of Northeast India's most accessible and historically rich states. Its capital Agartala — the largest city in the state — sits beautifully on the banks of the Howrah River, just 2 kilometres from the Bangladesh border. It is a city shaped by royal vision, with its roads, markets, and public buildings all planned by the Manikya maharajas.</p>
+    <div class="stat-row">
+      <span class="stat-pill">Capital: Agartala</span>
+      <span class="stat-pill">2 km from Bangladesh</span>
+      <span class="stat-pill">~94% Hindu population</span>
+      <span class="stat-pill">3 official languages</span>
+      <span class="stat-pill">Direct flights from Delhi & Kolkata</span>
+    </div>
+
+    <div class="proximity-card">
+      <div class="pc-icon">🌏</div>
+      <div>
+        <h4>India's closest city to Bangladesh</h4>
+        <p>Agartala is just 2 kilometres from the Bangladesh border — making it geographically unique among all Indian state capitals. Visitors should be mindful of border area regulations when exploring the city's outskirts.</p>
+      </div>
+    </div>
+
+    <p style="font-size:13px;font-weight:500;color:var(--text-dark);margin:1.2rem 0 0.6rem;">Languages spoken in Tripura</p>
+    <div class="lang-row">
+      <div class="lang-chip">
+        <div class="lang-dot" style="background:var(--palace-light)"></div>
+        <span>Bengali</span><small>official</small>
+      </div>
+      <div class="lang-chip">
+        <div class="lang-dot" style="background:var(--river-light)"></div>
+        <span>Kokborok</span><small>official / tribal</small>
+      </div>
+      <div class="lang-chip">
+        <div class="lang-dot" style="background:var(--craft-light)"></div>
+        <span>English</span><small>official</small>
+      </div>
+      <div class="lang-chip">
+        <div class="lang-dot" style="background:var(--manikya-light)"></div>
+        <span>Chakma</span><small>minority</small>
+      </div>
+      <div class="lang-chip">
+        <div class="lang-dot" style="background:var(--night-light)"></div>
+        <span>Hindi</span><small>minority</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="section">
+    <div class="section-label">History & Heritage</div>
+    <div class="section-title">The Manikya Dynasty — builders of Agartala</div>
+    <p class="section-body">Agartala's entire identity is shaped by the Manikya royal lineage — a dynasty that chose, planned, and built the city we see today. Every palace, road, and public building carries their legacy.</p>
+
+    <div class="dynasty-list">
+      <div class="dynasty-item">
+        <div class="dynasty-year">Pre-19th C</div>
+        <div class="dynasty-content">
+          <h4>Capital at Rangamati (Udaipur)</h4>
+          <p>The original capital of the Tripura kingdom, located in the Udaipur region of Northern Tripura.</p>
+        </div>
+      </div>
+      <div class="dynasty-item">
+        <div class="dynasty-year">19th C</div>
+        <div class="dynasty-content">
+          <h4>Maharaja Krishna Kishore shifts the capital</h4>
+          <p>To escape continuous attacks by the Kuki tribe, the capital was relocated from Rangamati to Agartala — a decision that shaped the entire state.</p>
+        </div>
+      </div>
+      <div class="dynasty-item">
+        <div class="dynasty-year">1901</div>
+        <div class="dynasty-content">
+          <h4>Ujjayanta Palace is built</h4>
+          <p>The crown jewel of Agartala — a palace blending Mughal domes with European colonnades, built as the royal seat of the Manikya dynasty.</p>
+        </div>
+      </div>
+      <div class="dynasty-item">
+        <div class="dynasty-year">1940</div>
+        <div class="dynasty-content">
+          <h4>Maharaja Bir Bikram Kishore redesigns the city</h4>
+          <p>The modern layout of Agartala — its roads, markets, and municipal buildings — was meticulously planned by Maharaja Bir Bikram Kishore Manikya Bahadur.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="palace-feature">
+      <div class="year-badge">Built 1901</div>
+      <h3>Ujjayanta Palace</h3>
+      <p>The architectural crown of Tripura — a sprawling royal palace that blends two distinct traditions in one extraordinary structure. Built by the Manikya dynasty as their royal seat, it now stands as Agartala's most visited monument.</p>
+      <div class="style-tags">
+        <span class="style-tag">Mughal domes</span>
+        <span class="style-tag">European colonnades</span>
+        <span class="style-tag">Manikya dynasty</span>
+        <span class="style-tag">Now a state museum</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTRACTIONS -->
+  <div class="section">
+    <div class="section-label">Attractions</div>
+    <div class="section-title">What to see & experience</div>
+    <div class="attract-grid">
+      <div class="attract-card">
+        <div class="a-cat">Agartala — Main Attraction</div>
+        <h4>Ujjayanta Palace</h4>
+        <p>A 1901 Mughal-European fusion palace that served as the royal seat of the Manikya dynasty — Agartala's defining landmark and must-see monument.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Agartala</div>
+        <h4>Rajbari Palace</h4>
+        <p>A second royal palace reflecting the opulence of the Manikya era — a quieter complement to the grandeur of Ujjayanta.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Agartala — Religious</div>
+        <h4>Narangirudra Temple</h4>
+        <p>A notable religious site in Agartala — a calm and significant stop in the city's heritage trail.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Agartala — River</div>
+        <h4>Howrah River Banks</h4>
+        <p>The river on which Agartala was built — perfect for a peaceful morning walk, especially with a view of the city's skyline and the Bangladesh plains beyond.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Year-Round</div>
+        <h4>Handicraft Fairs</h4>
+        <p>Vibrant fairs held throughout the year showcasing Tripura's rich artisanal traditions — weaving, bamboo craft, and tribal textile work.</p>
+      </div>
+      <div class="attract-card">
+        <div class="a-cat">Agartala Outskirts</div>
+        <h4>Nature & Wildlife</h4>
+        <p>Hiking, biking, and wildlife spotting in the natural areas surrounding the city — a gentle counterpoint to the urban heritage trail.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD -->
+  <div class="section">
+    <div class="section-label">Cuisine</div>
+    <div class="section-title">Fish, street food & a vibrant night culture</div>
+    <p class="section-body">Tripura's food identity is built around fish — a reflection of the rivers and waterways that define the region. At night, Agartala transforms into a lively street food destination with a fascinating blend of Indian and Chinese flavours.</p>
+
+    <div class="food-feature">
+      <h4>Mui Borok — the soul of Tripuri cuisine</h4>
+      <p>A traditional fish preparation eaten with great enthusiasm across the state. Made with locally sourced fish and prepared with regional herbs and spices, Mui Borok is the single most important dish to try in Tripura.</p>
+    </div>
+
+    <div class="food-grid">
+      <div class="food-card">
+        <h4>Traditional Fish Dishes</h4>
+        <p>Fish is the cornerstone of Tripuri cuisine — fresh, local varieties cooked in simple, flavourful preparations.</p>
+      </div>
+      <div class="food-card">
+        <h4>Indian Street Food</h4>
+        <p>The night streets of Agartala light up with vendors serving a range of Indian snacks and street staples.</p>
+      </div>
+      <div class="food-card">
+        <h4>Chinese Street Food</h4>
+        <p>A surprising and beloved feature of Agartala's night market — Chinese-influenced stalls blend naturally into the street food scene.</p>
+      </div>
+    </div>
+
+    <div class="night-callout">
+      <div class="nc-icon">🌙</div>
+      <div>
+        <h4>Agartala's night streets come alive</h4>
+        <p>After dark, the streets of Agartala transform — food stalls light up, vendors set out, and the city's most vibrant social life begins. Walking the night market is one of the best things to do in Tripura.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSPORT + TIPS -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <div class="section-label">Getting There</div>
+        <div class="section-title" style="font-size:1.15rem;">Transport options</div>
+        <div class="transport-cards">
+          <div class="transport-card">
+            <span class="t-icon">✈️</span>
+            <h4>By Air</h4>
+            <p>Direct flights from Delhi, Kolkata & Chennai into Agartala Airport.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚂</span>
+            <h4>By Train</h4>
+            <p>Agartala railway station links to all major Indian cities.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🚌</span>
+            <h4>By Road</h4>
+            <p>Bus and driving routes from Kolkata, Siliguri & Guwahati.</p>
+          </div>
+          <div class="transport-card">
+            <span class="t-icon">🛵</span>
+            <h4>Local Bikes</h4>
+            <p>Rent a bike to explore Agartala's royal city layout at your own pace.</p>
+          </div>
+        </div>
+        <div style="background:var(--craft-pale);border-radius:10px;padding:0.9rem;margin-top:10px;border:0.5px solid var(--border);">
+          <p style="font-size:12px;color:var(--craft);font-weight:500;margin-bottom:3px;">Most accessible Northeast state</p>
+          <p style="font-size:11px;color:var(--text-muted);line-height:1.6;">Unlike most other Northeast states, Tripura requires no special permits and has excellent air and rail connectivity to major Indian cities.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Practical Tips</div>
+        <div class="section-title" style="font-size:1.15rem;">Know before you go</div>
+        <div class="tips-grid" style="grid-template-columns:1fr;">
+          <div class="tip-card">
+            <div class="tip-icon">🌏</div>
+            <h4>Respect border proximity</h4>
+            <p>Agartala is 2 km from Bangladesh. Be aware of border area regulations — particularly in the outskirts and near the Howrah River.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">🐟</div>
+            <h4>Try Mui Borok — always</h4>
+            <p>The traditional Tripuri fish dish is non-negotiable. Ask your hotel or any local restaurant for their preparation.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">🌙</div>
+            <h4>Walk the night streets</h4>
+            <p>Agartala's best food and social culture happens after dark. Make sure to explore the lit-up streets on at least one evening.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div style="padding: 0 1.5rem;"><div style="height:1px;background:var(--border);"></div></div>
+
+  <!-- ITINERARY CTA -->
+  <div class="section">
+    <div class="itin-hero">
+      <div class="section-label" style="margin-bottom:0.5rem;">Plan Your Trip</div>
+      <h2>Let us craft your Tripura journey</h2>
+      <p>From the royal halls of Ujjayanta Palace to the lit-up streets of Agartala's night market — we'll design every day around the city's royal heritage, vibrant culture, and unique riverside charm.</p>
+      <div class="cta-btns">
+        <button class="cta-primary" onclick="sendPrompt('I want to plan a custom Tripura trip. Help me build an itinerary around Agartala.')">Build my itinerary ↗</button>
+        <button class="cta-secondary" onclick="document.getElementById('three-day-tr').scrollIntoView({behavior:'smooth'})">See 3-day example ↓</button>
+      </div>
+    </div>
+
+    <div class="interest-grid">
+      <div class="interest-card" onclick="sendPrompt('Plan a Tripura heritage trip visiting Ujjayanta Palace, Rajbari Palace and the Manikya dynasty history in Agartala')">
+        <div class="i-icon">🏛️</div>
+        <h4>Royal Heritage</h4>
+        <p>Ujjayanta & Rajbari palaces, dynasty history.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Tripura food trip focusing on Mui Borok, the Agartala night market and local street food culture')">
+        <div class="i-icon">🐟</div>
+        <h4>Food & Night Markets</h4>
+        <p>Mui Borok, Indian-Chinese street food stalls.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a Tripura culture trip visiting handicraft fairs and tribal artisan markets in Agartala')">
+        <div class="i-icon">🎨</div>
+        <h4>Handicrafts & Culture</h4>
+        <p>Artisan fairs, tribal weaving, bamboo crafts.</p>
+      </div>
+      <div class="interest-card" onclick="sendPrompt('Plan a nature and outdoor trip on the outskirts of Agartala in Tripura — hiking, wildlife and Howrah River walks')">
+        <div class="i-icon">🌿</div>
+        <h4>Nature & Outdoors</h4>
+        <p>Howrah River, hiking, wildlife spotting.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-DAY ITINERARY -->
+  <div class="section" id="three-day-tr">
+    <div class="section-label">Sample Itinerary</div>
+    <div class="section-title">3 days in Tripura — a first-timer's journey</div>
+    <p class="section-body" style="margin-bottom:2rem;">From the 1901 palace of the Manikya dynasty to the glowing night streets of Agartala — three days in the royal heart of Northeast India.</p>
+
+    <div class="timeline">
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 1</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 1</span>
+            <span class="day-title">Agartala — Heritage & Palaces</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Arrive at <strong>Agartala Airport or Railway Station</strong> — one of the most accessible capitals in the Northeast, with direct flights from Delhi and Kolkata. Check into your accommodation near the city centre. <span class="info-pill">No ILP or special permits required</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Begin at the grand <strong>Ujjayanta Palace (1901)</strong> — admire the extraordinary Mughal-meets-European architecture and learn about the Manikya dynasty's reign. Continue to <strong>Rajbari Palace</strong> and seek blessings at the <strong>Narangirudra Temple</strong>. <span class="palace-pill">Built 1901 — Mughal-European fusion</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Head into the <strong>night streets of Agartala</strong> — stalls lit up, vendors calling out, Indian and Chinese street food filling the air. Try the traditional <strong>Mui Borok</strong> fish dish — the single most essential culinary experience in Tripura. <span class="night-pill">Night market is the highlight</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 2</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 2</span>
+            <span class="day-title">Culture, River & Handicrafts</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Take a peaceful morning walk along the <strong>Howrah River banks</strong> — the very river on which Agartala was built. Stand and contemplate that Bangladesh is just <strong>2 km away</strong> from where you're standing. <span class="info-pill">Border area regulations apply nearby</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Dedicate the afternoon to Agartala's vibrant arts scene — visit local markets or attend one of the many <strong>handicraft fairs</strong> hosted year-round, showcasing tribal weaving, bamboo crafts, and traditional Tripuri textile work. <span class="tip-pill">Fairs run year-round — check dates on arrival</span></div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Rent a bike and cycle through the city — observe the meticulously planned <strong>roads and municipal buildings</strong> laid out by Maharaja Bir Bikram Kishore Manikya Bahadur in 1940. Every street tells a royal story.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-num-col"><div class="day-circle active">Day 3</div></div>
+        <div class="day-content">
+          <div class="day-header">
+            <span class="day-label">Day 3</span>
+            <span class="day-title">Nature, Culture & Departure</span>
+          </div>
+          <div class="time-slots">
+            <div class="slot">
+              <div class="slot-time">Morning</div>
+              <div class="slot-text">Venture slightly out of the city for some outdoor adventure — <strong>hiking, biking, or wildlife spotting</strong> in the natural areas surrounding Agartala. The terrain is gentle and accessible without special equipment.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Afternoon</div>
+              <div class="slot-text">Return to the city for a final lunch. Soak in the multilingual atmosphere — <strong>Bengali, Kokborok, English, Hindi, and Chakma</strong> spoken around you simultaneously — a living reminder of Tripura's remarkable cultural layering.</div>
+            </div>
+            <div class="slot">
+              <div class="slot-time">Evening</div>
+              <div class="slot-text">Pack your bags and depart from <strong>Agartala Airport or Railway Station</strong> on a direct flight or train back to your home city. <span class="tip-pill">Direct flights to Delhi, Kolkata & Chennai</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="summary-box">
+      <h4>Trip summary</h4>
+      <p>Tripura is Northeast India's most accessible and underrated royal destination. Three days in <strong style="font-weight:500;color:var(--palace)">Agartala</strong> takes you through the <strong style="font-weight:500;color:var(--palace)">Ujjayanta Palace (1901)</strong>, the banks of the <strong style="font-weight:500;color:var(--palace)">Howrah River</strong>, year-round <strong style="font-weight:500;color:var(--palace)">handicraft fairs</strong>, and the glowing <strong style="font-weight:500;color:var(--palace)">night food streets</strong> — all in a city that sits just 2 km from the Bangladesh border. No ILP required. Direct flights available. The most logistically effortless entry point into Northeast India.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="cta-primary" onclick="sendPrompt('I love the 3-day Tripura itinerary. Can you help me book this trip and customize it for my travel dates and group size?')">Book this itinerary ↗</button>
+    </div>
+  </div>
+
+</div>

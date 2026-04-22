@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-lavender-purple: #7D70BA;
+  --color-lavender-veil: #F2D7EE;
+  --color-thistle: #D3BCC0;
+  --color-deep-navy: #0E103D;
+  --color-graphite: #2C302E;
+
+  /* Semantic Colors */
+  --color-primary: #7D70BA;
+  --color-primary-light: #9A8FCC;
+  --color-primary-dark: #5F5494;
+  --color-primary-50: #F8F7FC;
+  --color-primary-100: #F2EFFA;
+  --color-primary-200: #E5DFF5;
+  --color-primary-300: #CBBFEB;
+  --color-primary-400: #A99CDA;
+  --color-primary-500: #7D70BA;
+  --color-primary-600: #6B5FA8;
+  --color-primary-700: #594E8D;
+  --color-primary-800: #4A4174;
+  --color-primary-900: #3E3760;
+
+  --color-secondary: #F2D7EE;
+  --color-secondary-light: #F9E9F6;
+  --color-secondary-dark: #E5C5E1;
+
+  --color-accent: #D3BCC0;
+  --color-accent-light: #E5D6D9;
+  --color-accent-dark: #BBA4A8;
+
+  --color-dark: #0E103D;
+  --color-dark-light: #1A1C52;
+  --color-dark-lighter: #2C2E67;
+
+  --color-neutral: #2C302E;
+  --color-neutral-light: #4A4E4C;
+  --color-neutral-lighter: #686C6A;
+
+  /* Background Images */
+  --background-image-gradient-primary: linear-gradient(135deg, #7D70BA 0%, #5F5494 100%);
+  --background-image-gradient-secondary: linear-gradient(135deg, #F2D7EE 0%, #D3BCC0 100%);
+  --background-image-gradient-hero: linear-gradient(135deg, #0E103D 0%, #7D70BA 100%);
+  --background-image-gradient-overlay: linear-gradient(to top, rgba(14, 16, 61, 0.9), transparent);
+
+  /* Screens */
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Spacing */
+  --spacing-safe-top: env(safe-area-inset-top);
+  --spacing-safe-bottom: env(safe-area-inset-bottom);
+}
+
+@layer base {
+  :root {
+    --color-primary: 125 112 186;
+    /* #7D70BA in RGB */
+    --color-primary-light: 154 143 204;
+    --color-primary-dark: 95 84 148;
+    --color-secondary: 242 215 238;
+    /* #F2D7EE */
+    --color-accent: 211 188 192;
+    /* #D3BCC0 */
+    --color-dark: 14 16 61;
+    /* #0E103D */
+    --color-graphite: 44 48 46;
+    /* #2C302E */
+  }
+
+  * {
+    @apply border-thistle/20;
+  }
+
+  body {
+    @apply text-graphite bg-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-deep-navy;
+  }
+}
+
+@layer components {
+
+  /* Primary Button */
+  .btn-primary {
+    @apply px-6 py-3 bg-lavender-purple text-white rounded-lg font-semibold hover:bg-primary-600 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply px-6 py-3 bg-lavender-veil text-lavender-purple rounded-lg font-semibold hover:bg-secondary-dark active:scale-95 transition-all duration-200 border-2 border-lavender-purple/20;
+  }
+
+  /* Outline Button */
+  .btn-outline {
+    @apply px-6 py-3 bg-white border-2 border-lavender-purple text-lavender-purple rounded-lg font-semibold hover:bg-lavender-veil active:scale-95 transition-all duration-200;
+  }
+
+  /* Card Component */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-thistle/30 hover:shadow-lg transition-shadow duration-300;
+  }
+
+  /* Badge Component */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-lavender-veil text-lavender-purple;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-lavender-purple to-primary-dark bg-clip-text text-transparent;
+  }
+}
