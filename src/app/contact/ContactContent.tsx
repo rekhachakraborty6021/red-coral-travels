@@ -38,7 +38,7 @@ function WhatsAppButton({ tour }: { tour: ReturnType<typeof getTourBySlug> }) {
 export default function ContactContent() {
     const searchParams = useSearchParams();
     const tourSlug = searchParams.get('tour');
-    const tour = tourSlug ? getTourBySlug(tourSlug) : null;
+    const tour = tourSlug ? getTourBySlug(tourSlug) : undefined;
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
