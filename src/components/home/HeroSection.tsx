@@ -1,67 +1,99 @@
 'use client';
 
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import MotionWrapper from '@/components/ui/MotionWrapper';
+
+// ── Add your hero images here ─────────────────────────────
+// Place images in /public/images/hero/ and list them below.
+// Recommended size: 1920×1080 px, JPG/PNG.
+const slides = [
+    { src: '/images/hero/hero-1.png', alt: 'Northeast India – explore untouched landscapes' },
+    { src: '/images/hero/hero-2.png', alt: 'Kaziranga – one-horned rhino safari' },
+    { src: '/images/hero/hero-3.png', alt: 'Dzukou Valley – valley of flowers' },
+    { src: '/images/hero/hero-4.png', alt: 'Majuli Island – river island culture' },
+    { src: '/images/hero/hero-5.png', alt: 'Tawang Monastery – Buddhist highlands' },
+];
 
 export default function HeroSection() {
+    const [current, setCurrent] = useState(0);
+    const [transitioning, setTransitioning] = useState(false);
+
+    const goTo = useCallback((index: number) => {
+        if (transitioning) return;
+        setTransitioning(true);
+        setCurrent(index);
+        setTimeout(() => setTransitioning(false), 600);
+    }, [transitioning]);
+
+    const next = useCallback(() => goTo((current + 1) % slides.length), [current, goTo]);
+    const prev = useCallback(() => goTo((current - 1 + slides.length) % slides.length), [current, goTo]);
+
+    // Auto-advance every 5 s
+    useEffect(() => {
+        const id = setInterval(next, 5000);
+        return () => clearInterval(id);
+    }, [next]);
+
     return (
         <section className="relative text-white overflow-hidden min-h-[70vh] flex items-center">
 
-            {/* Background image — anchored to top so temple domes are fully visible */}
-            <div className="absolute inset-0">
-                <Image
-                    src="/images/hero/hero.jpg"
-                    alt="Hero background"
-                    fill
-                    className="object-cover object-top"
-                    priority
-                />
-            </div>
+            {/* Slides */}
+            {slides.map((slide, i) => (
+                <div
+                    key={slide.src}
+                    className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                >
+                    <Image
+                        src={slide.src}
+                        alt={slide.alt}
+                        fill
+                        className="object-cover object-center"
+                        priority={i === 0}
+                        sizes="100vw"
+                    />
+                </div>
+            ))}
 
-            {/* Minimal overlay — keeps image colourful and transparent */}
-            <div className="absolute inset-0 z-10" style={{ background: 'rgba(0,0,0,0.02)' }} />
+            {/* Overlay — just enough to make buttons readable */}
+            <div className="absolute inset-0 z-20 bg-black/10" />
+
+            {/* Prev / Next arrows */}
+            <button
+                onClick={prev}
+                aria-label="Previous slide"
+                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/30 hover:bg-[#C8553D]/80 backdrop-blur-sm flex items-center justify-center transition-colors"
+            >
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button
+                onClick={next}
+                aria-label="Next slide"
+                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/30 hover:bg-[#C8553D]/80 backdrop-blur-sm flex items-center justify-center transition-colors"
+            >
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
 
             {/* Content */}
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 w-full relative z-20">
-                <div className="text-center">
-                    <MotionWrapper delay={0.1}>
-                        <h1
-                            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white"
-                            style={{ textShadow: '0 2px 12px rgba(0,0,0,0.85)' }}
-                        >
-                            Discover Your Next
-                            <span className="block text-yellow-400 mt-2">Adventure</span>
-                        </h1>
-                    </MotionWrapper>
+            <div className="absolute bottom-14 left-0 right-0 z-30 flex justify-center gap-4 px-4">
+                <Link href="/tours" className="px-8 py-3.5 bg-yellow-400 text-blue-900 rounded-lg font-bold text-lg hover:bg-yellow-300 active:scale-95 transition-all shadow-lg">
+                    Explore Tours
+                </Link>
+                <Link href="/contact" className="px-8 py-3.5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-white/20 active:scale-95 transition-all">
+                    Plan My Trip
+                </Link>
+            </div>
 
-                    <MotionWrapper delay={0.3}>
-                        <p
-                            className="text-lg sm:text-xl text-white mb-8 sm:mb-10 max-w-2xl mx-auto px-4"
-                            style={{ textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}
-                        >
-                            Curated travel experiences across India and the world.
-                            From beaches to mountains, we&apos;ve got your perfect getaway.
-                        </p>
-                    </MotionWrapper>
-
-                    <MotionWrapper delay={0.5}>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
-                            <Link
-                                href="/tours"
-                                className="px-8 py-4 bg-yellow-400 text-blue-900 rounded-lg font-bold text-lg hover:bg-yellow-300 active:scale-95 transition-all duration-200 text-center shadow-lg hover:shadow-xl"
-                            >
-                                Explore Tours
-                            </Link>
-                            <Link
-                                href="/contact"
-                                className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-white/20 active:scale-95 transition-all duration-200 text-center"
-                            >
-                                Plan My Trip
-                            </Link>
-                        </div>
-                    </MotionWrapper>
-                </div>
+            {/* Dot indicators */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+                {slides.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => goTo(i)}
+                        aria-label={`Go to slide ${i + 1}`}
+                        className={`transition-all duration-300 rounded-full ${i === current ? 'w-6 h-2.5 bg-[#C8553D]' : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'}`}
+                    />
+                ))}
             </div>
         </section>
     );

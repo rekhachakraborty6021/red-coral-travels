@@ -1,15 +1,21 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import BackButton from '@/components/ui/BackButton';
 
 export const metadata: Metadata = {
   title: 'Dzukou Valley Trek — Valley of Flowers, Nagaland',
   description:
-    'Trek through the pristine Dzukou Valley at 2,452 m, home to the endemic Dzukou Lily. Plan your 3-day adventure at the Nagaland–Manipur border with Jajabor.',
+    'Trek through the pristine Dzukou Valley at 2,452 m, home to the endemic Dzukou Lily. Plan your 3-day adventure at the Nagaland-Manipur border with Red Coral Travels.',
+  keywords: ["Dzukou Valley trek","Nagaland trekking","Valley of Flowers Northeast India","Nagaland tour packages"],
+  alternates: { canonical: 'https://www.redcoraltravels.com/destinations/dzukou-valley' },
   openGraph: {
-    title: 'Dzukou Valley Trek | Jajabor',
-    description: 'The Valley of Flowers of Northeast India.',
+    type: 'website', url: 'https://www.redcoraltravels.com/destinations/dzukou-valley',
+    title: 'Dzukou Valley Trek - Valley of Flowers, Nagaland | Red Coral Travels',
+    description: 'Trek through the pristine Dzukou Valley at 2,452 m, home to the endemic Dzukou Lily. Plan your 3-day adventure at the Nagaland-Manipur border with Red Coral Travels.',
+    images: [{ url: 'https://www.redcoraltravels.com/og-image.jpg', width: 1200, height: 630, alt: 'Dzukou Valley Trek Nagaland' }],
   },
+  twitter: { card: 'summary_large_image', title: 'Dzukou Valley Trek - Nagaland | Red Coral Travels', images: ['https://www.redcoraltravels.com/og-image.jpg'] },
 };
 
 /* ── Data ─────────────────────────────────────────── */
@@ -97,14 +103,9 @@ export default function DzukouValleyPage() {
     <div className="min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              'radial-gradient(ellipse at 30% 60%, #5F5494 0%, transparent 55%), radial-gradient(ellipse at 75% 20%, #D3BCC0 0%, transparent 45%)',
-          }}
-        />
+      <section className="relative text-white overflow-hidden">
+        <Image src="/images/tours/dzukou-main.jpg" alt="Dzukou Valley Trek Nagaland" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/30 to-black/60" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <BackButton />
           <div className="flex flex-wrap items-center gap-3 mb-5">
@@ -125,11 +126,9 @@ export default function DzukouValleyPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/book/dzukou-valley-trek" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark">
-              Book Trek — ₹8,999
+              Book Trek 
             </Link>
-            <Link href="/contact?tour=dzukou-valley-trek" className="btn-outline border-white text-white hover:bg-white/10">
-              Ask a Question
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -369,7 +368,7 @@ export default function DzukouValleyPage() {
             Ready to Trek Dzukou Valley?
           </h2>
           <p className="text-white/75 text-lg mb-3">
-            3 Days · 2 Nights · ₹8,999 per person
+            3 Days · 2 Nights 
           </p>
           <p className="text-white/60 text-sm mb-8">
             Small groups (max 10) · Permits handled · All camping gear provided
@@ -378,9 +377,7 @@ export default function DzukouValleyPage() {
             <Link href="/book/dzukou-valley-trek" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark font-bold text-base">
               Book Now
             </Link>
-            <Link href="/contact?tour=dzukou-valley-trek" className="btn-outline border-white text-white hover:bg-white/10 font-bold text-base">
-              Enquire First
-            </Link>
+            
           </div>
           <p className="mt-6 text-white/50 text-xs">
             Free cancellation up to 15 days before departure · Secure Stripe checkout

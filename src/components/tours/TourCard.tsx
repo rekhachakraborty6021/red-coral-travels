@@ -53,18 +53,6 @@ export default function TourCard({ tour }: TourCardProps) {
                         </span>
                     </div>
 
-                    {/* Price Tag */}
-                    <div className="absolute bottom-3 right-3">
-                        <div className="bg-deep-navy/95 backdrop-blur-sm text-white 
-                          px-4 py-2 rounded-xl shadow-xl 
-                          border-2 border-lavender-purple/30">
-                            <div className="text-xs font-medium text-lavender-veil">Starting from</div>
-                            <div className="text-xl font-bold">
-                                ₹{tour.price.toLocaleString('en-IN')}
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Special Attributes */}
                     {tour.attributes.permitRequired && (
                         <div className="absolute bottom-3 left-3">

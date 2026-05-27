@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 
@@ -14,7 +14,7 @@ export default function WhatsAppFloat() {
 
     const whatsappNumber = '919876543210';
     const message = encodeURIComponent(
-        'Hi! I\'m interested in booking a tour with Jajabor.'
+        'Hi! I\'m interested in booking a tour with Red Coral Travels.'
     );
 
     return (

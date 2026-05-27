@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import BackButton from '@/components/ui/BackButton';
 
 export const metadata: Metadata = {
   title: "Loktak Lake & Keibul Lamjao — World's Only Floating National Park, Manipur",
   description:
-    "Explore the floating phumdis of Loktak Lake and spot the endangered Sangai deer in the world's only floating national park. 4-day tour from ₹11,999.",
+    "Explore the floating phumdis of Loktak Lake and spot the endangered Sangai deer in the world's only floating national park. 4-day tour .",
+  keywords: ["Loktak Lake Manipur","floating national park India","Keibul Lamjao National Park","Manipur tour packages","Northeast India lakes"],
+  alternates: { canonical: 'https://www.redcoraltravels.com/destinations/loktak-lake' },
+  openGraph: {
+    type: 'website', url: 'https://www.redcoraltravels.com/destinations/loktak-lake',
+    title: "Loktak Lake - World's Only Floating National Park, Manipur | Red Coral Travels",
+    description: "Explore the floating phumdis of Loktak Lake and spot the endangered Sangai deer in the world's only floating national park.",
+    images: [{ url: 'https://www.redcoraltravels.com/og-image.jpg', width: 1200, height: 630, alt: 'Loktak Lake Manipur' }],
+  },
+  twitter: { card: 'summary_large_image', title: 'Loktak Lake - Manipur | Red Coral Travels', images: ['https://www.redcoraltravels.com/og-image.jpg'] },
 };
 
 const quickFacts = [
@@ -107,9 +117,9 @@ export default function LoktakLakePage() {
     <div className="min-h-screen">
 
       {/* Hero */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20"
-          style={{ backgroundImage: 'radial-gradient(ellipse at 25% 65%, #3E3760 0%, transparent 55%), radial-gradient(ellipse at 80% 20%, #D3BCC0 0%, transparent 45%)' }} />
+      <section className="relative text-white overflow-hidden">
+        <Image src="/images/tours/loktak-main.jpg" alt="Loktak Lake Manipur" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/30 to-black/60" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <BackButton />
           <div className="flex flex-wrap gap-3 mb-5">
@@ -130,11 +140,9 @@ export default function LoktakLakePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/book/loktak-lake-floating-park" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark">
-              Book Tour — ₹11,999
+              Book Tour 
             </Link>
-            <Link href="/contact?tour=loktak-lake-floating-park" className="btn-outline border-white text-white hover:bg-white/10">
-              Ask a Question
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -312,11 +320,11 @@ export default function LoktakLakePage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
           <div className="text-5xl mb-6">🌊</div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Walk on Water in Manipur</h2>
-          <p className="text-white/75 text-lg mb-3">4 Days · 3 Nights · ₹11,999 per person</p>
+          <p className="text-white/75 text-lg mb-3">4 Days · 3 Nights </p>
           <p className="text-white/60 text-sm mb-8">Max 12 guests · ILP handled · All boat rides included</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book/loktak-lake-floating-park" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark font-bold text-base">Book Now</Link>
-            <Link href="/contact?tour=loktak-lake-floating-park" className="btn-outline border-white text-white hover:bg-white/10 font-bold text-base">Enquire First</Link>
+            
           </div>
           <p className="mt-6 text-white/50 text-xs">Free cancellation up to 15 days before departure · Secure Stripe checkout</p>
         </div>

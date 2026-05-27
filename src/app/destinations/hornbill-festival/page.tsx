@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import BackButton from '@/components/ui/BackButton';
 
 export const metadata: Metadata = {
   title: 'Hornbill Festival — Festival of Festivals, Nagaland',
   description:
-    "Witness all 16 Naga tribes under one roof at Asia's most spectacular indigenous festival. Warrior dances, tribal cuisine, archery, and rock music in Kohima. 5-day tour from ₹18,999.",
+    "Witness all 16 Naga tribes under one roof at Asia's most spectacular indigenous festival. Warrior dances, tribal cuisine, archery, and rock music in Kohima. 5-day tour .",
+  keywords: ["Hornbill Festival Nagaland","Naga tribal festival","Northeast India festivals","Kohima festival tour","Nagaland cultural tour"],
+  alternates: { canonical: 'https://www.redcoraltravels.com/destinations/hornbill-festival' },
+  openGraph: {
+    type: 'website', url: 'https://www.redcoraltravels.com/destinations/hornbill-festival',
+    title: 'Hornbill Festival - Festival of Festivals, Nagaland | Red Coral Travels',
+    description: "Witness all 16 Naga tribes under one roof at Asia's most spectacular indigenous festival. Warrior dances, tribal cuisine, archery, and rock music in Kohima. 5-day tour .",
+    images: [{ url: 'https://www.redcoraltravels.com/og-image.jpg', width: 1200, height: 630, alt: 'Hornbill Festival Nagaland' }],
+  },
+  twitter: { card: 'summary_large_image', title: 'Hornbill Festival - Nagaland | Red Coral Travels', images: ['https://www.redcoraltravels.com/og-image.jpg'] },
 };
 
 const quickFacts = [
@@ -93,9 +103,9 @@ export default function HornbillFestivalPage() {
     <div className="min-h-screen">
 
       {/* Hero */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20"
-          style={{ backgroundImage: 'radial-gradient(ellipse at 25% 65%, #4A4174 0%, transparent 55%), radial-gradient(ellipse at 78% 20%, #F2D7EE 0%, transparent 45%)' }} />
+      <section className="relative text-white overflow-hidden">
+        <Image src="/images/tours/hornbill-main.jpg" alt="Hornbill Festival Nagaland" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/30 to-black/60" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <BackButton />
           <div className="flex flex-wrap gap-3 mb-5">
@@ -116,11 +126,9 @@ export default function HornbillFestivalPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/book/hornbill-festival-nagaland" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark">
-              Book Now — ₹18,999
+              Book Now 
             </Link>
-            <Link href="/contact?tour=hornbill-festival-nagaland" className="btn-outline border-white text-white hover:bg-white/10">
-              Ask a Question
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -334,15 +342,13 @@ export default function HornbillFestivalPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
           <div className="text-5xl mb-6">🎭</div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Be There for the Festival of Festivals</h2>
-          <p className="text-white/75 text-lg mb-3">5 Days · 4 Nights · ₹18,999 per person</p>
+          <p className="text-white/75 text-lg mb-3">5 Days · 4 Nights </p>
           <p className="text-white/60 text-sm mb-8">Max 15 guests · ILP handled · All festival passes included</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book/hornbill-festival-nagaland" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark font-bold text-base">
               Book Now
             </Link>
-            <Link href="/contact?tour=hornbill-festival-nagaland" className="btn-outline border-white text-white hover:bg-white/10 font-bold text-base">
-              Enquire First
-            </Link>
+            
           </div>
           <p className="mt-6 text-white/50 text-xs">Free cancellation up to 15 days before departure · Secure Stripe checkout</p>
         </div>

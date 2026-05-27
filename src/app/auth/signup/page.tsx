@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -60,7 +60,7 @@ export default function SignupPage() {
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center">
                     <Link href="/" className="text-3xl font-bold text-blue-600">
-                        Jajabor
+                        Red Coral Travels
                     </Link>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                         Create your account

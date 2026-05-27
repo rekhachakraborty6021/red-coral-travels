@@ -1,15 +1,16 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about Jajabor — our story, mission, and the passionate team behind Northeast India\'s most curated travel experiences.',
+  description: 'Learn about Red Coral Travels — our story, mission, and the passionate team behind Northeast India\'s most curated travel experiences.',
 };
 
 const stats = [
-  { value: '500+', label: 'Happy Travellers' },
+  { value: 'Many', label: 'Happy Travellers' },
   { value: '8', label: 'Sister States Covered' },
-  { value: '50+', label: 'Curated Tours' },
+  { value: 'Amazing', label: 'Curated Tours' },
   { value: '5+', label: 'Years of Experience' },
 ];
 
@@ -38,24 +39,24 @@ const values = [
 
 const team = [
   {
-    name: 'Arjun Bora',
-    role: 'Founder & Lead Guide',
+    name: 'Rekha Chakraborty',
+    role: 'Founder',
     origin: 'Guwahati, Assam',
-    bio: 'Born and raised in Assam, Arjun has spent 15 years exploring every corner of the Northeast. His passion for storytelling and community-based travel sparked the creation of Jajabor.',
+    bio: 'Born and raised in Assam, Rekha has spent all her years exploring the Northeast. Her perseverance sparked the creation of Red Coral Travels.',
     emoji: '🧭',
   },
   {
-    name: 'Priya Devi',
+    name: 'Monalisa Hazra',
     role: 'Head of Experiences',
-    origin: 'Shillong, Meghalaya',
-    bio: 'Priya curates immersive cultural programmes and has deep connections with tribal communities across Meghalaya and Nagaland.',
+    origin: 'Guwahati, Assam',
+    bio: 'Monalisa curates immersive tour programmes and has deep roots with the culture across the eight sister states.',
     emoji: '🎨',
   },
   {
-    name: 'Tenzing Lepcha',
-    role: 'Adventure & Trekking Lead',
-    origin: 'Gangtok, Sikkim',
-    bio: 'A certified mountaineer with over 200 treks under his belt, Tenzing designs safe yet thrilling high-altitude adventures across Sikkim and Arunachal.',
+    name: 'Katherine',
+    role: 'Guide & Cultural Liaison',
+    origin: 'Dimapur, Nagaland',
+    bio: 'A certified guide with extensive knowledge of Nagaland\'s rich cultural heritage and natural landscapes.',
     emoji: '⛰️',
   },
 ];
@@ -65,9 +66,15 @@ export default function AboutPage() {
     <div className="min-h-screen">
 
       {/* Hero */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #F2D7EE 0%, transparent 50%), radial-gradient(circle at 80% 20%, #D3BCC0 0%, transparent 40%)' }} />
+      <section className="relative text-white overflow-hidden">
+        <Image
+          src="/images/about/about-hero.jpg"
+          alt="Northeast India — About Red Coral Travels"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60" />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
           <span className="badge mb-6 bg-white/10 text-lavender-veil border border-white/20">
             Our Story
@@ -77,7 +84,7 @@ export default function AboutPage() {
             <span className="text-lavender-veil">Northeast</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Jajabor — meaning "wanderer" in Assamese — was founded by travellers
+            Red Coral Travels —  was founded by travellers
             who fell in love with the hidden wonders of India's eight sister states
             and wanted to share them with the world.
           </p>
@@ -165,7 +172,7 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="badge mb-4">The People Behind Jajabor</span>
+            <span className="badge mb-4">The People Behind Red Coral Travels</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-deep-navy">Meet Our Team</h2>
             <p className="text-graphite/70 mt-4 max-w-xl mx-auto">
               We're locals, explorers, and storytellers — united by a deep love for the Northeast.

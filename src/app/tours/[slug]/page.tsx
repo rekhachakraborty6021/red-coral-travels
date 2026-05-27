@@ -18,10 +18,27 @@ export async function generateMetadata({
         };
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.jajabor.com';
+    const url = `${baseUrl}/tours/${tour.slug}`;
+
     return {
-        title: `${tour.title} | Jajabor`,
+        title: `${tour.title} — Tour Package | Northeast India`,
         description: tour.shortDescription,
+        keywords: [
+            tour.title, 'Northeast India tour', 'tour package',
+            ...(tour.highlights || []).slice(0, 4),
+            'Jajabor tours',
+        ],
+        alternates: { canonical: url },
         openGraph: {
+            type: 'website',
+            url,
+            title: tour.title,
+            description: tour.shortDescription,
+            images: [{ url: tour.images.main, width: 1200, height: 630, alt: tour.title }],
+        },
+        twitter: {
+            card: 'summary_large_image',
             title: tour.title,
             description: tour.shortDescription,
             images: [tour.images.main],
@@ -40,7 +57,7 @@ export default function TourPage({
         notFound();
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.jajabor.com';
     const tourJsonLd = generateTourJsonLd(tour);
     const breadcrumbJsonLd = generateBreadcrumbJsonLd([
         { name: 'Home', url: baseUrl },
@@ -136,26 +153,11 @@ export default function TourPage({
                         {/* Sticky Booking Card */}
                         <div className="lg:col-span-1">
                             <div className="sticky top-20 bg-white border-2 border-gray-200 rounded-xl p-6 shadow-lg">
-                                <div className="mb-6">
-                                    <div className="text-sm text-gray-600 mb-1">Price per person</div>
-                                    <div className="text-4xl font-bold text-gray-900">
-                                        ₹{tour.price.toLocaleString('en-IN')}
-                                    </div>
-                                    <div className="text-sm text-gray-500 mt-1">+ taxes & fees</div>
-                                </div>
-
                                 <Link
-                                    href={`/book/${tour.slug}`}
-                                    className="block w-full py-4 bg-blue-600 text-white text-center font-bold rounded-lg text-lg hover:bg-blue-700 active:scale-[0.98] transition-all duration-200 mb-3"
+                                    href={`/contact?tour=${tour.slug}`}
+                                    className="block w-full py-4 bg-blue-600 text-white text-center font-bold rounded-lg text-lg hover:bg-blue-700 active:scale-[0.98] transition-all duration-200"
                                 >
-                                    Book Now
-                                </Link>
-
-                                <Link
-                                    href={`/contact?tour=${tour.slug}&type=enquiry`}
-                                    className="block w-full py-4 bg-white border-2 border-blue-600 text-blue-600 text-center font-bold rounded-lg hover:bg-blue-50 active:scale-[0.98] transition-all duration-200"
-                                >
-                                    Enquire Now
+                                    Book Your Trip
                                 </Link>
 
                                 <div className="mt-6 pt-6 border-t border-gray-200">

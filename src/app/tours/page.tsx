@@ -37,7 +37,6 @@ export default function ToursPage() {
     );
     const [selectedState, setSelectedState] = useState(stateFromUrl || 'all');
     const [selectedDifficulty, setSelectedDifficulty] = useState('all');
-    const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
     const [showFilters, setShowFilters] = useState(false);
 
     const allTours = getTours();
@@ -48,11 +47,10 @@ export default function ToursPage() {
             themes: selectedThemes.length > 0 ? selectedThemes : undefined,
             state: selectedState !== 'all' ? selectedState : undefined,
             difficulty: selectedDifficulty !== 'all' ? selectedDifficulty : undefined,
-            maxPrice: priceRange[1] < 50000 ? priceRange[1] : undefined,
         };
 
         return getTours(filters);
-    }, [selectedThemes, selectedState, selectedDifficulty, priceRange]);
+    }, [selectedThemes, selectedState, selectedDifficulty]);
 
     const toggleTheme = (themeSlug: string) => {
         setSelectedThemes(prev =>
@@ -66,13 +64,11 @@ export default function ToursPage() {
         setSelectedThemes([]);
         setSelectedState('all');
         setSelectedDifficulty('all');
-        setPriceRange([0, 50000]);
     };
 
     const hasActiveFilters = selectedThemes.length > 0 ||
         selectedState !== 'all' ||
-        selectedDifficulty !== 'all' ||
-        priceRange[1] < 50000;
+        selectedDifficulty !== 'all';
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -206,29 +202,6 @@ export default function ToursPage() {
                                     </select>
                                 </div>
 
-                                {/* Price Range */}
-                                <div>
-                                    <label className="block text-sm font-semibold text-gray-900 mb-3">
-                                        Price Range
-                                    </label>
-                                    <div className="space-y-3">
-                                        <input
-                                            type="range"
-                                            min="0"
-                                            max="50000"
-                                            step="1000"
-                                            value={priceRange[1]}
-                                            onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
-                                            className="w-full"
-                                        />
-                                        <div className="flex justify-between text-sm text-gray-600">
-                                            <span>₹0</span>
-                                            <span className="font-semibold text-gray-900">
-                                                ₹{priceRange[1].toLocaleString('en-IN')}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             {/* Clear Filters */}

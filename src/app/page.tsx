@@ -1,3 +1,4 @@
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import TourCard from '@/components/tours/TourCard';
 import ThemeCard from '@/components/themes/ThemeCard';
@@ -7,6 +8,18 @@ import HeroSection from '@/components/home/HeroSection';
 import { getTours } from '@/lib/data/tours';
 import { themes } from '@/lib/data/themes';
 import { getStates } from '@/lib/data/states';
+
+export const metadata: Metadata = {
+  title: 'Red Coral Travels — Northeast India Travel & Tour Packages',
+  description: 'Discover Northeast India with Red Coral Travels. Expert-curated tour packages for Assam, Meghalaya, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura & Sikkim. Wildlife safaris, treks, festivals and more.',
+  keywords: [
+    'Northeast India tour packages', 'travel Northeast India', 'Assam tour packages',
+    'Meghalaya tour packages', 'Arunachal Pradesh tours', 'Nagaland Hornbill Festival',
+    'seven sisters India tour', 'Kaziranga National Park safari', 'Tawang Monastery tour',
+    'Living Root Bridges Meghalaya', 'Ziro Music Festival', 'Northeast India holiday',
+  ],
+  alternates: { canonical: '/' },
+};
 
 export default function HomePage() {
   const featuredTours = getTours().filter(t => t.featured);

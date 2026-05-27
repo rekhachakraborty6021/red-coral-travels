@@ -1,20 +1,47 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { getStateBySlug } from '@/lib/data/states';
-import { getItineraryBySlug } from '@/lib/data/itineraries';
+import { getStateBySlug, getStates } from '@/lib/data/states';
 import StateDetailTabs from '@/components/states/StateDetailTabs';
+import { generateStateJsonLd } from '@/lib/seo/jsonld';
+
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.jajabor.com';
+
+export async function generateStaticParams() {
+    return getStates().map((s) => ({ slug: s.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const state = getStateBySlug(slug);
 
-    if (!state) {
-        return { title: 'State Not Found' };
-    }
+    if (!state) return { title: 'State Not Found' };
+
+    const title = `${state.name} Travel Guide — Tours & Packages | Northeast India`;
+    const url = `${BASE_URL}/state/${slug}`;
 
     return {
-        title: `${state.name} Travel Guide | Northeast India`,
-        description: state.description,
+        title,
+        description: `Plan your trip to ${state.name}. ${state.description} Best time: ${state.bestTime.join(', ')}. Explore top attractions, tour packages, and travel tips.`,
+        keywords: [
+            `${state.name} travel`, `${state.name} tours`, `${state.name} tour packages`,
+            `travel to ${state.name}`, `${state.name} holiday`, `${state.name} tourism`,
+            `${state.name} destinations`, 'Northeast India travel', 'Northeast India tours',
+            ...state.highlights,
+        ],
+        alternates: { canonical: url },
+        openGraph: {
+            type: 'website',
+            url,
+            title,
+            description: state.description,
+            images: [{ url: `${BASE_URL}${state.image}`, width: 1200, height: 630, alt: `${state.name} — Northeast India` }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description: state.description,
+            images: [`${BASE_URL}${state.image}`],
+        },
     };
 }
 
@@ -26,10 +53,17 @@ export default async function StateLandingPage({ params }: { params: Promise<{ s
         notFound();
     }
 
-    const itinerary = getItineraryBySlug(slug) ?? null;
+    const jsonLd = generateStateJsonLd({
+        name: state.name,
+        description: state.description,
+        slug,
+        image: state.image,
+        highlights: state.highlights,
+    });
 
     return (
         <div className="min-h-screen bg-white">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             {/* Hero Section */}
             <div className="relative h-72 sm:h-96">
                 <Image
@@ -62,11 +96,10 @@ export default async function StateLandingPage({ params }: { params: Promise<{ s
                 </div>
             </div>
 
-            {/* Tabs + Content */}
             <StateDetailTabs
                 slug={slug}
                 stateName={state.name}
-                itinerary={itinerary}
+                itinerary={null}
             />
         </div>
     );

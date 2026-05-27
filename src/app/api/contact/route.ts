@@ -1,81 +1,59 @@
 import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 import { contactFormSchema } from '@/lib/validations/contact';
 import { getTourBySlug } from '@/lib/data/tours';
 
-// For MVP: Store in JSON file or send email
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
+        const data = contactFormSchema.parse(body);
 
-        // Validate input
-        const validatedData = contactFormSchema.parse(body);
+        const tour = data.tourId ? getTourBySlug(data.tourId) : undefined;
 
-        // Get tour details if tourId provided
-        const tour = validatedData.tourId
-            ? getTourBySlug(validatedData.tourId)
-            : null;
+        await sendEmail(data, tour);
 
-        // For MVP: Log to console or file
-        console.log('New contact form submission:', {
-            ...validatedData,
-            tour: tour?.title,
-            timestamp: new Date().toISOString(),
-        });
-
-        // In production: Send email via Resend/SendGrid
-        // await sendEmail({
-        //   to: 'info@wanderways.com',
-        //   subject: `New Contact Form: ${validatedData.name}`,
-        //   body: formatEmailBody(validatedData, tour),
-        // });
-
-        // For MVP: Save to JSON file
-        await saveToFile(validatedData, tour);
-
-        return NextResponse.json({
-            success: true,
-            message: 'Form submitted successfully'
-        });
+        return NextResponse.json({ success: true });
     } catch (error) {
         console.error('Contact form error:', error);
         return NextResponse.json(
-            { success: false, error: 'Failed to process request' },
+            { success: false, error: 'Failed to send message' },
             { status: 400 }
         );
     }
 }
 
-// Helper function to save submissions
-async function saveToFile(data: any, tour: any) {
-    const fs = require('fs').promises;
-    const path = require('path');
+async function sendEmail(data: any, tour: any) {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+        },
+    });
 
-    const submission = {
-        id: Date.now().toString(),
-        ...data,
-        tourTitle: tour?.title,
-        submittedAt: new Date().toISOString(),
-    };
+    const subject = tour
+        ? `New Enquiry: ${tour.title} — from ${data.name}`
+        : `New Contact Enquiry — from ${data.name}`;
 
-    const filePath = path.join(process.cwd(), 'data', 'submissions.json');
+    const html = `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+            <h2 style="color:#C8553D">New Enquiry — Red Coral Travels</h2>
+            <table style="width:100%;border-collapse:collapse">
+                <tr><td style="padding:8px;font-weight:bold;width:140px">Name</td><td style="padding:8px">${data.name}</td></tr>
+                <tr style="background:#f9f9f9"><td style="padding:8px;font-weight:bold">Email</td><td style="padding:8px"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+                <tr><td style="padding:8px;font-weight:bold">Phone</td><td style="padding:8px">${data.phone || '—'}</td></tr>
+                ${tour ? `<tr style="background:#f9f9f9"><td style="padding:8px;font-weight:bold">Tour</td><td style="padding:8px">${tour.title}</td></tr>` : ''}
+                <tr ${tour ? '' : 'style="background:#f9f9f9"'}><td style="padding:8px;font-weight:bold;vertical-align:top">Message</td><td style="padding:8px">${data.message.replace(/\n/g, '<br/>')}</td></tr>
+            </table>
+            <p style="color:#888;font-size:12px;margin-top:24px">Submitted on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST</p>
+        </div>
+    `;
 
-    try {
-        // Read existing submissions
-        let submissions = [];
-        try {
-            const content = await fs.readFile(filePath, 'utf-8');
-            submissions = JSON.parse(content);
-        } catch {
-            // File doesn't exist yet
-        }
-
-        // Add new submission
-        submissions.push(submission);
-
-        // Write back to file
-        await fs.mkdir(path.dirname(filePath), { recursive: true });
-        await fs.writeFile(filePath, JSON.stringify(submissions, null, 2));
-    } catch (error) {
-        console.error('Error saving submission:', error);
-    }
+    await transporter.sendMail({
+        from: `"Red Coral Travels" <${process.env.SMTP_USER}>`,
+        to: process.env.CONTACT_EMAIL,
+        replyTo: data.email,
+        subject,
+        html,
+    });
 }

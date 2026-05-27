@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import BackButton from '@/components/ui/BackButton';
 
 export const metadata: Metadata = {
   title: 'Living Root Bridges Trek — Nongriat, Meghalaya',
   description:
-    "Trek 3,500 stone steps through rainforest to the iconic Double Decker Living Root Bridge — a 500-year-old bio-engineering marvel of the Khasi tribe. 4-day trek from ₹9,999.",
+    "Trek 3,500 stone steps through rainforest to the iconic Double Decker Living Root Bridge — a 500-year-old bio-engineering marvel of the Khasi tribe. 4-day trek ",
+  keywords: ["Living Root Bridges Meghalaya","Double Decker Root Bridge","Nongriat trek","Meghalaya trekking","Northeast India nature"],
+  alternates: { canonical: 'https://www.redcoraltravels.com/destinations/living-root-bridges' },
+  openGraph: {
+    type: 'website', url: 'https://www.redcoraltravels.com/destinations/living-root-bridges',
+    title: 'Living Root Bridges Trek - Nongriat, Meghalaya | Red Coral Travels',
+    description: "Trek 3,500 stone steps through rainforest to the iconic Double Decker Living Root Bridge - a 500-year-old bio-engineering marvel of the Khasi tribe. 4-day trek .",
+    images: [{ url: 'https://www.redcoraltravels.com/og-image.jpg', width: 1200, height: 630, alt: 'Living Root Bridges Meghalaya' }],
+  },
+  twitter: { card: 'summary_large_image', title: 'Living Root Bridges Trek - Meghalaya | Red Coral Travels', images: ['https://www.redcoraltravels.com/og-image.jpg'] },
 };
 
 const quickFacts = [
@@ -75,9 +85,9 @@ export default function LivingRootBridgesPage() {
     <div className="min-h-screen">
 
       {/* Hero */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20"
-          style={{ backgroundImage: 'radial-gradient(ellipse at 20% 70%, #3E3760 0%, transparent 55%), radial-gradient(ellipse at 80% 15%, #D3BCC0 0%, transparent 45%)' }} />
+      <section className="relative text-white overflow-hidden">
+        <Image src="/images/tours/root-bridge-main.jpg" alt="Living Root Bridges Meghalaya" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/30 to-black/60" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <BackButton />
           <div className="flex flex-wrap gap-3 mb-5">
@@ -98,11 +108,9 @@ export default function LivingRootBridgesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/book/living-root-bridges-trek" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark">
-              Book Trek — ₹9,999
+              Book Trek 
             </Link>
-            <Link href="/contact?tour=living-root-bridges-trek" className="btn-outline border-white text-white hover:bg-white/10">
-              Ask a Question
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -282,15 +290,13 @@ export default function LivingRootBridgesPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
           <div className="text-5xl mb-6">🌿</div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Cross the Living Bridge?</h2>
-          <p className="text-white/75 text-lg mb-3">4 Days · 3 Nights · ₹9,999 per person</p>
+          <p className="text-white/75 text-lg mb-3">4 Days · 3 Nights </p>
           <p className="text-white/60 text-sm mb-8">Max 8 guests · Khasi village homestay · Rainbow Falls included</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book/living-root-bridges-trek" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark font-bold text-base">
               Book Now
             </Link>
-            <Link href="/contact?tour=living-root-bridges-trek" className="btn-outline border-white text-white hover:bg-white/10 font-bold text-base">
-              Enquire First
-            </Link>
+            
           </div>
           <p className="mt-6 text-white/50 text-xs">Free cancellation up to 15 days before departure · Secure Stripe checkout</p>
         </div>

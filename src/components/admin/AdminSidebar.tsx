@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
@@ -84,7 +84,7 @@ export default function AdminSidebar({
                                 {/* Mobile Sidebar Content */}
                                 <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                                     <div className="flex h-16 shrink-0 items-center">
-                                        <span className="text-2xl font-bold text-blue-600">Jajabor</span>
+                                        <span className="text-2xl font-bold text-blue-600">Red Coral Travels</span>
                                     </div>
                                     <nav className="flex flex-1 flex-col">
                                         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -142,7 +142,7 @@ export default function AdminSidebar({
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                         <Link href="/" className="text-2xl font-bold text-blue-600">
-                            Jajabor
+                            Red Coral Travels
                         </Link>
                     </div>
                     <nav className="flex flex-1 flex-col">

@@ -12,7 +12,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                 className={`
           w-full px-4 py-3 rounded-lg border
           text-base text-graphite min-h-[120px]
-          placeholder:text-graphite/50
+          placeholder:text-graphite/50 focus:placeholder-transparent
           focus:outline-none focus:ring-2 focus:ring-lavender-purple
           transition-all duration-200 resize-y
           ${error

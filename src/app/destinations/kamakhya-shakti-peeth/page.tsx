@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import BackButton from '@/components/ui/BackButton';
 
 export const metadata: Metadata = {
   title: 'Kamakhya Shakti Peeth Pilgrimage — Guwahati, Assam',
   description:
-    "Journey to one of India's most powerful Shakti Peethas. Experience Tantric rituals, riverside aartis, and the spiritual heart of Assam. 3-day pilgrimage from ₹7,999.",
+    "Journey to one of India's most powerful Shakti Peethas. Experience Tantric rituals, riverside aartis, and the spiritual heart of Assam. 3-day pilgrimage ",
+  keywords: ["Kamakhya Temple Guwahati","Kamakhya Shakti Peeth","Assam pilgrimage tour","Guwahati spiritual tour","Northeast India temples"],
+  alternates: { canonical: 'https://www.redcoraltravels.com/destinations/kamakhya-shakti-peeth' },
+  openGraph: {
+    type: 'website', url: 'https://www.redcoraltravels.com/destinations/kamakhya-shakti-peeth',
+    title: 'Kamakhya Shakti Peeth Pilgrimage - Guwahati, Assam | Red Coral Travels',
+    description: "Journey to one of India's most powerful Shakti Peethas. Experience Tantric rituals, riverside aartis, and the spiritual heart of Assam. 3-day pilgrimage.",
+    images: [{ url: 'https://www.redcoraltravels.com/og-image.jpg', width: 1200, height: 630, alt: 'Kamakhya Temple Guwahati' }],
+  },
+  twitter: { card: 'summary_large_image', title: 'Kamakhya Shakti Peeth - Assam | Red Coral Travels', images: ['https://www.redcoraltravels.com/og-image.jpg'] },
 };
 
 const quickFacts = [
@@ -66,9 +76,9 @@ export default function KamakhyaShaktiPeethPage() {
     <div className="min-h-screen">
 
       {/* Hero */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20"
-          style={{ backgroundImage: 'radial-gradient(ellipse at 30% 60%, #594E8D 0%, transparent 55%), radial-gradient(ellipse at 75% 20%, #F2D7EE 0%, transparent 45%)' }} />
+      <section className="relative text-white overflow-hidden">
+        <Image src="/images/tours/kamakhya-main.jpg" alt="Kamakhya Temple Guwahati" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/30 to-black/60" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <BackButton />
           <div className="flex flex-wrap gap-3 mb-5">
@@ -89,11 +99,9 @@ export default function KamakhyaShaktiPeethPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/book/kamakhya-shakti-peeth-circuit" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark">
-              Book Pilgrimage — ₹7,999
+              Book Pilgrimage 
             </Link>
-            <Link href="/contact?tour=kamakhya-shakti-peeth-circuit" className="btn-outline border-white text-white hover:bg-white/10">
-              Ask a Question
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -271,15 +279,13 @@ export default function KamakhyaShaktiPeethPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
           <div className="text-5xl mb-6">🛕</div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Begin Your Pilgrimage</h2>
-          <p className="text-white/75 text-lg mb-3">3 Days · 2 Nights · ₹7,999 per person</p>
+          <p className="text-white/75 text-lg mb-3">3 Days · 2 Nights </p>
           <p className="text-white/60 text-sm mb-8">Max 20 guests · VIP darshan included · All temple fees covered</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book/kamakhya-shakti-peeth-circuit" className="btn-primary bg-lavender-veil text-deep-navy hover:bg-secondary-dark font-bold text-base">
               Book Now
             </Link>
-            <Link href="/contact?tour=kamakhya-shakti-peeth-circuit" className="btn-outline border-white text-white hover:bg-white/10 font-bold text-base">
-              Enquire First
-            </Link>
+            
           </div>
           <p className="mt-6 text-white/50 text-xs">Free cancellation up to 15 days before departure · Secure Stripe checkout</p>
         </div>

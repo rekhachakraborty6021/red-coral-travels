@@ -9,6 +9,7 @@ export interface State {
         lng: number;
     };
     image: string;
+    imagePosition?: string;
     highlights: string[];
     bestTime: string[];
     permitRequired: boolean;
@@ -96,6 +97,7 @@ export const states: State[] = [
         description: 'Land of floating islands, classical dance, and the world\'s only floating national park.',
         coordinates: { lat: 24.66, lng: 93.90 },
         image: '/images/states/manipur.jpg',
+        imagePosition: 'object-top',
         highlights: [
             'Loktak Lake',
             'Keibul Lamjao National Park',
