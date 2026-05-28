@@ -76,10 +76,10 @@ export default function HeroSection() {
 
             {/* Content */}
             <div className="absolute bottom-14 left-0 right-0 z-30 flex justify-center gap-4 px-4">
-                <Link href="/tours" className="px-8 py-3.5 bg-yellow-400 text-blue-900 rounded-lg font-bold text-lg hover:bg-yellow-300 active:scale-95 transition-all shadow-lg">
+                <Link href="/tours" className="px-8 py-3.5 bg-yellow-400 !text-blue-900 rounded-lg font-bold text-lg hover:bg-yellow-300 active:scale-95 transition-all shadow-lg">
                     Explore Tours
                 </Link>
-                <Link href="/contact" className="px-8 py-3.5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-white/20 active:scale-95 transition-all">
+                <Link href="/contact" className="px-8 py-3.5 bg-white/20 backdrop-blur-sm border-2 border-white !text-white rounded-lg font-bold text-lg hover:bg-white/30 active:scale-95 transition-all">
                     Plan My Trip
                 </Link>
             </div>

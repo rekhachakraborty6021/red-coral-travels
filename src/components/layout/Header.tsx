@@ -21,8 +21,8 @@ export default function Header() {
             {/* Row 1 — Banner + Contact (scrolls away) */}
             <div className="bg-[#f5f0ee] border-b border-[#d4a898]/30 flex items-stretch">
 
-                {/* Banner image — 70% width, full natural height, zero crop */}
-                <Link href="/" className="block w-[70%]">
+                {/* Banner image — full width on mobile, 70% on desktop */}
+                <Link href="/" className="block w-full md:w-[70%]">
                     <Image
                         src="/header-banner.png"
                         alt="Red Coral Travels"
@@ -117,7 +117,7 @@ export default function Header() {
                                 ))}
                                 {/* Mobile contact */}
                                 <div className="flex gap-4 px-4 py-3 border-t border-[#E8735A]/10 mt-1">
-                                    <a href="tel:+919" className="text-xs text-[#1B5E6B] font-semibold flex items-center gap-1">📞 +91 99999 99999</a>
+                                    <a href="tel:+919101556092" className="text-xs text-[#1B5E6B] font-semibold flex items-center gap-1">📞 +91 91015 56092</a>
                                 </div>
                             </div>
                         </div>
