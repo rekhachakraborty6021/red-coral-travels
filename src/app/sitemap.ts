@@ -16,7 +16,7 @@ const DESTINATION_SLUGS = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.Red Coral Travels.com';
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.redcoraltravels.com';
     const tours = getTours();
     const states = getStates();
 

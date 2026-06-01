@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
+import { generateFAQJsonLd } from '@/lib/seo/jsonld';
 import TourCard from '@/components/tours/TourCard';
 import ThemeCard from '@/components/themes/ThemeCard';
 import StateCard from '@/components/states/StateCard';
@@ -27,6 +28,7 @@ export default function HomePage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFAQJsonLd()) }} />
       <HeroSection />
 
       {/* Explore by State */}

@@ -4,7 +4,7 @@ import { getStateBySlug, getStates } from '@/lib/data/states';
 import StateDetailTabs from '@/components/states/StateDetailTabs';
 import { generateStateJsonLd } from '@/lib/seo/jsonld';
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.jajabor.com';
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.redcoraltravels.com';
 
 export async function generateStaticParams() {
     return getStates().map((s) => ({ slug: s.slug }));
@@ -63,7 +63,9 @@ export default async function StateLandingPage({ params }: { params: Promise<{ s
 
     return (
         <div className="min-h-screen bg-white">
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            {jsonLd.map((schema, i) => (
+                <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            ))}
             {/* Hero Section */}
             <div className="relative h-72 sm:h-96">
                 <Image

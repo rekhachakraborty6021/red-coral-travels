@@ -7,7 +7,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppFloat from '@/components/layout/WhatsAppFloat';
 import { Toaster } from 'sonner';
-import { generateOrganizationJsonLd } from '@/lib/seo/jsonld';
+import { generateOrganizationJsonLd, generateWebSiteJsonLd } from '@/lib/seo/jsonld';
 import Providers from '@/components/providers/Providers';
 import './globals.css';
 
@@ -78,10 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationJsonLd()) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationJsonLd()) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebSiteJsonLd()) }} />
         <Providers>
           <div className="flex flex-col min-h-screen relative">
             {/* Watermark */}
