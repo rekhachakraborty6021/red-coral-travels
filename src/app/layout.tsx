@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     default: 'Red Coral Travels - Northeast India Travel & Tour Packages',
     template: '%s | Red Coral Travels',
   },
+  verification: {
+    google: '<meta name="google-site-verification" content="1jBAZCu5eaWSMOPDYiJjukPu6lzA_ju9cRy74hqo9jU" />,',
+  },
   description: 'Expert-curated tours across Northeast India - Assam, Meghalaya, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura & Sikkim. Book wildlife safaris, treks, festivals & cultural tours.',
   keywords: [
     'Northeast India travel', 'Northeast India tours', 'Northeast India tour packages',
